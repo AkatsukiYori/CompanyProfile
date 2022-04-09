@@ -1,7 +1,11 @@
 module.exports = {
   content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      "width" : {
+        100 : "500px"
+      }
+    },
   },
   plugins: [],
 }

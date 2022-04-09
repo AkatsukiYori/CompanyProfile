@@ -1,33 +1,12 @@
 <template>
-  
-<div id="all">
-
-
-
-    <div class="container">
-        body
-    </div>
-
-
-
-
-
-
-</div>
+  <Navbar/>
 </template>
-
-
 <script>
-import header from 'forinclude/header.vue';
-
+import Navbar from '@/components/Navbar.vue';
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    header,
-  },
-};
+    Navbar,
+  }
+}
 </script>
-
-<style>
-
-</style>

@@ -36,9 +36,8 @@ export default {
                 {id: 6, imageName: "laptop.png"},
                 {id: 7, imageName: "laptop.png"},
                 {id: 8, imageName: "laptop.png"},
-                {id: 9, imageName: "laptop.png"},
-                {id: 10, imageName: "laptop.png"}
-            ]
+                {id: 9, imageName: "laptop.png"}
+            ],
         }
     }
 }

@@ -1,9 +1,13 @@
 <template>
-    <div class="bg-purple-600 w-full h-screen flex relative py-36 px-12">
-        <img src="../assets/laptop.png" class="w-100" alt="Gambar">
-        <div>
-            <p class="text-white font-semibold text-5xl pl-48 pt-10 pb-16">Kata Slogan</p>
-            <p class="text-white text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et turpis semper, volutpat justo dictum, aliquam orci. Nunc vulputate, sem id rutrum efficitur, ex felis imperdiet augue, a laoreet dolor eros non ipsum. Vestibulum at justo nisi. Praesent aliquam nec metus sed suscipit. Fusce gravida dapibus nulla, vel ullamcorper mi efficitur quis. Quisque ut viverra nulla, et faucibus lacus. Aliquam malesuada euismod diam et varius.</p>
+    <div class="bg-purple-600 w-full flex flex-wrap relative py-28 px-12 md:px-20">
+        <div class="lg:w-1/2 md:w-full w-full flex justify-center">
+            <img src="../assets/laptop.png" class="lg:w-11/12 h-auto md:w-full sm:w-full" alt="Gambar">
+        </div>
+        <div class="flex lg:w-1/2 md:w-full sm:w-full w-full flex-wrap items-center">
+            <div>
+                <p class="text-white font-semibold text-6xl w-full my-1">Kata Slogan slogan</p>
+                <p class="text-white lg:text-xl md:text-lg sm:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et turpis semper, volutpat justo dictum, aliquam orci.</p>
+            </div>
         </div>
     </div>
 </template>

@@ -1,15 +1,15 @@
 <template>
   <Navbar/>
-  <Carousel/>
+  <Gallery/>
 </template>
 <script>
 import Navbar from '@/components/Navbar.vue';
-import Carousel from './components/Carousel.vue';
+import Gallery from '@/components/Gallery.vue';
 export default {
   name: "App",
   components: {
     Navbar,
-    Carousel
+    Gallery,
   }
 }
 </script>

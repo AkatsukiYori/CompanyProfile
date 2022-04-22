@@ -16,7 +16,8 @@ class CreateAlbumTable extends Migration
         Schema::create('album', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('akun_id', false, true);            
-            $table->string('name');            
+            $table->string('name');    
+            $table->string('kategori');    
             $table->text('deskripsi');
             $table->datetime('tgl_album');
             $table->foreign('akun_id')->references('id')->on('users');

@@ -148,7 +148,7 @@
 
             </div>
             <!-- Left Sidebar End -->
-
+            
         </div>
         <!-- Vendor js -->
         <script src="{{asset('/js/vendor.min.js')}}"></script>

@@ -1,6 +1,6 @@
     <head>
         <meta charset="utf-8" />
-        <title>Dashboard | Adminto - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Admin | Company Profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -14,6 +14,13 @@
         <link href="{{asset('/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{asset('/css/app.min.css')}}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js">
+
+        <!-- Material Design Icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/6.6.96/css/materialdesignicons.min.css">
 
     </head>
 
@@ -30,7 +37,7 @@
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="{{asset('/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ml-1">
-                                Nowak <i class="mdi mdi-chevron-down"></i> 
+                                Alexander <i class="mdi mdi-chevron-down"></i> 
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -74,7 +81,7 @@
                     </li>
 
                     <li>
-                        <h4 class="page-title-main">Dashboard</h4>
+                        <h4>Dashboard</h4>
                     </li>
         
                 </ul>
@@ -91,7 +98,7 @@
                     <div class="user-box text-center">
                         <img src="{{asset('/images/users/user-1.jpg')}}" alt="user-img" class="rounded-circle img-thumbnail avatar-md">
                         <div class="dropdown">
-                            <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"  aria-expanded="false">Nowak Helme</a>
+                            <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"  aria-expanded="false">Alexander</a>
                             <div class="dropdown-menu user-pro-dropdown">
 
                                 <!-- item-->
@@ -131,9 +138,50 @@
                             <li class="menu-title">Navigation</li>
 
                             <li>
-                                <a href="index.html">
-                                    <i class="mdi mdi-view-dashboard"></i>
+                                <a href="{{ route('dashboard') }}">
+                                    <i class="fa-solid fa-chart-line"></i>
                                     <span> Dashboard </span>
+                                </a>
+                            </li>
+
+                            <li>
+                               <a href="#">
+                                    <i class="mdi mdi-dots-horizontal-circle"></i>
+                                    <span> More </span>
+                                    <i class="fa-solid fa-caret-down"></i>
+                               </a>
+                               <ul>
+                                   <li>
+                                       <a href="{{ route('tentang') }}">
+                                           <i class="fa-solid fa-address-card"></i>
+                                           <span> Tentang Kami </span>
+                                        </a>
+                                   </li>
+                                   <li>
+                                       <a href="{{ route('faqs') }}">
+                                           <i class="fa-solid fa-messages"></i>
+                                           <span> FAQS </span>
+                                       </a>
+                                   </li>
+                                   <li>
+                                       <a href="{{ route('kontak') }}">
+                                           <li class="fa-solid fa-phone"></li>
+                                           <span> Contact US </span>
+                                       </a>
+                                   </li>
+                               </ul>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('gallery') }}">
+                                    <i class="fa-solid fa-images"></i>
+                                    <span> Gallery </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('mitra') }}">
+                                    <i class="fa-solid fa-handshake"></i>
+                                    <span> Mitra </span>
                                 </a>
                             </li>
                         </ul>

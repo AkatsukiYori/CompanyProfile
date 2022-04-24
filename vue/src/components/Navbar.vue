@@ -26,56 +26,56 @@
           ></path>
         </svg>
       </button>
-      <div class="hidden w-full md:!block md:w-auto" id="mobile-menu">
+      <div class="hidden w-full md:!block md:w-auto lg:w-auto sm:w-auto" id="mobile-menu">
         <ul
           class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium"
         >
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >Home</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >About</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >Product</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >Galeri</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >FAQS</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
               >Mitra</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 pr-4 pl-3 text-gray-500 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent"
               >Contact</a
             >
           </li>

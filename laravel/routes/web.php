@@ -34,6 +34,7 @@ Route::POST('/tentang-store',[TentangController::class, 'store'])->name('tentang
 
 // Faqs
 Route::get('/faqs',[FaqsController::class, 'view'])->name('faqs')->middleware('auth');
+Route::post('/faqs',[FaqsController::class, 'store'])->name('faqs-store')->middleware('auth');
 
 // Mitra
 Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware('auth');

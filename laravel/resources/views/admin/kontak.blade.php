@@ -7,6 +7,6 @@
     <title>Kontak | Kita Serba Digital</title>
 </head>
 <body>
-    @extends('layouts/app')
+    @include('layouts/app')
 </body>
 </html>

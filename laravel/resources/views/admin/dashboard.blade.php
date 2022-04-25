@@ -7,6 +7,13 @@
     <title>Dashboard</title>
 </head>
 <body>
-    @extends('layouts/app')
+    @include('layouts/app2')
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                Hello
+            </div>
+        </div>
+    </div>
 </body>
 </html>

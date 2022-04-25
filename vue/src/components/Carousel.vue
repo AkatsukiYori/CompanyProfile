@@ -30,15 +30,12 @@ export default {
         slideGroups: 0,
         itemsPerRow: 3,
           slides: [
-              {id: 1, title: 'test', image: require('../assets/logo.png')},
-              {id: 2, title: 'test', image: require('../assets/logotest.jpg')},
-              {id: 3, title: 'test', image: require('../assets/logo.png')},
-              {id: 4, title: 'test', image: require('../assets/logotest.jpg')},
-              {id: 5, title: 'test', image: require('../assets/logo.png')},
-              {id: 6, title: 'test', image: require('../assets/logotest.jpg')},
-              {id: 7, title: 'test', image: require('../assets/logo.png')},
-              {id: 8, title: 'test', image: require('../assets/logotest.jpg')},
-              {id: 9, title: 'test', image: require('../assets/logotest.jpg')},
+              {id: 1, title: 'test', image: require('../assets/carousel_image/siapjuara.png')},
+              {id: 2, title: 'test', image: require('../assets/carousel_image/Logo_sekolah_pro.png')},
+              {id: 3, title: 'test', image: require('../assets/carousel_image/logo_KSD.png')},
+              {id: 4, title: 'test', image: require('../assets/carousel_image/Logo_kagum_hitam.png')},
+              {id: 5, title: 'test', image: require('../assets/carousel_image/LOGO BISA KERJA.png')},
+              {id: 6, title: 'test', image: require('../assets/carousel_image/esippda_logo.png')},
           ],
           
       }

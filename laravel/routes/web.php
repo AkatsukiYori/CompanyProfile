@@ -29,7 +29,8 @@ Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
 Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard');
 
 // Tentang Kami
-Route::get('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
+Route::GET('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
+Route::POST('/tentang-store',[TentangController::class, 'store'])->name('tentang-store')->middleware('auth');
 
 // Faqs
 Route::get('/faqs',[FaqsController::class, 'view'])->name('faqs')->middleware('auth');
@@ -41,7 +42,7 @@ Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware
 Route::get('/kontak',[KontakController::class, 'view'])->name('kontak')->middleware('auth');
 
 // Gallery
-Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery');
+Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery')->middleware('auth');
 
 // Visi Misi
-Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi');
+Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi')->middleware('auth');

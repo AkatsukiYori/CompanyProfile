@@ -42,8 +42,8 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="DataAbout" enctype="multipart/form-data">
+            <form id="DataAbout" enctype="multipart/form-data" action="/tentang-store" method="POST">
+                <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="Judul">Judul</label>
@@ -57,12 +57,12 @@
                         <label for="deskripsi">Deskripsi</label>
                         <textarea name="deskripsi" class="form-control ckeditor" id="deskripsi" cols="30" rows="10"></textarea>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Simpan</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

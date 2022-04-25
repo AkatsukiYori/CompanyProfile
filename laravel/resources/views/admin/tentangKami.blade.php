@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="wrapper">
-    @extends('layouts/app')
+    @include('layouts/app2')
         <div class="content-page">
             <div class="content">
 

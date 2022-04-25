@@ -7,6 +7,6 @@
     <title>FAQS</title>
 </head>
 <body>
-    @extends('layouts/app')
+    @include('layouts/app2')
 </body>
 </html>

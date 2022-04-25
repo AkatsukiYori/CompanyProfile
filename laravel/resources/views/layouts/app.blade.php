@@ -41,7 +41,7 @@
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <!-- item-->
+                            <!-- item -->
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
@@ -78,10 +78,6 @@
                         <button class="button-menu-mobile disable-btn waves-effect">
                             <i class="fe-menu"></i>
                         </button>
-                    </li>
-
-                    <li>
-                        <h4>Dashboard</h4>
                     </li>
         
                 </ul>
@@ -127,7 +123,7 @@
     
                             </div>
                         </div>
-                        <p class="text-muted">Admin Head</p>
+                        <p class="text-muted">Admin ComPro</p>
                     </div>
 
                     <!--- Sidemenu -->
@@ -143,44 +139,50 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-
+                            
                             <li>
                                <a href="#">
                                     <i class="mdi mdi-dots-horizontal-circle"></i>
-                                    <span> More </span>
+                                    <span> Landing Page </span>
                                     <i class="fa-solid fa-caret-down"></i>
-                               </a>
-                               <ul>
-                                   <li>
-                                       <a href="{{ route('tentang') }}">
-                                           <i class="fa-solid fa-address-card"></i>
-                                           <span> Tentang Kami </span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="{{ route('visiMisi') }}">
+                                            <i class="fas fa-crosshairs"></i>
+                                            <span> Visi Misi </span>
                                         </a>
-                                   </li>
-                                   <li>
-                                       <a href="{{ route('faqs') }}">
-                                           <i class="fa-solid fa-messages"></i>
-                                           <span> FAQS </span>
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="{{ route('kontak') }}">
-                                           <li class="fa-solid fa-phone"></li>
-                                           <span> Contact US </span>
-                                       </a>
-                                   </li>
-                               </ul>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('tentang') }}">
+                                            <i class="fa-solid fa-address-card"></i>
+                                            <span> Tentang Kami </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('faqs') }}">
+                                            <i class="fas fa-question-circle"></i>
+                                            <span> Faqs </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('kontak') }}">
+                                            <i class="fas fa-phone-alt"></i>
+                                            <span> Contact us </span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li>
                                 <a href="{{ route('gallery') }}">
-                                    <i class="fa-solid fa-images"></i>
+                                    <i class="fas fa-images"></i>
                                     <span> Gallery </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('mitra') }}">
-                                    <i class="fa-solid fa-handshake"></i>
+                                    <i class="fas fa-handshake"></i>
                                     <span> Mitra </span>
                                 </a>
                             </li>

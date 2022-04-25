@@ -7,6 +7,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VisiMisiController;
 
 
 /*
@@ -41,3 +42,6 @@ Route::get('/kontak',[App\Http\Controllers\KontakController::class, 'view'])->na
 
 // Gallery
 Route::get('/gallery',[App\Http\Controllers\GalleryController::class, 'view'])->name('gallery');
+
+// Visi Misi
+Route::get('/visiMisi',[App\Http\Controllers\VisiMisiController::class, 'view'])->name('visiMisi');

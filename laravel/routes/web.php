@@ -26,22 +26,22 @@ Auth::routes();
 Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
 
 // Dashboard
-Route::get('/dashboard',[App\Http\Controllers\DashboardController::class, 'view'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard');
 
 // Tentang Kami
-Route::get('/tentang',[App\Http\Controllers\TentangController::class, 'view'])->name('tentang')->middleware('auth');
+Route::get('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
 
 // Faqs
-Route::get('/faqs',[App\Http\Controllers\FaqsController::class, 'view'])->name('faqs')->middleware('auth');
+Route::get('/faqs',[FaqsController::class, 'view'])->name('faqs')->middleware('auth');
 
 // Mitra
-Route::get('/mitra',[App\Http\Controllers\MitraController::class, 'view'])->name('mitra')->middleware('auth');
+Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware('auth');
 
 // Kontak
-Route::get('/kontak',[App\Http\Controllers\KontakController::class, 'view'])->name('kontak')->middleware('auth');
+Route::get('/kontak',[KontakController::class, 'view'])->name('kontak')->middleware('auth');
 
 // Gallery
-Route::get('/gallery',[App\Http\Controllers\GalleryController::class, 'view'])->name('gallery');
+Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery');
 
 // Visi Misi
-Route::get('/visiMisi',[App\Http\Controllers\VisiMisiController::class, 'view'])->name('visiMisi');
+Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi');

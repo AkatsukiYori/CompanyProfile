@@ -15,7 +15,9 @@ class CreateTentangKamiTable extends Migration
     {
         Schema::create('tentang_kami', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('akun_id', false, true);            
+            $table->bigInteger('akun_id', false, true);
+            $table->string('judul');
+            $table->bigInteger('media_id');         
             $table->text('deskripsi');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();

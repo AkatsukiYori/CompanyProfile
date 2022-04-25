@@ -21,23 +21,9 @@
                                 <div class="card-header">
                                     <h2>Tentang Kami</h2>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="tentangModal">
+                                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="tentangModal">
                                     Tambah isi
                                 </button>
-
-                                <table id="tentangkamiTable" class="table table-bordered dt-responsive nowrap table-striped" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Judul Tentang Kami</td>
-                                            <td>Gambar</td>
-                                            <td>Deskripsi</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -69,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <input type="text" class="form-control ckeditor" parsley-trigger="change" id="deskripsi" name="deskripsi" required>
+                        <textarea name="deskripsi" class="form-control ckeditor" id="deskripsi" cols="30" rows="10"></textarea>
                     </div>
                 </form>
             </div>
@@ -80,5 +66,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#gambar').dropify();
+        CKEDITOR.replace('#deskripsi');
+
+        $(document).on('click','.tambah',function(e){
+            $('#tentangModal').modal('show');
+        })
+    });
+</script>
 </body>
 </html>

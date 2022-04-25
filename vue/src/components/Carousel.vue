@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1 class="overflow-y-hidden pt-16 m-auto text-center text-white text-4xl  bg-purple-600">Products</h1>
-  <carousel :items-to-show="3.3" :items-to-scroll="3" class="bg-purple-600 pt-32 pb-12" :wrap-around="true" :breakpoints="breakpoints">
+  <carousel :items-to-show="3.3" :items-to-scroll="1" class="bg-purple-600 pt-32 pb-12" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000">
     <slide v-for="slide in slides" :key="slide.id">
       <img :src="slide.image" alt="" class="w-9/12">
     </slide>

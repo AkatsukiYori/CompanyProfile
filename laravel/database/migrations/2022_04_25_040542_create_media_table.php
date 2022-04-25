@@ -18,7 +18,7 @@ class CreateMediaTable extends Migration
             $table->bigInteger('akun_id', false, true);
             $table->string('name');
             $table->enum('kategori', ['image', 'video', 'link']);
-            $table->enum('jenis',['product', 'berita', 'mitra']);
+            $table->enum('jenis',['product', 'berita', 'mitra','lainnya']);
             $table->date('tgl_media');
             $table->text('link')->nullable();
             $table->foreign('akun_id')->references('id')->on('users');

@@ -15,6 +15,7 @@ class TentangController extends Controller
         return view('admin/tentangKami');
     }
     public function store(Request $request){
+        return $request->all();
         $validator = Validator::make($request->all(), [
             "judul_tentang" => "required",
             "deskripsi" => "required",
@@ -31,22 +32,17 @@ class TentangController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = uniqid().'-'.'.' . $extension;
             $file->move('storage/activity/', $filename);
+            $media = new Media;
+            $media->akun_id=Auth::user()->name;
+            $media->kategori = "image";
+            $media->jenis= "lainnya";
+            $media->tgl_media=date('d-m-Y');
+            $media->save();
+            $id=$media->id;
             }
-            $activity = new Activity;
-            $activity->divisi_karyawan_id= Auth::user()->karyawan->id;
-            $activity->gambar_activity=$filename;
-            $activity->project_id= $request->input('project');
-            $activity->nama_activity= $request->input('nama_activity');
-            $activity->deskripsi_activity= $request->input('desc_activity');
-            $activity->jam_mulai= $request->input('jam_mulai');
-            $activity->tanggal= $request->input('tgl');
-            $activity->deadline= $request->input('deadline');
-            $activity->status= $request->input('status');
-            $activity->category= $request->input('category');
-            $activity->save();
-             return 'Data Inserted'; 
-        $tentang = new Tentang;
-        $tentang->
+            // $tentang = new Tentang;
+            // $tentang->akun_id = Auth::user()->id;
+            // $tentang->judul = $request-> 
 
     }
 }

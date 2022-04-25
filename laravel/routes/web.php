@@ -46,3 +46,7 @@ Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery')->midd
 
 // Visi Misi
 Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

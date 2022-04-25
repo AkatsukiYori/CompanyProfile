@@ -73,24 +73,11 @@
                     </ul>
                 </div>
             </div>
-            <!-- Left Sidebar End -->
-            
-        </div>
-        <!-- Vendor js -->
-        <script src="{{asset('/js/vendor.min.js')}}"></script>
+        </nav>
 
-        <!-- knob plugin -->
-        <script src="{{asset('/libs/jquery-knob/jquery.knob.min.js')}}"></script>
-
-        <!--Morris Chart-->
-        <script src="{{asset('/libs/morris-js/morris.min.js')}}"></script>
-        <script src="{{asset('/libs/raphael/raphael.min.js')}}"></script>
-
-        <!-- Dashboard init js-->
-        <script src="{{asset('/js/pages/dashboard.init.js')}}"></script>
-
-        <!-- App js -->
-        <script src="{{asset('/js/app.min.js')}}"></script>
-        
-    </body>
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
 </html>

@@ -105,7 +105,7 @@
                 <div class="user-box text-center">
                     <img src="{{asset('/images/users/user-1.jpg')}}" alt="user-img" class="rounded-circle img-thumbnail avatar-md">
                     <div class="dropdown">
-                        <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"  aria-expanded="false">Alexander</a>
+                        <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"  aria-expanded="false">{{ Auth::user()->name }}</a>
                         <div class="dropdown-menu user-pro-dropdown">
 
                             <!-- item-->

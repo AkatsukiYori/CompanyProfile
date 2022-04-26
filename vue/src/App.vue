@@ -4,7 +4,6 @@
     <Beranda />
     <Carousel />
     <TentangKSD />
-    <Carousel />
     <Gallery />
     <Footer/>
   </div>
@@ -15,7 +14,6 @@ import Beranda from '@/components/Beranda.vue';
 import Carousel from '@/components/Carousel.vue';
 import TentangKSD from '@/components/TentangKSD.vue';
 import Footer from '@/components/Footer.vue';
-import Carousel from '@/components/Carousel.vue';
 import Gallery from '@/components/Gallery.vue';
 export default {
   name: "App",
@@ -25,8 +23,7 @@ export default {
     Carousel,
     TentangKSD,
     Footer,
-    Carousel,
     Gallery
-}
+  }
 }
 </script>

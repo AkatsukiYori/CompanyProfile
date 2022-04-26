@@ -47,4 +47,7 @@ Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery')->midd
 
 // Visi Misi
 Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi')->middleware('auth');
-Route::post('/visiMisitambah',[VisiMisiController::class, 'store'])->name('visiMisitambah');
+Route::post('/visiMisitambah',[VisiMisiController::class, 'store'])->name('visiMisitambah')->middleware('auth');
+Route::get('/visiMisiedit/{id}',[VisiMisiController::class, 'edit'])->name('visiMisiedit')->middleware('auth');
+Route::post('/visiMisiupdate',[VisiMisiController::class, 'update'])->name('visiMisiupdate')->middleware('auth');
+Route::get('/visiMisihapus/{id}',[VisiMisiController::class,'destroy'])->name('visiMisihapus')->middleware('auth');

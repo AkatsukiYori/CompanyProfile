@@ -38,7 +38,7 @@
                                 </button>
                                 @foreach ($visiMisi as $viMi)
                                 <button type="button" class="btn btn-warning btnEdit" id="{{ $viMi->id }}" data-toggle="modal" data-target="editModal" style="margin-top: -4.5%;">Ubah</button>
-                                <button type="button" class="btn btn-danger btnDelete" style="margin-top: -4.5%;">Delete</button>
+                                <button type="button" class="btn btn-danger btnDelete" id="{{ $viMi->id }}" style="margin-top: -4.5%;">Delete</button>
                                 @endforeach
                             </div>
                         </div>
@@ -158,9 +158,33 @@
             })
         })
 
-        $(document).on('click','.btnDelete',function(e) {
+        $(document).on('click','.btnDelete',function(e){
             e.preventDefault();
-            var id = $(this).attr("id");
+            var id=$(this).attr("id");
+            
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "Yakin untuk menghapus data?",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin'
+            }).then((result) => {
+                $.ajax({
+                    method:'get',
+                    url : '/visiMisihapus/'+id,
+                    success: function(data) {
+                        swal.fire({
+                            type: 'success',
+                            title:"Berhasil Dihapus",
+                            confirmButtonText: 'Yakin',
+                        }).then((result) => {
+                            location.reload();
+                        })
+                    }
+                })
+            })
         })
     });
 </script>

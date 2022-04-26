@@ -70,8 +70,8 @@ class VisiMisiController extends Controller
         return redirect::back()->with('success','Data anda berhasil diubah!');  
     }
 
-    public function destroy(Request $request) {
-        $visiMisi = VisiMisi::find($request->deleteId)->delete();
+    public function destroy($id) {
+        VisiMisi::where('id',$id)->delete();
         return redirect::back()->with('success','Data berhasil dihapus!');
     }
 }

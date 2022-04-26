@@ -23,7 +23,7 @@
 	    			@endif
 
 					@if($errors->any())
-					<div class="alert alert-error alert-dismissable">
+					<div class="alert alert-error alert-dismissable bg-danger text-white">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 						<strong>Gagal!</strong> {!! implode('', $errors->all('<div>:message</div>')) !!}
 					</div>
@@ -54,7 +54,7 @@
                                                 @foreach ($tentang as $ttg)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$ttg->judul_id}}</td>
+                                                    <td>{{$ttg->judul}}</td>
                                                     <td><?= $ttg->deskripsi ?></td>
                                                     <td>
                                                         @if($ttg->media == null)
@@ -63,7 +63,8 @@
                                                             <img src="{{ asset('/storage/tentang/'.$ttg->media->name) }}" width="150" alt="">
                                                         @endif
                                                     </td>
-                                                    <td><button class="btn btn-warning btnEdit">Edit</button></td>
+                                                    <td><button class="btn btn-warning btnEdit rounded" id="{{$ttg->id}}"><i class="fa fa-pencil mr-1"></i> Edit</button>
+                                                        <button class="btn btn-danger btnDelete rounded" id="{{$ttg->id}}" value="{{$ttg->media->id}}"><i class="fa fa-trash mr-1"></i> Delete</button></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -92,11 +93,11 @@
                     @csrf
                     <div class="form-group">
                         <label for="Judul">Judul</label>
-                        <input type="text" class="form-control" parsley-trigger="change" name="judul_tentang" id="judul_tentang" required>
+                        <input type="text" class="form-control" parsley-trigger="change" name="judul_tentang" id="judul_tentang" >
                     </div>
                     <div class="form-group">
                         <label for="Gambar">Gambar</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar" name="gambar" required>
+                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar" name="gambar" >
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
@@ -112,29 +113,32 @@
     </div>
 </div>
 
-<div class="modal fade" id="tentangModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="tentangModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="DataAbout" enctype="multipart/form-data" action="/tentang-store" method="POST">
+            <form id="DataAbout" enctype="multipart/form-data" action="/tentang-update" method="POST">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
+                        <input type="hidden" name="editID" id="editID">
+                        <input type="hidden" name="Filename" id="Filename">
+                        <input type="hidden" name="mediaID" id="mediaID">
                         <label for="Judul">Judul</label>
-                        <input type="text" class="form-control" parsley-trigger="change" name="judul_tentang" id="judul_tentang" required>
+                        <input type="text" class="form-control" parsley-trigger="change" name="judul_tentang" id="judul_tentang_edit" required>
                     </div>
                     <div class="form-group">
                         <label for="Gambar">Gambar</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar" name="gambar" required>
+                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar_edit" name="gambar">
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control ckeditor" id="deskripsi" cols="30" rows="10"></textarea>
+                        <textarea name="deskripsi_edit" class="form-control ckeditor" id="deskripsi_edit" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -148,13 +152,78 @@
 <script>
     $(document).ready(function() {
         $('#gambar').dropify();
-        CKEDITOR.replace('#deskripsi');
+        $('#gambar_edit').dropify();
         $('#tentangTable').DataTable();
 
         $(document).on('click','.tambah',function(e){
             $('#tentangModal').modal('show');
         })
-    });
+
+        $(document).on('click','.btnEdit',function(e){
+            var id = $(this).attr('id');
+            $.ajax({
+                method:"get",
+                url:"/tentang-edit/"+id,
+                success:function(response){
+                    console.log('Data Berhasil Didapatkan');
+                    $('#judul_tentang_edit').val(response[0].judul);
+                    $('#editID').val(response[0].id);
+                    $('#Filename').val(response[0].media.name);
+                    $('#mediaID').val(response[0].media_id);
+                    
+                    CKEDITOR.instances['deskripsi_edit'].setData(response[0].deskripsi);
+                    if(response[0].media ==null){
+                        $('#gambar_edit').attr("required")
+                    }else{
+                        var lokasi_gambar = "{{ asset('storage/tentang') }}"+'/'+response[0].media.name;
+                        var fileDropper = $("#gambar_edit").dropify({
+                            messages: { default: "Seret dan lepas logo di sini atau klik", replace: "Seret dan lepas logo di sini atau klik", remove: "Remove", error: "Terjadi kesalahan" },
+                            error: { fileSize: "Ukuran file gambar terlalu besar (Maksimal 5 MB)" },
+                        });
+    
+                        fileDropper = fileDropper.data('dropify');
+                        fileDropper.resetPreview();
+                        fileDropper.clearElement();
+                        fileDropper.settings['defaultFile'] = lokasi_gambar;
+                        fileDropper.destroy();
+                        fileDropper.init();    
+                    }
+                }
+            })
+            $('#tentangModalEdit').modal('show');
+        })
+        $(document).on('click','.btnDelete',function(e){
+            var id=$(this).attr('id');
+            var media_id=$(this).attr('value');
+            var data = {
+                        'id': id,
+                        'media_id': media_id,
+                    };
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "Yakin untuk menghapus data?",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin'
+            }).then((result) => {
+                $.ajax({
+                    method:'get',
+                    url : '/tentang-delete/'+id,
+                    success: function(data) {
+                        swal.fire({
+                            type: 'success',
+                            title:"Berhasil Dihapus",
+                            confirmButtonText: 'Yakin',
+                        }).then((result) => {
+                            location.reload();
+                        })
+                    }
+                })
+            })
+        })
+    }); 
 </script>
 </body>
 </html>

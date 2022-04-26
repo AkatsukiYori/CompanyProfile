@@ -1,9 +1,9 @@
 <template>
   <div>
     <Navbar />
-    <Beranda />
+    <Beranda :contents="slogan"/>
     <TentangKSD />
-    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Products'" :contents="products"/>
+    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery :galleryitems="gallery"/>
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :contents="mitras"/>
     <FAQ :contents="faqs"/>
@@ -32,7 +32,9 @@ export default {
   data(){
     return{
       slogan: [
-        {id: 1, image: require('./assets/logo.png'), title: "", content: ""},
+        {id: 1, image: require('./assets/logo.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
+        {id: 2, image: require('./assets/laptop.png'), title: "Visi", description: "Membangun sebuah layanan digital yang bermanfaat untuk Indonesia yang menggunakan teknologi untuk menciptakan dampak dan solusi di bidang pendidikan, ketenagakerjaan dan sosial.", color: '#bf00fe'},
+        {id: 3, image: require('./assets/logo.png'), title: "Misi", description: "Menciptakan layanan digital dan edukasi kepada setiap user dalam peningkatan interpersonal skill yang berdampak pada lingkungan user", color: '#bf00fe'},
       ],
       products: [
         {id: 1, image: require('./assets/logo.png')},

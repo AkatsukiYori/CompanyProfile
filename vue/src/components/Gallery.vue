@@ -23,7 +23,7 @@
                     </div>
                     <div class="h-full text-white" v-else>
                         <div class="w-10/12 h-full flex items-center justify-center rounded-xl" style="background: linear-gradient(to left bottom, #BF00FE, #444)">
-                            More >>
+                            More >> 
                         </div>
                     </div>
                 </div>

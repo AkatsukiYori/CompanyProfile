@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,500,500i,600,600i,700,700i|Open+Sans:400,400i,600,700&display=swap');
+/*
+Template Name: Mosto - Software and App Landing Pages HTML Template
+Template URI: http://pixner.net/mosto/
+Author: pixelaxis
+Author URI: https://themeforest.net/user/pixelaxis
+Description: Mosto - Software and App Landing Pages HTML Template. Mosto is a Pixel-Perfect Powerful,
+Mordern  Software and App Landing Pages HTML Template for all types of landing pages.
+Version: 3.0.0
+Text Domain: 
+*/
+/*
+///// CSS Index \\
+01. Reset CSS Start
+---------------------------
+02. General CSS
+---------------------------
+03. Section Header CSS
+---------------------------
+04. Social Icons CSS
+---------------------------
+05. Header Section CSS
+---------------------------
+06. Header Bar CSS
+---------------------------
+07. Banner Section CSS
+---Banner Four Section
+---Banner One Section
+---Banner Section Two
+---Banner Section Six
+---Banner Section Five
+---Banner Section Seven
+---Banner Section Eight 
+---Banner Section Nine
+---Banner Section 10 
+---Banner 11 Section
+---Banner Section 12 
+---Banner Section 13 
+---banner Section 15
+---Banner Section 14
+---App Banner
+---------------------------
+08. Blog-Sedebar CSS
+---------------------------
+09. RTL CSS CSS
+---------------------------
+10. Trial Section CSS
+---------------------------
+11. Faq Section CSS
+---------------------------
+12. Testimonial Section CSS
+---------------------------
+13. Exclusive Section CSS
+---------------------------
+14. Colaboration Section CSS
+---------------------------
+15. Smart Watch Section CSS
+---------------------------
+16. Pricing Section CSS
+---------------------------
+17. Subscribe Seciton  CSS
+---------------------------
+18. Coverage Section CSS
+---------------------------
+19. Feature Section CSS
+---------------------------
+20. How Section CSS
+---------------------------
+21. Amazing Feature Section CSS
+---------------------------
+22. Sponsor Section CSS
+---------------------------
+23. Download Section CSS
+---------------------------
+24. Custom Plan CSS
+---------------------------
+25. Counter Section CSS
+---Counter Section Two 
+---------------------------
+26. How Section Two  CSS
+---------------------------
+27. Real Data Section CSS
+---------------------------
+28. Convencing Feature CSS
+---------------------------
+29. Advance Feature Section CSS
+---------------------------
+30. To Access Section CSS
+---------------------------
+31. Work Section CSS
+---------------------------
+32. Feat Nav CSS
+---------------------------
+33. Feature Item Two  CSS
+---------------------------
+34. Experience Section CSS
+---------------------------
+35. Addon Section CSS
+---------------------------
+36. Cost Section CSS
+---------------------------
+37. Client Section CSS
+---------------------------
+38. How Section Three CSS
+---------------------------
+39. Faster Section CSS
+---------------------------
+40. Safe Section CSS
+---------------------------
+41. Pricing Section CSS
+---------------------------
+42. Recharge Section CSS
+---------------------------
+43. Help Section CSS
+---------------------------
+44. Testimonial Two Section CSS
+---------------------------
+45. App Video Section CSS
+---------------------------
+46. About Feature Section CSS
+---------------------------
+47. Pricing Section Four  CSS
+---------------------------
+48. Counter Section Four  CSS
+---------------------------
+49. Page Header CSS
+---------------------------
+50. About Section CSS
+---------------------------
+51. Team Section  CSS
+---------------------------
+52. Sponsor Slider Four  CSS
+---------------------------
+53. History Section CSS
+---------------------------
+54. Chart Section CSS
+---------------------------
+55. Team Single CSS
+---------------------------
+56. Partner Section CSS
+---------------------------
+57. User Counter CSS
+---------------------------
+58. Review Section CSS
+---------------------------
+59. Comunity Section CSS
+---------------------------
+60. Faq Section Two CSS
+---------------------------
+61. Privacy Section CSS
+---------------------------
+62. Coming Soon Section CSS
+---------------------------
+63. Account Section CSS
+---------------------------
+64. Error Section CSS
+---------------------------
+65. Feature Tab Section CSS
+---------------------------
+66. Single Pricing Section CSS
+---------------------------
+67. Estimate Plan Section CSS
+---------------------------
+68. Contact Section CSS
+---------------------------
+69. Do Section CSS
+---------------------------
+70. Map Section CSS
+---------------------------
+71. Extra CSS  CSS
+---------------------------
+72. All Animations CSS
+---------------------------
+73. Leave-Comment CSS
+---------------------------
+74. BLog Details Section CSS
+---------------------------
+*/
+@import '_abstracts/_mixins';
+@import '_abstracts/_variables';
+@import '_base/_reset';
+@import '_base/_global';
+@import '_base/_typography';
+@import '_base/_about';
+@import '_layout/_footer';
+@import '_layout/_forms';
+@import '_layout/_header';
+@import '_layout/_banner';
+@import '_layout/_sidebar';
+@import '_layout/_section';
+@import '_layout/_animation';
+@import '_layout/_blog';
+@import '_components/_buttons';
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background-color: #081636;
+    overflow: hidden;
+}
+
+.preloader-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.preloader-icon {
+    width: 72px;
+    height: 72px;
+    display: inline-block;
+    padding: 0px;
+}
+
+.preloader-icon span {
+    position: absolute;
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+    border-radius: 100%;
+    background: #7c209c;
+    -webkit-animation: preloader-fx 1.6s linear infinite;
+    animation: preloader-fx 1.6s linear infinite;
+}
+
+.preloader-icon span:last-child {
+    animation-delay: -0.8s;
+    -webkit-animation-delay: -0.8s;
+}
+
+@keyframes preloader-fx {
+    0% {
+        -webkit-transform: scale(0, 0);
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes preloader-fx {
+    0% {
+        -webkit-transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        opacity: 0;
+    }
+}

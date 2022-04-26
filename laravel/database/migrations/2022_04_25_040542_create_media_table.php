@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMitraTable extends Migration
+class CreateMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateMitraTable extends Migration
      */
     public function up()
     {
-        Schema::create('mitra', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('akun_id', false, true);            
-            $table->string('name');            
-            $table->bigInteger('media_id');           
+            $table->bigInteger('akun_id', false, true);
+            $table->string('name');
+            $table->enum('kategori', ['image', 'video', 'link']);
+            $table->enum('jenis',['product', 'berita', 'mitra','lainnya']);
+            $table->date('tgl_media');
+            $table->text('link')->nullable();
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateMitraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mitra');
+        Schema::dropIfExists('media');
     }
 }

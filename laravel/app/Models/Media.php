@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tentang extends Model
+class Media extends Model
 {
     use HasFactory;
-    protected $table='tentang_kami';
+    protected $table='media';
     protected $guarded=[];
 
-    public function media(){
-        return $this->BelongsTo('App\Models\Media');	
+    public function tentang(){
+        return $this->hasOne('App\Models\Tentang');
     }
 }

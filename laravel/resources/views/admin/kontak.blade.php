@@ -27,6 +27,61 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-10    mx-auto">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="mdi mdi-star-half-full"></i> Foto</h3>
+                            <img width="450rem" src="" alt="">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="fa fa-phone"></i> Telp</h3>
+                            <h5></h5>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="fa fa-envelope"></i> Email</h3>
+                            <h5></h5>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="fa fa-map-location-dot"></i> Alamat</h3>
+                            <h5 style="word-break: break-all;"><a href=""></a></h5>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="mdi mdi-facebook"></i> Telp</h3>
+                            <h5></h5>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="mdi mdi-twitter"></i> Email</h3>
+                            <h5></h5>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="mdi mdi-instagram"></i> Facebook</h3>
+                            <h5 style="word-break: break-all;"><a href=""></a></h5>
+                            <br>
+                        </div>
+                    </div>
+                </div>
             </div>
             </div>
         </div>
@@ -43,7 +98,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="Datakontak" enctype="multipart/form-data">
+                <form id="Datakontak" enctype="multipart/form-data" action="/kontak-store" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="foto">Foto</label>
@@ -77,7 +132,7 @@
                         <span> Contoh : https://twitter.com </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>

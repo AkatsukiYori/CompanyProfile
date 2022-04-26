@@ -17,7 +17,7 @@ class CreateMitraTable extends Migration
             $table->id();
             $table->bigInteger('akun_id', false, true);            
             $table->string('name');            
-            $table->string('file_logo');            
+            $table->bigInteger('media_id');           
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();
         });

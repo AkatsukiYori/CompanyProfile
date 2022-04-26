@@ -17,7 +17,7 @@ class CreateProductTable extends Migration
             $table->id();
             $table->bigInteger('akun_id', false, true);            
             $table->string('name');
-            $table->string('foto_produk');
+            $table->bigInteger('media_id');
             $table->text('deskripsi');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();

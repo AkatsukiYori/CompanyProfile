@@ -18,6 +18,8 @@ import Carousel from '@/components/Carousel.vue';
 import FAQ from '@/components/FAQ.vue';
 import TentangKSD from '@/components/TentangKSD.vue';
 import Footer from '@/components/Footer.vue';
+import Carousel from '@/components/Carousel.vue';
+import Gallery from '@/components/Gallery.vue';
 export default {
   name: "App",
   components: {
@@ -76,6 +78,7 @@ export default {
       ]
     }
   }
+}
 }
 </script>
 <style scoped>

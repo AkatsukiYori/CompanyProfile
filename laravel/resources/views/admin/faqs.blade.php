@@ -22,7 +22,7 @@
                     @endif
 
                     @if($errors->any())
-                        <div class="alert alert-error alert-dismissable">
+                        <div class="alert alert-error bg-danger text-white alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <strong>Gagal!</strong> {!! implode('', $errors->all('<div>:message</div>')) !!}
                         </div>
@@ -57,8 +57,8 @@
                                                         <td>{{ $faq->pertanyaan }}</td>
                                                         <td>{{ $faq->jawaban }}</td>
                                                         <td>
-                                                            <button class="btn btn-warning">Edit</button>
-                                                            <button class="btn btn-danger">Delete</button>
+                                                            <button class="btn btn-warning btn-edit" id="{{ $faq->id }}">Edit</button>
+                                                            <button class="btn btn-danger btn-delete" id="{{ $faq->id }}">Delete</button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -107,6 +107,43 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Modal Edit-->
+    <div class="modal fade" id="faqsModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="DataFAQ" action="{{ route('faqs-update') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <input type="hidden" id="editID" name="id_faq">
+                            <label for="PertanyaanFAQ_Edit">Pertanyaan</label>
+                            <input type="text" class="form-control" parsley-trigger="change" name="pertanyaan_faq" id="PertanyaanFAQ_Edit" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="JawabanFAQ_Edit">Jawaban</label>
+                            <textarea name="jawaban_faq" class="form-control" id="JawabanFAQ_Edit" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script>
         $(document).ready(function() {
             // $('#gambar').dropify();
@@ -114,7 +151,31 @@
     
             $(document).on('click','.tambah',function(e){
                 $('#faqsModal').modal('show');
-            })
+            });
+
+            $(document).on('click', '.btn-edit', function(e){
+                var id = $(this).attr('id');
+                $('#faqsModalEdit').modal('show');
+
+                $.ajax({
+                    url:'faqs-edit/'+id,
+                    success: function(data) {
+                        $('#editID').val(data.id)
+                        $('#PertanyaanFAQ_Edit').val(data.pertanyaan);
+                        $('#JawabanFAQ_Edit').val(data.jawaban);
+                    }
+                })
+            });
+
+            $(document).on('click', '.btn-delete', function(e){
+                var id = $(this).attr('id');
+                $.ajax({
+                    url:'faqs-delete/'+id,
+                    success: function() {
+                        location.reload();
+                    }
+                })
+            });
         });
     </script>
 

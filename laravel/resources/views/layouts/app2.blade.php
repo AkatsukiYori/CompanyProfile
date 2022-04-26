@@ -17,7 +17,6 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 
     <!-- Material Design Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/6.6.96/css/materialdesignicons.min.css">
@@ -32,6 +31,9 @@
     <link href="{{asset('/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+
+    {{-- sweet alert --}}
+    <link href="{{asset('/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -220,28 +222,31 @@
 
         </div>
         <!-- Left Sidebar End -->
-
+        
     </div>
     <!-- Vendor js -->
     <script src="{{asset('/js/vendor.min.js')}}"></script>
-
+    
     <!-- knob plugin -->
     <script src="{{asset('/libs/jquery-knob/jquery.knob.min.js')}}"></script>
-
+    
     <!--Morris Chart-->
     <script src="{{asset('/libs/morris-js/morris.min.js')}}"></script>
     <script src="{{asset('/libs/raphael/raphael.min.js')}}"></script>
-
+    
     <!-- Dashboard init js-->
     <script src="{{asset('/js/pages/dashboard.init.js')}}"></script>
-
+    
     <!-- App js -->
     <script src="{{asset('/js/app.min.js')}}"></script>
 
+    {{-- dropify --}}
     <script src="{{ asset('/libs/dropify/dropify.min.js') }}"></script>
-
-    <script src="{{ asset('/libs/ckeditor2/ckeditor/ckeditor.js') }}"></script>
-
+    
+    {{-- ckeditor --}}
+    <script type="text/javascript" src="{{ asset('/libs/ckeditor2/ckeditor/ckeditor.js') }}"></script>
+    
+    {{-- data tables --}}
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.responsive.min.js')}}"></script>
@@ -253,5 +258,11 @@
     <script src="{{asset('/libs/datatables/buttons.print.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.keyTable.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.select.min.js')}}"></script>
+    
+    {{-- Font Awesome 6 --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    
+    {{-- sweet alert --}}
+    <script src="{{ asset('/libs/sweetalert2/sweetalert2.min.js') }}" ></script>
 </body>
 </html>

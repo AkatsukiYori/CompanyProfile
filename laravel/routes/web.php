@@ -44,4 +44,5 @@ Route::get('/kontak',[App\Http\Controllers\KontakController::class, 'view'])->na
 Route::get('/gallery',[App\Http\Controllers\GalleryController::class, 'view'])->name('gallery');
 
 // Visi Misi
-Route::get('/visiMisi',[App\Http\Controllers\VisiMisiController::class, 'view'])->name('visiMisi');
+Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi')->middleware('auth');
+Route::post('/visiMisitambah',[VisiMisiController::class, 'store'])->name('visiMisitambah');

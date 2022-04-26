@@ -46,7 +46,10 @@ Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware
 
 // Kontak
 Route::get('/kontak',[KontakController::class, 'view'])->name('kontak')->middleware('auth');
-
+Route::POST('/kontak-store',[KontakCOntroller::class, 'store'])->name('kontak-store')->middleware('auth');
+Route::get('/kontak-edit/{id}',[KontakCOntroller::class, 'edit'])->name('kontak-edit')->middleware('auth');
+Route::post('/kontak-update',[KontakCOntroller::class, 'update'])->name('kontak-update')->middleware('auth');
+Route::get('/kontak-delete/{id}',[KontakCOntroller::class, 'delete'])->name('kontak-delete')->middleware('auth');
 // Gallery
 Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery')->middleware('auth');
 

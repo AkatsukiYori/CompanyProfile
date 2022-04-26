@@ -10,4 +10,8 @@ class Media extends Model
     use HasFactory;
     protected $table='media';
     protected $guarded=[];
+
+    public function tentang(){
+        return $this->hasOne('App\Models\Tentang');
+    }
 }

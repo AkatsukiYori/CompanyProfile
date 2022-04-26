@@ -3,9 +3,9 @@
     <Navbar />
     <Beranda />
     <TentangKSD />
-    <Carousel :headertitle="'Products'" :contents="products"/>
+    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Products'" :contents="products"/>
     <Gallery :galleryitems="gallery"/>
-    <Carousel :headertitle="'Mitra'" :contents="mitras"/>
+    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :contents="mitras"/>
     <FAQ :contents="faqs"/>
     <Footer />
   </div>

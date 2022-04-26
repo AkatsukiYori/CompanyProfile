@@ -9,7 +9,7 @@
             </div>
             <div class="flex flex-wrap w-1/2">
                 <div class="lg:w-4/12 md:w-1/2 sm:w-full h-1/3 p-4 hover:gray" v-for="galleryitem in galleryitems.slice(0,9)" :key="galleryitem.id">
-                    <div v-if="galleryitem.type == 'image'">
+                    <div v-if="galleryitem.type == 'image'" @click="changeActive(this)">
                         <img @click="changeGalleryItem(galleryitem.src, galleryitem.type)" :src="galleryitem.src" alt="src" class="">
                     </div>
                     <div v-else-if="galleryitem.type == 'video'">

@@ -35,6 +35,9 @@ Route::POST('/tentang-store',[TentangController::class, 'store'])->name('tentang
 // Faqs
 Route::get('/faqs',[FaqsController::class, 'view'])->name('faqs')->middleware('auth');
 Route::post('/faqs',[FaqsController::class, 'store'])->name('faqs-store')->middleware('auth');
+Route::get('/faqs-edit/{id}',[FaqsController::class, 'edit'])->name('faqs-edit')->middleware('auth');
+Route::post('/faqs-update',[FaqsController::class, 'update'])->name('faqs-update')->middleware('auth');
+Route::get('/faqs-delete/{id}',[FaqsController::class, 'destroy'])->name('faqs-delete')->middleware('auth');
 
 // Mitra
 Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware('auth');

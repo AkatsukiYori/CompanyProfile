@@ -3,10 +3,11 @@
         <p class="text-purple-700 text-4xl font-semibold pt-7 flex justify-center">Galeri</p>
         <div class="flex flex-wrap my-8">
             <div class="lg:w-1/2 md:w-4/6 sm:w-full p-8 md:flex md:flex-wrap md:justify-center">
-                <div class="flex items-center">
+                <div class="flex items-center w-full h-full">
                     <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
-                    <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto"></video>
-                    <iframe ref="leftlink" src="" class="w-11/12 md:w-3/4 m-auto"></iframe>
+                    <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
+                    </video>
+                    <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
                 </div>
             </div>
             <div class="flex flex-wrap lg:w-1/2 md:w-2/6">
@@ -15,13 +16,12 @@
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
                     <div class="p-4 rounded-lg lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
-                        <video width="320" height="240">
+                        <video width="320" height="240" class="relative">
                             <source :src="galleryitem.src" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
                     </div>
                     <div class="p-4 rounded-lg lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
-                        <img :src="galleryitem.src" max-width="100%" style="border:0;" showinfo=0 controls=0 autohide=1>
+                        <img class="w-full" :src="'http://img.youtube.com/vi/'+galleryitem.videoid+'/default.jpg'" alt="">
                     </div>
                 </div>
                 <div class="lg:w-1/3 md:w-1/2 sm:w-full p-4 md:flex md:flex-wrap items-center  duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out">

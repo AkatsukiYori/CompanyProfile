@@ -234,7 +234,7 @@
                         // console.log("hello");
                     }
                 })
-            });
+        });
     });
 </script>
 </body>

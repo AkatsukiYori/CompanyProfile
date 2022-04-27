@@ -67,6 +67,9 @@ class KaryawanController extends Controller
     }
 
     public function update(Request $request) {
+        // dd($request->all());
+        $namafile = explode(".",$request->Filename);
+        
         $validator = Validator::make($request->all(), [
             "fotoEdit" => "required|mimes:png,jpeg,jpg",
             "namaEdit" => "required",
@@ -76,7 +79,7 @@ class KaryawanController extends Controller
             $messages = $validator->messages();
             return redirect::back()->witherrors($messages);
         }
-
+      
         if($request->Filename == null){ 
             if($request->hasFile('fotoEdit')){
                 global $filename;
@@ -101,14 +104,19 @@ class KaryawanController extends Controller
                 global $filename;
                 $file = $request->file('fotoEdit');
                 $extension = $file->getClientOriginalExtension();
-                $filename =$request->Filename;
+                if($namafile[0] == $request->namaEdit){
+                    $namaf = $request->Filename;
+                }else{
+                    $namaf =$request->namaEdit.".".$extension;
+                }; 
+                $filename =$namaf;
                 $file->move('storage/karyawan/', $filename);
                 $media = new Media;
                 $media->akun_id=Auth::user()->id;
                 $kategori = "image";
                 $jenis= "lainnya";
                 $tgl_media=date('Y-m-d');
-                $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id,'name'=>$filename,'kategori'=>$kategori,'jenis'=>$jenis,'tgl_media'=>$tgl_media]);
+                $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id,'name'=>$namaf,'kategori'=>$kategori,'jenis'=>$jenis,'tgl_media'=>$tgl_media]);
                 }
                 $karyawan = new Karyawan;
                 $karyawan->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);

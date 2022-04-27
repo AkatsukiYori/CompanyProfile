@@ -2,13 +2,13 @@
   <nav
     class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 border drop-shadow-md"
   >
-    <div class="container flex flex-wrap justify-between items-center mx-auto">
-      <a href="#" class="flex items-center">
+    <div class="lg:container sm:container flex flex-wrap justify-between items-center lg:mx-auto">
+      <a href="#" class="flex items-center justify-center md:w-1/6 sm:w-2/6">
         <img src="@/assets/logo.png" class="mr-3 h-10 sm:h-16" alt="Logo KSD" />
       </a>
       <button
         type="button"
-        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 text-grey-400 hover:bg-purple-500 focus:ring-purple-600 focus:text-white focus:bg-purple-500 hover:text-white nav-toggler"
+        class="inline-flex items-center p-2 ml-3 text-sm xs:mr-0 text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 text-grey-400 hover:bg-purple-500 focus:ring-purple-600 focus:text-white focus:bg-purple-500 hover:text-white nav-toggler"
         data-target="#mobile-menu"
       >
         <span class="sr-only">Open main menu</span>
@@ -26,9 +26,9 @@
           ></path>
         </svg>
       </button>
-      <div class="hidden w-full md:!block md:w-auto lg:w-auto sm:w-auto" id="mobile-menu">
+      <div class="w-full hidden md:!block md:w-5/6 sm:w-full" id="mobile-menu">
         <ul
-          class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium"
+          class="flex justify-end sm:w-full flex-col mt-4 md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
           <li>
             <a

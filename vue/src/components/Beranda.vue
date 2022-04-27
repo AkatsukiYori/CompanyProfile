@@ -1,13 +1,13 @@
 <template>
 <div>
-    <carousel ref="carousel" class="w-full flex flex-wrap relative" :items-to-show="1" :items-to-scroll="1" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000" :style="'background: linear-gradient(16deg, #bf00fe 0%, #7658f4 100%)'">
-        <slide v-for="content in contents" :key="content.id">
-            <div class="w-6/12">
-                <img :src="content.image" class="m-auto w-10/12" alt="Gambar">
+    <carousel ref="carousel" class="w-full flex flex-wrap relative py-6" :items-to-show="1" :items-to-scroll="1" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000" :style="'background: linear-gradient(16deg, #bf00fe 0%, #7658f4 100%)'">
+        <slide v-for="content in contents" class="flex flex-wrap" :key="content.id">
+            <div class="lg:w-6/12 md:w-2/6 sm:w-full">
+                <img :src="content.image" class="m-auto lg:w-10/12 md:w-full sm:w-2/3" alt="Gambar">
             </div>
-            <div class="w-6/12">
+            <div class="lg:w-6/12 md:w-4/6 p-4">
                 <div class="pr-12">
-                    <p class="text-white text-left font-bold text-5xl mb-12">{{content.title}}</p>
+                    <p class="text-white text-left sm:font-semibold font-bold text-5xl sm:mb-6 mb-12">{{content.title}}</p>
                     <p class="text-white text-left text-sm">{{content.description}}</p>
                 </div>
             </div>

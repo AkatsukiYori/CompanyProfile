@@ -10,4 +10,8 @@ class Album extends Model
     use HasFactory;
     protected $table = 'album';
     protected $guarded = [];
+
+    public function album_media(){
+        return $this->hasMany('App\Models\AlbumMedia');
+    }
 }

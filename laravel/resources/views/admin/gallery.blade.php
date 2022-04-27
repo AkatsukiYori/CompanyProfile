@@ -37,6 +37,34 @@
                             <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="galleryModal">
                                 Tambah Album
                             </button>
+                            <div class="card-body">
+                                <table id="galleryTable" width="100%" class="table table-bordered dt-responsive nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama Album</th>
+                                        <th>Deskripsi</th>
+                                        <th>Tanggal Album</th>
+                                        <th>Total Media</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                        <tbody>
+                                           @foreach ($album as $alb)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{$alb->name}}</td>
+                                                    <td>{{$alb->deskripsi}}</td>
+                                                    <td>{{$alb->tgl_album}}</td>
+                                                    <td>{{$alb->jumlah}}</td>
+                                                    <td><button class="btn btn-dark btnDetail" onclick="detail({{$alb->id}})"><i class="fa-solid fa-circle-info" style="font-size:20px;"></i></button>
+                                                    <button class="btn btn-warning btnEdit" id="{{$alb->id}}"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn btn-danger btnDelete" id="{{$alb->id}}"><i class="fa fa-trash"></i></button></td>
+                                                </tr>
+                                           @endforeach
+                                        </tbody>
+                                </table>  
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,14 +113,91 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="galleryModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="DataGallery" enctype="multipart/form-data" action="/gallery-update" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nama_album">Nama Album</label>
+                        <input type="hidden" id="id" name="id">
+                        <input type="text" class="form-control" parsley-trigger="change" name="nama_album" id="nama_album_edit" placeholder="Masukan nama album">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <input type="text" class="form-control" parsley-trigger="change" id="deskripsi_edit" name="deskripsi" placeholder="Masukan deskripsi">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
+    function detail(id){
+        location.href = '/gallery'+'/detail/'+id;
+    }
     $(document).ready(function() {
         $('#file').dropify();
+        $('#galleryTable').DataTable();
         $(document).on('click','.tambah',function(e) {
             $('#galleryModal').modal('show');
         })
-        
+        $(document).on('click','.btnEdit',function(e) {
+            var id=$(this).attr('id'); 
+            $.ajax({
+                url:'/gallery-edit/'+id,
+                success: function(response){
+                    console.log(response);
+                    $('#id').val(response.id);
+                    $('#nama_album_edit').val(response.name);
+                    $('#deskripsi_edit').val(response.deskripsi);                    
+                }
+            })
+            $('#galleryModalEdit').modal('show');
+        })
+        $(document).on('click', '.btnDelete', function(e){
+                var id = $(this).attr('id');
+
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "Yakin untuk menghapus data?",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yakin'
+                }).then((result) => {
+                    if(result.value) {
+                        $.ajax({
+                            method:'get',
+                            url : '/gallery-delete/'+id,
+                            success: function(data) {
+                                swal.fire({
+                                    type: 'success',
+                                    title:"Berhasil Dihapus",
+                                    confirmButtonText: 'Yakin',
+                                }).then((result) => {
+                                    location.reload();
+                                })
+                            }
+                        })
+                        // console.log("hello");
+                    }
+                })
+        });
     });
 </script>
 </body>

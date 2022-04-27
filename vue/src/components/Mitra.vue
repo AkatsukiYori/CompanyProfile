@@ -1,17 +1,21 @@
 <template>
 <div ref="containerref" class="button-container">
   <h1 class="overflow-y-hidden pt-16 m-auto text-center text-white text-4xl">{{headertitle}}</h1>
-  <carousel ref="carousel" :items-to-show="3.3" :items-to-scroll="1" class="pt-16 pb-12" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000">
-    <slide v-for="content in contents" :key="content.id">
-      <img :src="content.image" alt="" class="w-9/12">
+  <carousel ref="carousel" :items-to-show="5.5" :items-to-scroll="1" class="pt-16" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000">
+    <slide v-for="m1 in mitra1" :key="m1.id">
+      <img :src="m1.image" alt="" class="w-6/12">
     </slide>
   </carousel>
-    <a href="#0" class="nextbutton">
-        <img @click="prev()" src="@/assets/images/client/left.png" alt="client">
-    </a>
-    <a href="#0" class="prevbutton">
-        <img @click="next()" src="@/assets/images/client/right.png" alt="client">
-    </a>
+  <carousel ref="carousel" :items-to-show="5.5" :items-to-scroll="1" class="py-8" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000">
+    <slide v-for="m2 in mitra2" :key="m2.id">
+      <img :src="m2.image" alt="" class="w-6/12">
+    </slide>
+  </carousel>
+  <carousel ref="carousel" :items-to-show="5.5" :items-to-scroll="1" class="pb-16" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000">
+    <slide v-for="m3 in mitra3" :key="m3.id">
+      <img :src="m3.image" alt="" class="w-6/12">
+    </slide>
+  </carousel>
 </div>
 </template>
 
@@ -20,7 +24,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 export default {
-  props: ['contents', 'headertitle', 'color1', 'color2', 'color3'],
+  props: ['headertitle', 'color1', 'color2', 'color3', 'mitra1', 'mitra2', 'mitra3'],
   components: {
     Carousel,
     Slide,

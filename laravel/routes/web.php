@@ -52,6 +52,10 @@ Route::post('/kontak-update',[KontakCOntroller::class, 'update'])->name('kontak-
 Route::get('/kontak-delete/{id}',[KontakCOntroller::class, 'delete'])->name('kontak-delete')->middleware('auth');
 // Gallery
 Route::get('/gallery',[GalleryController::class, 'view'])->name('gallery')->middleware('auth');
+Route::POST('/Gallery-store',[GalleryCOntroller::class, 'store'])->name('Gallery-store')->middleware('auth');
+Route::get('/Gallery-edit/{id}',[GalleryCOntroller::class, 'edit'])->name('Gallery-edit')->middleware('auth');
+Route::post('/Gallery-update',[GalleryCOntroller::class, 'update'])->name('Gallery-update')->middleware('auth');
+Route::get('/Gallery-delete/{id}',[GalleryCOntroller::class, 'delete'])->name('Gallery-delete')->middleware('auth');
 
 // Visi Misi
 Route::get('/visiMisi',[VisiMisiController::class, 'view'])->name('visiMisi')->middleware('auth');

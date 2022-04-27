@@ -208,19 +208,21 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yakin'
             }).then((result) => {
-                $.ajax({
-                    method:'get',
-                    url : '/tentang-delete/'+id,
-                    success: function(data) {
-                        swal.fire({
-                            type: 'success',
-                            title:"Berhasil Dihapus",
-                            confirmButtonText: 'Yakin',
-                        }).then((result) => {
-                            location.reload();
-                        })
-                    }
-                })
+                if(result.value) {
+                    $.ajax({
+                        method:'get',
+                        url : '/tentang-delete/'+id,
+                        success: function(data) {
+                            swal.fire({
+                                type: 'success',
+                                title:"Berhasil Dihapus",
+                                confirmButtonText: 'Yakin',
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        }
+                    })
+                }
             })
         })
     }); 

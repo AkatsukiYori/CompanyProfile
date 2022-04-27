@@ -15,6 +15,19 @@
             <!-- Start -->
             <div class="container-fluid">
                 <br>
+                @if (session('success'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Berhasil!</strong>  {{ session('success') }}
+                </div>
+                @endif
+
+                @if($errors->any())
+                <div class="alert alert-error alert-dismissable bg-danger text-white">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Gagal!</strong> {!! implode('', $errors->all('<div>:message</div>')) !!}
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-box table-responsive">
@@ -43,7 +56,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="DataGallery" enctype="multipart/form-data">
+                <form id="DataGallery" enctype="multipart/form-data" action="/Gallery-store" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="nama_album">Nama Album</label>
@@ -54,17 +67,17 @@
                         <input type="text" class="form-control" parsley-trigger="change" id="deskripsi" name="deskripsi" placeholder="Masukan deskripsi">
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="image" name="image" value="Image">
+                        <input type="radio" id="image" name="jenis" value="Image">
                         <label for="image">Gambar</label>
-                        <input type="radio" id="video" name="video" value="Video">
+                        <input type="radio" id="video" name="jenis" value="Video">
                         <label for="video">Video</label>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal">Tanggal foto</label>
-                        <input type="date" class="form-control" parsley-trigger="change" id="tanggal" name="tanggal">
+                        <label for="File">File</label>
+                        <input type="file" name="file[]" id="file" class="form-control dropify" multiple="multiple" >
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>
@@ -75,9 +88,11 @@
 
 <script>
     $(document).ready(function() {
+        $('#file').dropify();
         $(document).on('click','.tambah',function(e) {
             $('#galleryModal').modal('show');
         })
+        
     });
 </script>
 </body>

@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <p class="text-purple-700 text-4xl font-semibold pt-7 flex justify-center">Galeri</p>
         <div class="flex flex-wrap my-8">
@@ -10,22 +11,23 @@
                     <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
                 </div>
             </div>
-            <div class="flex flex-wrap lg:w-1/2 md:w-2/6">
-                <div class="lg:w-1/3 md:w-1/2 sm:w-full md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
-                    <div class="p-4 rounded-lg sm:w-full flex flex-wrap items-center ease-in-out" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+            <div class="flex md:flex-wrap lg:w-1/2 md:w-2/6 xs:overflow-x-scroll">
+                <div class="lg:w-1/3 md:w-1/2 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                    <div class="p-4 rounded-lg xs:w-20 sm:w-full flex flex-wrap items-center ease-in-out" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
-                    <div class="p-4 rounded-lg lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
-                        <video width="320" height="240" class="relative">
+                    <div class="p-4 rounded-lg xs:w-20 lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                        <video width="320" height="240">
                             <source :src="galleryitem.src" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-4 rounded-lg lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                    <div class="p-4 rounded-lg xs:w-20 lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="'http://img.youtube.com/vi/'+galleryitem.videoid+'/default.jpg'" alt="">
                     </div>
+                    
                 </div>
-                <div class="lg:w-1/3 md:w-1/2 sm:w-full p-4 md:flex md:flex-wrap items-center  duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out">
-                    <router-link :to="{ name: 'Album' }" class="w-10/12 h-full flex items-center justify-center rounded-xl" style="background: linear-gradient(to left bottom, #ac7df1, #777)">
+                <div class="lg:w-1/3 md:w-1/2 xs:w-1/3 xs:flex xs:justify-center md:flex md:flex-wrap items-center  duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out md:text-sm">
+                    <router-link :to="{ name: 'Album' }" class="py-4 text-white w-3/4 h-full xs flex items-center justify-center rounded-xl" style="background: linear-gradient(to left bottom, #ac7df1, #777)">
                         More >>
                     </router-link>
                 </div>

@@ -34,9 +34,9 @@ export default {
   data(){
     return{
       slogan: [
-        {id: 1, image: require('@/assets/logo.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
+        {id: 1, image: require('@/assets/laptop.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
         {id: 2, image: require('@/assets/laptop.png'), title: "Visi", description: "Membangun sebuah layanan digital yang bermanfaat untuk Indonesia yang menggunakan teknologi untuk menciptakan dampak dan solusi di bidang pendidikan, ketenagakerjaan dan sosial.", color: '#bf00fe'},
-        {id: 3, image: require('@/assets/logo.png'), title: "Misi", description: "Menciptakan layanan digital dan edukasi kepada setiap user dalam peningkatan interpersonal skill yang berdampak pada lingkungan user", color: '#bf00fe'},
+        {id: 3, image: require('@/assets/laptop.png'), title: "Misi", description: "Menciptakan layanan digital dan edukasi kepada setiap user dalam peningkatan interpersonal skill yang berdampak pada lingkungan user", color: '#bf00fe'},
       ],
       products: [
         {id: 1, image: require('@/assets/logo.png')},
@@ -104,6 +104,13 @@ export default {
   }
 }
 </script>
-<style>
-
+<style scoped>
+@import url('@/assets/css/bootstrap.min.css');
+@import url('@/assets/css/all.min.css');
+@import url('@/assets/css/animate.css');
+@import url('@/assets/css/nice-select.css');
+@import url('@/assets/css/owl.min.css');
+@import url('@/assets/css/magnific-popup.css');
+@import url('@/assets/css/flaticon.css');
+@import url('@/assets/css/main.css');
 </style>

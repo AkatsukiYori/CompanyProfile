@@ -35,7 +35,7 @@
                                 <div class="card-header">
                                     <h2>Tentang Kami</h2>
                                 </div>
-                                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="tentangModal">
+                                <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="tentangModal" style="margin-top: -4.5%;">
                                     Tambah isi
                                 </button>
                                 <div class="card-body">

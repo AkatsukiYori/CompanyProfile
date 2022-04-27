@@ -4,22 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Model
+use App\Models\Kontak;
+use App\Models\Media;
+
+// Pre-existing
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+
+
 class KontakController extends Controller
 {
     public function view() {
-        return view('admin/kontak');
+        $kontak = Kontak::all();
+        // return $kontak;
+        return view('admin/kontak',['kontak'=>$kontak]);
     }
     public function store(Request $request){
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
-            "gambar" => "mimes:jpg,jpeg,png",
+            "foto" => "mimes:jpg,jpeg,png",
         ]);
         if($validator ->fails()){
             $messages = $validator->messages();
             return Redirect::back()->withErrors($messages);
         }
-        if($request->hasFile('gambar')){
+        if($request->hasFile('foto')){
             global $filename;
-            $file = $request->file('gambar');
+            $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $filename = uniqid().'-'.'.' . $extension;
             $file->move('storage/kontak/', $filename);
@@ -32,15 +45,83 @@ class KontakController extends Controller
             $media->save();
             $id=$media->id;
         }
-        $kontak = new kontak;
-        $kontak->akun_id = Auth::user()->id;
-        $kontak->alamat = $request-> alamat_kontak;
-        $kontak->telp = $request->telp;
-        $kontak->email = $request->email;
-        $kontak->facebook = $request->facebook;
-        $kontak->twitter = $request->twitter;
-        $kontak->media_id=$id;
-        $kontak->save();
-        return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
+            $kontak = new kontak;
+            $kontak->akun_id = Auth::user()->id;
+            $kontak->namaLink = $request->namaLink;
+            $kontak->no_hp = $request->no_hp;
+            $kontak->email = $request->email;
+            $kontak->facebook = $request->facebook;
+            $kontak->twitter = $request->twitter;
+            $kontak->instagram = $request->instagram;
+            $kontak->media_id=$id;
+            $kontak->save();
+            return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
+    }
+
+    public function edit($id) {
+        return Kontak::with('media')->where('id',$id)->get();
+        // return $id;
+    }
+
+    public function update(Request $request) {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            "fotoEdit" => "mimes:jpg,jpeg,png",
+        ]);
+
+        if($validator ->fails()){
+            $messages = $validator->messages();
+            return Redirect::back()->withErrors($messages);
+        }
+        if($request->Filename == null){
+            // dd($request->all());
+            if($request->hasFile('fotoEdit')){
+                global $filename;
+                $file = $request->file('fotoEdit');
+                $extension = $file->getClientOriginalExtension();
+                $filename = uniqid().'-'.'.' . $extension;
+                $file->move('storage/kontak/', $filename);
+                $media = new Media;
+                $media->akun_id=Auth::user()->id;
+                $media->name= $filename;
+                $media->kategori = "image";
+                $media->jenis= "lainnya";
+                $media->tgl_media=date('Y-m-d');
+                $media->save();
+                $id=$media->id;
+            }
+            // dd($request->all());
+                $kontak = new Kontak;
+                // return $request->all();
+                $kontak->where('id',$id)->update(['akun_id'=>Auth::user()->id, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit, 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->id]);
+
+                return redirect::back()->with('success','Data berhasil diubah!');
+        }else{
+            if($request->hasFile('fotoEdit')){
+                // dd($request->all());
+                global $filename;
+                $file = $request->file('fotoEdit');
+                $extension = $file->getClientOriginalExtension();
+                $filename = uniqid().'-'.'.' . $extension;
+                $file->move('storage/kontak/', $filename);
+                $media = new Media;
+                $media->akun_id=Auth::user()->id;
+                $media->name= $filename;
+                $kategori = "image";
+                $jenis= "lainnya";
+                $tgl_media=date('Y-m-d');
+                $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id, 'name'=>$filename, 'kategori'=>$kategori, 'jenis'=>$jenis, 'tgl_media'=>$tgl_media]);
+            }
+            // return $request->all();
+                $kontak = new Kontak;
+                $kontak->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit , 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->mediaID]);
+
+                return redirect::back()->with('success','Data berhasil diubah!');
+        }
+    }
+
+    public function destroy($id) {
+        Kontak::where('id',$id)->delete();
+        return redirect::back()->with('success','Data berhasil dihapus!');
     }
 }

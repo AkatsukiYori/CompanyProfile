@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AlbumMedia extends Model
+class Karyawan extends Model
 {
     use HasFactory;
-    protected $table = 'album_media';
+
+    protected $table = 'karyawan';
     protected $guarded = [];
 
-    public function album(){
-       return $this->belongs('App\Models\Album');
+    public function media() {
+        return $this->belongsTo('App\Models\Media');
     }
 }

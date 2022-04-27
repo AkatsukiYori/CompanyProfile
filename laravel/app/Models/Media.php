@@ -18,4 +18,8 @@ class Media extends Model
     public function kontak() {
         return $this->hasOne('App\Models\Kontak');
     }
+
+    public function karyawan() {
+        return $this->hasOne('App\Models\Karyawan');
+    }
 }

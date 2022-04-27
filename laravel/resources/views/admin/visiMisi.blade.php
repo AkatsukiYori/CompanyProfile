@@ -31,15 +31,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-box table-responsive">
-                            <div class="card-header" style="background-color: #9333EA;">
-                                <h2 class="text-white">Visi Misi</h2>
-                                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="visiMisiModal" style="margin-top: -4.5%; margin-left: 70%;">
-                                    Tambah Visi Misi
-                                </button>
-                                @foreach ($visiMisi as $viMi)
-                                <button type="button" class="btn btn-warning btnEdit" id="{{ $viMi->id }}" data-toggle="modal" data-target="editModal" style="margin-top: -4.5%;">Ubah</button>
-                                <button type="button" class="btn btn-danger btnDelete" id="{{ $viMi->id }}" style="margin-top: -4.5%;">Delete</button>
-                                @endforeach
+                            <div class="card-header">
+                                <h2>Visi Misi</h2>
+                                <div class="btn-toolbar float-right" role="toolbar" style="margin-top: -3.5%;">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary tambah mr-1" data-toggle="modal" data-target="visiMisiModal" style="margin-top: -4.5%;">
+                                            Tambah Visi Misi
+                                        </button>
+                                        @foreach ($visiMisi as $viMi)
+                                        <button type="button" class="btn btn-warning btnEdit mr-1" id="{{ $viMi->id }}" data-toggle="modal" data-target="editModal" style="margin-top: -4.5%;">Ubah</button>
+                                        <button type="button" class="btn btn-danger btnDelete" id="{{ $viMi->id }}" style="margin-top: -4.5%;">Delete</button>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @foreach ($visiMisi as $viMi)
@@ -50,7 +54,7 @@
                                         <h3 class="text-center text-white">Visi</h3>
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-center">{{ $viMi->visi }}</p>
+                                        <h4 class="text-center">{{ $viMi->visi }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +65,7 @@
                                         <h3 class="text-center text-white">Misi</h3>
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-center">{{ $viMi->misi }}</p>
+                                        <h4 class="text-center">{{ $viMi->misi }}</h4>
                                     </div>
                                 </div>
                             </div>

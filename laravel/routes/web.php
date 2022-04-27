@@ -9,6 +9,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Auth::routes();
 Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
 
 // Dashboard
-Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
 
 // Tentang Kami
 Route::GET('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
@@ -64,3 +65,10 @@ Route::post('/visiMisitambah',[VisiMisiController::class, 'store'])->name('visiM
 Route::get('/visiMisiedit/{id}',[VisiMisiController::class, 'edit'])->name('visiMisiedit')->middleware('auth');
 Route::post('/visiMisiupdate',[VisiMisiController::class, 'update'])->name('visiMisiupdate')->middleware('auth');
 Route::get('/visiMisihapus/{id}',[VisiMisiController::class,'destroy'])->name('visiMisihapus')->middleware('auth');
+
+// Karyawan
+Route::get('/karyawan',[KaryawanController::class, 'view'])->name('karyawan')->middleware('auth');
+Route::post('/karyawanTambah',[KaryawanController::class, 'store'])->name('karyawanTambah')->middleware('auth');
+Route::get('/karyawanEdit/{id}',[KaryawanController::class, 'edit'])->name('karyawanEdit')->middleware('auth');
+Route::post('/karyawanUpdate',[KaryawanController::class, 'update'])->name('karyawanUpdate')->middleware('auth');
+Route::get('/karyawanDelete/{id}',[KaryawanController::class, 'destroy'])->name('karyawanDelete')->middleware('auth');

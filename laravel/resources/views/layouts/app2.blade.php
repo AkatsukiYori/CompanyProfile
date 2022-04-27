@@ -163,6 +163,13 @@
                                 <span> Dashboard </span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('karyawan') }}">
+                                <i class="fa-solid fa-user-tie"></i>
+                                <span> Karyawan </span>
+                            </a>
+                        </li>
                         
                         <li>
                            <a href="#">

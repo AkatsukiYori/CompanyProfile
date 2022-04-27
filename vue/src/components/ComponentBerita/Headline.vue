@@ -1,6 +1,6 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-bold">Berita Terkini</h1>
+  <div class="p-8 mb-12">
+    <h1 class="text-4xl font-bold pb-8">Berita Terkini</h1>
     <div class="flex">
         <div class="w-4/6">
             <img :src="headline.image" alt="">
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-    props: ['categoryleft', 'categoryright', 'headline']
+    props: ['headline', 'categoryleft', 'categoryright']
 }
 </script>
 

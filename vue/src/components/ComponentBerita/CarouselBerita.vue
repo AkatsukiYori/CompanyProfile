@@ -1,27 +1,38 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-bold">List Berita</h1>
+  <div class="p-8 mb-12">
+    <h1 class="text-4xl font-bold">Berita Trending</h1>
     <div class="flex">
-        
+        <carousel ref="carousel" :items-to-show="3" :items-to-scroll="1" class="pt-8 pb-12" :wrap-around="true" :breakpoints="breakpoints">
+            <slide v-for="berita in carouselBerita" :key="berita.id">
+                <div class="relative">
+                    <img :src="berita.image" alt="" class="w-full">
+                    <div class="p-4 absolute left-0 top-0 w-full h-full opacity-0 hover:opacity-100 transition-all duration-300">
+                        <div class="relative w-full h-full">
+                            <div class="absolute bottom-0 left-0">
+                                <h1 class="text-white z-10 relative text-3xl text-left">{{berita.title}}</h1>
+                                <p class="text-white z-10 relative text-lg text-left">{{berita.date}}</p>
+                            </div>
+                        </div>
+                        <div class="bg-black z-0 opacity-50 w-full h-full absolute left-0 top-0"></div>
+                    </div>
+                </div>
+            </slide>
+        </carousel> 
     </div>
   </div>
 </template>
 
 <script>
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+
 export default {
-    props: ['categoryleft', 'categoryright']
+    props: ['carouselBerita'],
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
 }
 </script>
-
-<style scoped>
-.kategori{
-    width: 100%;
-    background: linear-gradient(240deg, #C56FE1 0%, #CB81F2 15%, #8F41F1 100%);
-    border-radius: 12px;
-    color: white;
-    padding: 4px;
-    height: 40px;
-    margin-bottom: 24px;
-    text-align: center;
-}
-</style>

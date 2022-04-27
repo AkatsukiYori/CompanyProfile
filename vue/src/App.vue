@@ -79,15 +79,8 @@ export default {
     }
   }
 }
-
+}
 </script>
-<style scoped>
-@import url('@/assets/css/bootstrap.min.css');
-@import url('@/assets/css/all.min.css');
-@import url('@/assets/css/animate.css');
-@import url('@/assets/css/nice-select.css');
-@import url('@/assets/css/owl.min.css');
-@import url('@/assets/css/magnific-popup.css');
-@import url('@/assets/css/flaticon.css');
-@import url('@/assets/css/main.css');
+<style>
+
 </style>

@@ -18,7 +18,7 @@ class CreateKontakKamiTable extends Migration
             $table->bigInteger('akun_id', false, true);
             $table->string('foto')->nullable();    
             $table->string('email')->nullable();
-            $table->string('alamat')->nullable();
+            $table->string('namaLink')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

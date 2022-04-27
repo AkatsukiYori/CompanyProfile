@@ -172,7 +172,7 @@
             confirmButtonText: 'Yakin'
             }).then((result) => {
                 $.ajax({
-                    method:'get',
+                    method: 'get',
                     url : '/visiMisihapus/'+id,
                     success: function(data) {
                         swal.fire({

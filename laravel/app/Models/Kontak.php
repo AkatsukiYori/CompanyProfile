@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kontak extends Model
 {
     use HasFactory;
+
+    protected $table = "kontak_kami";
+    protected $guarded = [];
+
+    public function media() {
+        return $this->belongsTo('App\Models\Media');
+    }
 }

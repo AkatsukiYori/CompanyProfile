@@ -1,24 +1,23 @@
 <template>
-  <div class="home">
+  <div>
     <Navbar />
-    <Beranda />
+    <Beranda :contents="slogan"/>
     <TentangKSD />
-    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Products'" :contents="products"/>
+    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery :galleryitems="gallery"/>
-    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :contents="mitras"/>
+    <Mitra :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :contents="mitras"/>
     <FAQ :contents="faqs"/>
     <Footer />
   </div>
 </template>
-
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Beranda from '@/components/Beranda.vue';
+import Gallery from '@/components/Gallery.vue';
+import Carousel from '@/components/Carousel.vue';
 import FAQ from '@/components/FAQ.vue';
 import TentangKSD from '@/components/TentangKSD.vue';
 import Footer from '@/components/Footer.vue';
-import Carousel from '@/components/Carousel.vue';
-import Gallery from '@/components/Gallery.vue';
 export default {
   name: "App",
   components: {
@@ -33,7 +32,9 @@ export default {
   data(){
     return{
       slogan: [
-        {id: 1, image: require('@/assets/logo.png'), title: "", content: ""},
+        {id: 1, image: require('@/assets/logo.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
+        {id: 2, image: require('@/assets/laptop.png'), title: "Visi", description: "Membangun sebuah layanan digital yang bermanfaat untuk Indonesia yang menggunakan teknologi untuk menciptakan dampak dan solusi di bidang pendidikan, ketenagakerjaan dan sosial.", color: '#bf00fe'},
+        {id: 3, image: require('@/assets/logo.png'), title: "Misi", description: "Menciptakan layanan digital dan edukasi kepada setiap user dalam peningkatan interpersonal skill yang berdampak pada lingkungan user", color: '#bf00fe'},
       ],
       products: [
         {id: 1, image: require('@/assets/logo.png')},
@@ -74,23 +75,11 @@ export default {
         {id: 7, type: "image", src: require("@/assets/logo.png")},
         {id: 8, type: "image", src: require("@/assets/logo.png")},
         {id: 8, type: "morebutton", src: require("@/assets/logo.png")},
-      ],
-      Album: [
-        {id: 1, name: "18 Oktober 1918", deskripsi: "Kami kembali ke masa penjajahan Belanda pada tanggal 18 Oktober 1918", tgl_album: "22 Juni 2021"},
-        {id: 2, name: "19 Oktober 1918", deskripsi: "Kami kembali ke masa penjajahan Belanda pada tanggal 18 Oktober 1918", tgl_album: "22 Juni 2021"},
-        {id: 3, name: "20 Oktober 1918", deskripsi: "Kami kembali ke masa penjajahan Belanda pada tanggal 18 Oktober 1918", tgl_album: "22 Juni 2021"},
       ]
     }
   }
 }
 </script>
-<style scoped>
-@import url('@/assets/css/bootstrap.min.css');
-@import url('@/assets/css/all.min.css');
-@import url('@/assets/css/animate.css');
-@import url('@/assets/css/nice-select.css');
-@import url('@/assets/css/owl.min.css');
-@import url('@/assets/css/magnific-popup.css');
-@import url('@/assets/css/flaticon.css');
-@import url('@/assets/css/main.css');
+<style>
+
 </style>

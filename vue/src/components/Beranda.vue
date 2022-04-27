@@ -1,13 +1,43 @@
 <template>
-    <div class="bg-purple-600 w-full flex flex-wrap relative py-28 px-12 md:px-20 xs:py-10">
-        <div class="lg:w-1/2 md:w-full w-full flex justify-center items-center">
-            <img src="../assets/laptop.png" class="lg:w-11/12 h-auto md:w-full sm:w-full xs:w-full" alt="Gambar">
-        </div>
-        <div class="flex lg:w-1/2 md:w-full sm:w-full w-full flex-wrap items-center">
-            <div>
-                <p class="text-white font-semibold text-6xl w-full py-5 xs:text-5xl">Bersatu Kita Teguh</p>
-                <p class="text-white lg:text-xl md:text-lg sm:text-base py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et turpis semper, volutpat justo dictum, aliquam orci.</p>
+<div>
+    <carousel ref="carousel" class="w-full flex flex-wrap relative" :items-to-show="1" :items-to-scroll="1" :wrap-around="true" :breakpoints="breakpoints" :autoplay="5000" :style="'background: linear-gradient(16deg, #bf00fe 0%, #7658f4 100%)'">
+        <slide v-for="content in contents" :key="content.id">
+            <div class="w-6/12">
+                <img :src="content.image" class="m-auto w-10/12" alt="Gambar">
             </div>
-        </div>
-    </div>
+            <div class="w-6/12">
+                <div class="pr-12">
+                    <p class="text-white text-left font-bold text-5xl mb-12">{{content.title}}</p>
+                    <p class="text-white text-left text-sm">{{content.description}}</p>
+                </div>
+            </div>
+        </slide>
+    </carousel>
+</div>
 </template>
+
+<script>
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+
+export default {
+  props: ['contents', 'headertitle', 'color1', 'color2', 'color3'],
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
+  data(){
+    return{
+    }
+  },
+  methods: {
+    changeCarouselBg(){
+    },
+  },
+  mounted(){
+    this.changeCarouselBg()
+  },  
+}
+</script>

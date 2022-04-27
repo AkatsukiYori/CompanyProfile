@@ -41,7 +41,7 @@
 
                                 <div class="card-body">
                                     <div id="tabelFAQ">
-                                        <table class="table">
+                                        <table class="table table-bordered dt-responsive nowrap" width="100%" id="faqsTable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -148,6 +148,7 @@
         $(document).ready(function() {
             // $('#gambar').dropify();
             // CKEDITOR.replace('#Jawaban');
+            $('#faqsTable').DataTable();
     
             $(document).on('click','.tambah',function(e){
                 $('#faqsModal').modal('show');
@@ -169,10 +170,31 @@
 
             $(document).on('click', '.btn-delete', function(e){
                 var id = $(this).attr('id');
-                $.ajax({
-                    url:'faqs-delete/'+id,
-                    success: function() {
-                        location.reload();
+
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "Yakin untuk menghapus data?",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yakin'
+                }).then((result) => {
+                    if(result.value) {
+                        $.ajax({
+                            method:'get',
+                            url : 'faqs-delete/'+id,
+                            success: function(data) {
+                                swal.fire({
+                                    type: 'success',
+                                    title:"Berhasil Dihapus",
+                                    confirmButtonText: 'Yakin',
+                                }).then((result) => {
+                                    location.reload();
+                                })
+                            }
+                        })
+                        // console.log("hello");
                     }
                 })
             });

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AlbumMedia extends Model
 {
     use HasFactory;
+    protected $table = 'album_media';
+    protected $guarded = [];
 }

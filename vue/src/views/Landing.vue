@@ -19,6 +19,7 @@ import Mitra from '@/components/Mitra.vue';
 import FAQ from '@/components/FAQ.vue';
 import TentangKSD from '@/components/TentangKSD.vue';
 import Footer from '@/components/Footer.vue';
+import axios from 'axios';
 export default {
   name: "App",
   components: {
@@ -99,9 +100,40 @@ export default {
         {id: 7, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 8, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
-      ]
+      ],
+      tentangKami: []
     }
-  }
+  },
+  methods: {
+    init(){
+      this.getVisiMisi()
+      this.getTentangKami()
+    },
+    getVisiMisi(){
+      axios.get(`http://localhost:8000/api/visi_misi`)
+        .then(res=>{
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+    },
+    getTentangKami(){
+      axios.get(`http://localhost:8000/api/tentang_kami`)
+        .then(res => {
+          this.tentangKami = res.data
+          this.tentangKami.forEach((data) => {
+            console.log(data)
+          })
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+    }
+  },
+  created() {
+    this.init()
+  },
 }
 </script>
 <style scoped>

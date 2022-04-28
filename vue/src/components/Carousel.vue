@@ -6,10 +6,10 @@
       <img :src="content.image" alt="" class="w-9/12">
     </slide>
   </carousel>
-    <a href="#0" class="nextbutton">
+    <a href="#0" class="nextbutton md:block xs:hidden">
         <img @click="prev()" src="@/assets/images/client/left.png" alt="client">
     </a>
-    <a href="#0" class="prevbutton">
+    <a href="#0" class="prevbutton md:block xs:hidden">
         <img @click="next()" src="@/assets/images/client/right.png" alt="client">
     </a>
 </div>

@@ -8,12 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\AlbumMedia;
 
-// Pre-existing
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-
-class ProdukControllerD extends Controller
+class ProdukController extends Controller
 {
     public function view() {
         return view('admin/produk');

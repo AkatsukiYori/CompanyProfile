@@ -143,7 +143,8 @@ export default {
         .catch(err => {
           console.log(err.response.data)
         })
-    }
+    },
+    getKaryawan
   },
   created() {
     this.init()

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Navbar />
-    <Beranda :contents="slogan"/>
-    <TentangKSD :dataCoba="dataCoba" />
-    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
-    <Gallery :galleryitems="gallery"/>
-    <Mitra :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
-    <FAQ :contents="faqs"/>
-    <Footer />
+    <Navbar style="position: fixed; width: 100%; z-index: 3"/>
+    <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
+    <TentangKSD id="about" />
+    <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
+    <Gallery id="gallery" :galleryitems="gallery"/>
+    <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
+    <FAQ id="faq" :contents="faqs"/>
+    <Footer id="contact"/>
   </div>
 </template>
 <script>
@@ -91,7 +91,7 @@ export default {
         {id: 9, image: require('@/assets/logo.png')},
       ],
       gallery:[
-        {id: 1, type: "image", src: require("@/assets/logo.png"), videoid: ''},
+        {id: 1, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},
         {id: 2, type: "image", src: require("@/assets/logotest.jpg"), videoid: ''},
         {id: 3, type: "image", src: require("@/assets/logotest.jpg"), videoid: ''},
         {id: 4, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},

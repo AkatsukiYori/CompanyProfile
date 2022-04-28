@@ -62,15 +62,15 @@ class MitraController extends Controller
     }
 
     public function update(Request $request) {
-        // $validator = Validator::make($request->all(), [
-        //     'nameEdit' => 'required',
-        //     'imageEdit' => 'mimes:jpg,jpeg,png'
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'nameEdit' => 'required',
+            'imageEdit' => 'mimes:jpg,jpeg,png'
+        ]);
 
-        // if($validator->fails()) {
-        //     $messages = $validator->messages();
-        //     return Redirect::back()->withErrors($messages);
-        // }
+        if($validator->fails()) {
+            $messages = $validator->messages();
+            return Redirect::back()->withErrors($messages);
+        }
         
 
         if($request->hasFile('imageEdit')) {

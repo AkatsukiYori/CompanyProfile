@@ -20,9 +20,6 @@
                     </div>
                   </slide>
                 </carousel>
-                <div class="button-area">
-                    <a href="#0" class="button-2">SHOW MORE <i class="flaticon-right"></i></a>
-                </div>
             </div>
         </div>
     </section>

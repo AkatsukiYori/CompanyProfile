@@ -8,9 +8,9 @@
         </div>
     </div>
     <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
-    <div class="">
+    <div>
         <div v-for="row in listRowAlbum" :key="row.id" class="flex w-full mb-16">
-            <div v-for="album in row.listAlbum" :key="album.id" class="px-8">
+            <div v-for="album in row.listAlbum" :key="album.id" class="px-8" @click="albumDetails(album.id)">
                 <p class="text-center text-xl font-bold">{{album.title}}</p>
                 <img :src="album.image" alt="">
                 <p class="text-center text-lg">{{album.date}}</p>
@@ -32,6 +32,12 @@ export default {
         Pagination,
         Navigation,
     },
+    methods: {
+        albumDetails(id){
+            console.log(id)
+            this.$router.push('/albumDetails');
+        }
+    }
 }
 </script>
 

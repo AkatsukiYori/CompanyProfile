@@ -28,19 +28,22 @@
       </button>
       <div class="w-full hidden md:!block md:w-5/6 sm:w-full" id="mobile-menu">
         <ul
-          class="flex justify-end sm:w-full flex-col mt-4 md:flex-row md:mt-0 md:text-sm md:font-medium"
+          class="flex items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
           <li>
-            <a
+            <router-link :to="{ name: 'Landing' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
-              >Home</a
+              @click="movescreen('home')"
+              >Home</router-link
+                            
             >
           </li>
           <li>
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              @click="movescreen('about')"
               >About</a
             >
           </li>
@@ -48,6 +51,7 @@
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              @click="movescreen('product')"
               >Product</a
             >
           </li>
@@ -55,6 +59,7 @@
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              @click="movescreen('gallery')"
               >Galeri</a
             >
           </li>
@@ -62,6 +67,7 @@
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              @click="movescreen('faq')"
               >FAQS</a
             >
           </li>
@@ -69,6 +75,7 @@
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              @click="movescreen('mitra')"
               >Mitra</a
             >
           </li>
@@ -76,6 +83,7 @@
             <a
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent"
+              @click="movescreen('contact')"
               >Contact</a
             >
           </li>
@@ -87,6 +95,12 @@
 <script>
 export default {
   name: "Navbar",
+  methods: {
+    movescreen(id){
+      var scrollDiv = document.getElementById(id).offsetTop;
+      window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    },
+  }
 };
 
 // references

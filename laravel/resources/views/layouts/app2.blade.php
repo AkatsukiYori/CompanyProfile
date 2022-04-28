@@ -206,6 +206,13 @@
                         </li>
 
                         <li>
+                            <a href="{{ route('produk') }}">
+                                <i class="fa-solid fa-shopping-cart"></i>
+                                <span> Produk </span>
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="{{ route('gallery') }}">
                                 <i class="fas fa-images mr-2"></i>
                                 <span> Gallery </span>

@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,10 @@ Route::post('/karyawanTambah',[KaryawanController::class, 'store'])->name('karya
 Route::get('/karyawanEdit/{id}',[KaryawanController::class, 'edit'])->name('karyawanEdit')->middleware('auth');
 Route::post('/karyawanUpdate',[KaryawanController::class, 'update'])->name('karyawanUpdate')->middleware('auth');
 Route::get('/karyawanDelete/{id}',[KaryawanController::class, 'destroy'])->name('karyawanDelete')->middleware('auth');
+
+// Produk
+Route::get('/produk',[ProdukController::class, 'view'])->name('produk')->middleware('auth');
+Route::post('/produkTambah',[ProdukController::Class, 'store'])->name('produkTambah')->middleware('auth');
+Route::post('/produkEdit',[ProdukController::Class, 'edit'])->name('produkEdit')->middleware('auth');
+Route::post('/produkUpdate',[ProdukController::Class, 'update'])->name('produkUpdate')->middleware('auth');
+Route::post('/produkDelete',[ProdukController::Class, 'destroy'])->name('produkDelete')->middleware('auth');

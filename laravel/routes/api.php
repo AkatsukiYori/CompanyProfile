@@ -10,6 +10,7 @@ use App\Http\Controllers\API\GalleryController;
 use App\Http\Controllers\API\KaryawanController;
 use App\Http\Controllers\API\KontakController;
 use App\Http\Controllers\API\MitraController;
+use App\Http\Controllers\API\ProdukController;
 
 /*
 |--------------------------------------------------------------------------

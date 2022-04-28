@@ -44,6 +44,10 @@ Route::get('/faqs-delete/{id}',[FaqsController::class, 'destroy'])->name('faqs-d
 
 // Mitra
 Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware('auth');
+Route::post('/mitra',[MitraController::class, 'store'])->name('mitra-store')->middleware('auth');
+Route::get('/mitra-edit/{id}',[MitraController::class, 'edit'])->name('mitra-edit')->middleware('auth');
+Route::post('/mitra-update', [MitraController::class, 'update'])->name('mitra-update')->middleware('auth');
+Route::get('/mitra-delete/{id}', [MitraController::class, 'destroy'])->name('mitra-delete')->middleware('auth');
 
 // Kontak
 Route::get('/kontak',[KontakController::class, 'view'])->name('kontak')->middleware('auth');

@@ -8,6 +8,10 @@
     <Mitra :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <FAQ :contents="faqs"/>
     <Footer />
+    <div v-for="karya in karyawan" :key="karya.id">
+      knnihn
+      <img :src="require(karya.media)" alt="">
+    </div>
   </div>
 </template>
 <script>
@@ -102,7 +106,8 @@ export default {
         {id: 8, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
       ],
       tentangKami: [],
-      dataCoba: []
+      dataCoba: [],
+      karyawan:[],
     }
   },
   methods: {
@@ -110,6 +115,7 @@ export default {
       this.getVisiMisi()
       this.getTentangKami()
       this.getGallery()
+      this.getKaryawan()
     },
     getVisiMisi(){
       axios.get(`http://localhost:8000/api/visi_misi`)
@@ -132,13 +138,11 @@ export default {
           console.log(err.response.data)
         })
     },
-    getGallery(){
-      axios.get(`http://localhost:8000/api/gallery`)
+    getKaryawan(){
+      axios.get(`http://localhost:8000/api/karyawan`)
         .then(res => {
-          this.dataCoba = res.data
-          this.dataCoba.forEach((data) => {
-            console.log(data)
-          })
+          this.karyawan = res.data
+            console.log(this.karyawan)
         })
         .catch(err => {
           console.log(err.response.data)

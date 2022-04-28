@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <AlbumDetail :AlbumDetail="AlbumDetail"/>
+  <AlbumDetail :listAlbum="listAlbum"/>
 </template>
 
 <script>
@@ -10,15 +10,15 @@ import AlbumDetail from '@/components/ComponentAlbum/AlbumDetail.vue';
 export default {
   data(){
     return{
-      isiAlbum: [
+      listAlbum: [
         {
             id: 1,
             title: 'Album Perpisahan',
             description: 'Album berisi kenangan',
             listGambar: [
-                {id: 1, type: "image", src: require('@/assets/berita.png')},
+                {id: 1, type: "video", src: require("@/assets/testvideo.mp4")},
                 {id: 2, type: "image", src: require('@/assets/berita.png')},
-                {id: 3, type: "image", src: require('@/assets/berita.png')},
+                {id: 3, type: "link", src: 'https://www.youtube.com/embed/9EDZixuODrw', videoid: '9EDZixuODrw'},
             ]
         },
         {
@@ -46,7 +46,6 @@ export default {
   },
   components:{
     Navbar,
-    ListAlbum,
     AlbumDetail,
   }
 }

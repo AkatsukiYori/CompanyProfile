@@ -24,7 +24,6 @@
                     <div class="p-4 rounded-lg xs:w-20 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="'http://img.youtube.com/vi/'+galleryitem.videoid+'/default.jpg'" alt="">
                     </div>
-                    
                 </div>
                 <div class="lg:w-1/3 md:w-1/2 p-2 xs:flex xs:justify-center md:flex md:flex-wrap items-center  duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out md:text-sm">
                     <router-link :to="{ name: 'Album' }" class="py-4 md:text-sm lg:text-lg text-white md:w-3/4 xs:w-20 h-full xs:text-xs flex items-center justify-center rounded-xl" style="background: linear-gradient(to left bottom, #ac7df1, #777)">
@@ -63,9 +62,19 @@ export default {
             }
         },
         updateGalleryImage: function(){
-            this.$refs.leftimage.src = this.galleryitems[0].src
+            this.$refs.leftimage.style.display = "none"
             this.$refs.leftvideo.style.display = "none"
             this.$refs.leftlink.style.display = "none"
+            if(this.galleryitems[0].type == "image"){
+                this.$refs.leftimage.style.display = "block"
+                this.$refs.leftimage.src = this.galleryitems[0].src
+            }else if(this.galleryitems[0].type == "video"){
+                this.$refs.leftvideo.style.display = "block"
+                this.$refs.leftvideo.src = this.galleryitems[0].src
+            }else{
+                this.$refs.leftlink.style.display = "block"
+                this.$refs.leftlink.src = this.galleryitems[0].src
+            }
         },
         changeActive(index){
             for(let x=0; x<8; x++){

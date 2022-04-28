@@ -1,21 +1,19 @@
 <template>
-  <div class="p-8 mb-12">
-    <h1 class="text-4xl font-bold">List Berita</h1>
-    <div class="bgimage fixed opacity-75 bottom-0 left-0 w-full h-full -z-10"></div>
-    <div>
-        <div class="flex w-full" v-for="berita in listBerita" :key="berita.id">
-            <div class="w-5/12 mr-16">
-                <img :src="berita.image" alt="">
-            </div>
-            <div class="">
-                <div class="flex">
-                    <div class="kategori" v-for="category in berita.categories" :key="category.id">{{category}}</div>
-                </div>
-                <div>
-                    <p class="text-black text-xl pb-2">{{berita.datetime}}</p>
-                    <p class="text-black font-bold text-3xl pb-2">{{berita.title}}</p>
-                    <p class="text-black text-lg">{{berita.description}}</p>
-                </div>
+  <div class="p-8">
+    <div class="flex justify-between">
+        <h1 class="text-4xl font-bold pb-8">List Album</h1>
+        <div class="flex items-center self-start">
+            <input class="rounded-3xl border-2 mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" type="text" placeholder="Search Album">
+            <img src="@/assets/magnifying.png" alt="" class="w-8 h-8">
+        </div>
+    </div>
+    <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
+    <div class="">
+        <div v-for="row in listRowAlbum" :key="row.id" class="flex w-full mb-16">
+            <div v-for="album in row.listAlbum" :key="album.id" class="px-8">
+                <p class="text-center text-xl font-bold">{{album.title}}</p>
+                <img :src="album.image" alt="">
+                <p class="text-center text-lg">{{album.date}}</p>
             </div>
         </div>
     </div>
@@ -27,7 +25,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 export default {
-    props: ['listBerita'],
+    props: ['listRowAlbum'],
     components: {
         Carousel,
         Slide,

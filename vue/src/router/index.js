@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AlbumDetails from '../views/AlbumDetails.vue'
 import Album from '../views/Album.vue'
 import Berita from '../views/Berita.vue'
 import Landing from '../views/Landing.vue';
@@ -8,6 +9,11 @@ const routes = [
     path: '/',
     name: 'Landing',
     component: Landing
+  },
+  {
+    path: '/albumdetails',
+    name: 'AlbumDetails',
+    component: AlbumDetails
   },
   {
     path: '/album',

@@ -1,7 +1,7 @@
 <template>
   <div class="p-8 mb-12">
     <h1 class="text-4xl font-bold">List Berita</h1>
-    <div class="bgimage fixed opacity-75 bottom-0 left-0 w-full h-full -z-10"></div>
+    <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
     <div>
         <div class="flex w-full" v-for="berita in listBerita" :key="berita.id">
             <div class="w-5/12 mr-16">

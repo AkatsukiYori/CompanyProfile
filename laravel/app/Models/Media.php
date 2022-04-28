@@ -21,6 +21,9 @@ class Media extends Model
         return $this->hasOne('App\Models\Karyawan');
     }
     public function mitra() {
-        return $this->hasMany('App\Models\Mitra');
+        return $this->hasOne('App\Models\Mitra');
+    }
+    public function produk() {
+        return $this->hasOne('App\Models\Produk');
     }
 }

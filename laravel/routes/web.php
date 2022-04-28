@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::get('/faqs-delete/{id}',[FaqsController::class, 'destroy'])->name('faqs-d
 
 // Mitra
 Route::get('/mitra',[MitraController::class, 'view'])->name('mitra')->middleware('auth');
+Route::post('/mitra',[MitraController::class, 'store'])->name('mitra-store')->middleware('auth');
+Route::get('/mitra-edit/{id}',[MitraController::class, 'edit'])->name('mitra-edit')->middleware('auth');
+Route::post('/mitra-update', [MitraController::class, 'update'])->name('mitra-update')->middleware('auth');
+Route::get('/mitra-delete/{id}', [MitraController::class, 'destroy'])->name('mitra-delete')->middleware('auth');
 
 // Kontak
 Route::get('/kontak',[KontakController::class, 'view'])->name('kontak')->middleware('auth');
@@ -77,3 +82,10 @@ Route::post('/karyawanTambah',[KaryawanController::class, 'store'])->name('karya
 Route::get('/karyawanEdit/{id}',[KaryawanController::class, 'edit'])->name('karyawanEdit')->middleware('auth');
 Route::post('/karyawanUpdate',[KaryawanController::class, 'update'])->name('karyawanUpdate')->middleware('auth');
 Route::get('/karyawanDelete/{id}',[KaryawanController::class, 'destroy'])->name('karyawanDelete')->middleware('auth');
+
+// Produk
+Route::get('/produk',[ProdukController::class, 'view'])->name('produk')->middleware('auth');
+Route::post('/produkTambah',[ProdukController::Class, 'store'])->name('produkTambah')->middleware('auth');
+Route::get('/produkEdit',[ProdukController::Class, 'edit'])->name('produkEdit')->middleware('auth');
+Route::post('/produkUpdate',[ProdukController::Class, 'update'])->name('produkUpdate')->middleware('auth');
+Route::get('/produkDelete',[ProdukController::Class, 'destroy'])->name('produkDelete')->middleware('auth');

@@ -159,7 +159,7 @@
 
                         <li>
                             <a href="{{ route('dashboard') }}">
-                                <i class="fa-solid fa-chart-line"></i>
+                                <i class="fa-solid fa-chart-line mr-2"></i>
                                 <span> Dashboard </span>
                             </a>
                         </li>
@@ -173,7 +173,7 @@
                         
                         <li>
                            <a href="#">
-                                <i class="mdi mdi-dots-horizontal-circle"></i>
+                                <i class="fa-solid fa-circle-info mr-2"></i>
                                 <span> Landing Page </span>
                                 <i class="fa-solid fa-caret-down"></i>
                             </a>
@@ -206,14 +206,21 @@
                         </li>
 
                         <li>
+                            <a href="{{ route('produk') }}">
+                                <i class="fa-solid fa-shopping-cart"></i>
+                                <span> Produk </span>
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="{{ route('gallery') }}">
-                                <i class="fas fa-images"></i>
+                                <i class="fas fa-images mr-2"></i>
                                 <span> Gallery </span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('mitra') }}">
-                                <i class="fas fa-handshake"></i>
+                                <i class="fas fa-handshake mr-2"></i>
                                 <span> Mitra </span>
                             </a>
                         </li>

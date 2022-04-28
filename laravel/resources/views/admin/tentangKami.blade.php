@@ -35,8 +35,8 @@
                                 <div class="card-header">
                                     <h2>Tentang Kami</h2>
                                 </div>
-                                <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="tentangModal" style="margin-top: -4.5%;">
-                                    Tambah isi
+                                <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="tentangModal" style="margin-top: -5.5%; margin-right: 2%;">
+                                    Tambah data tentang
                                 </button>
                                 <div class="card-body">
 
@@ -105,8 +105,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
@@ -143,8 +143,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-success">Save change</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

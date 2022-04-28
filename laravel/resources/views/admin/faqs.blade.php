@@ -32,11 +32,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-box table-responsive">
-                                <div class="card-header mb-1">
+                                <div class="card-header">
                                     <h2>FAQ</h2>
                                 </div>
-                                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="faqsModal">
-                                    Tambah isi
+                                <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="faqsModal" style="margin-top: -5.5%; margin-right: 2%;">
+                                    Tambah FAQs
                                 </button>
 
                                 <div class="card-body">
@@ -99,8 +99,8 @@
                             <textarea name="jawaban_faq" class="form-control" id="JawabanFAQ" cols="30" rows="10"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -133,8 +133,8 @@
                             <textarea name="jawaban_faq" class="form-control" id="JawabanFAQ_Edit" cols="30" rows="10"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Save change</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>

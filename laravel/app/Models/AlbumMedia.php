@@ -14,4 +14,8 @@ class AlbumMedia extends Model
     public function album(){
        return $this->belongs('App\Models\Album');
     }
+
+    public function produk() {
+        return $this->hasOne('App\Models\Produk');
+    }
 }

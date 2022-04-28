@@ -166,7 +166,7 @@
 
                         <li>
                             <a href="{{ route('karyawan') }}">
-                                <i class="fa-solid fa-user-tie"></i>
+                                <i class="fa-solid fa-user-tie mr-2"></i>
                                 <span> Karyawan </span>
                             </a>
                         </li>
@@ -203,6 +203,13 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('produk') }}">
+                                <i class="fa-solid fa-shopping-cart mr-2"></i>
+                                <span> Produk </span>
+                            </a>
                         </li>
 
                         <li>

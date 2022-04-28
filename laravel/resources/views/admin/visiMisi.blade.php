@@ -100,8 +100,8 @@
                         <input type="text" class="form-control" parsley-trigger="change" id="misi" name="misi" placeholder="Masukan Misi" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -132,8 +132,8 @@
                         <input type="text" class="form-control" id="misiEdit" name="misiEdit" parsley-trigger="change">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success btnUpdate">Ubah</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success btnUpdate">Save change</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

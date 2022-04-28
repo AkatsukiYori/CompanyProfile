@@ -34,7 +34,7 @@
                                 <div class="card-header mb-1">
                                     <h2>Mitra</h2>
                                 </div>
-                                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="mitraModal">
+                                <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="mitraModal" style="margin-top: -6%; margin-right: 2%;">
                                     Tambah Mitra
                                 </button>
                                 <div class="card-body">
@@ -96,8 +96,8 @@
                             <input type="file" class="form-control dropify" parsley-trigger="change" id="image" name="image" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -132,8 +132,8 @@
                             <input type="file" class="form-control dropify" parsley-trigger="change" id="imageEdit" name="imageEdit" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Save change</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>

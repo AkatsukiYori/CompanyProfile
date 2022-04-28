@@ -94,6 +94,7 @@
                     <div class="form-group">
                         <label for="foto">Foto</label>
                         <input type="file" class="form-control dropify" id="foto" name="foto" required>
+                        <span>Resolution</span>
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>

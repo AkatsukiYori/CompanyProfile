@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 class KontakController extends Controller
 {
     public function view() {
-        $kontak = Kontak::all();
+        $kontak = Kontak::with('media')->get();
         // return $kontak;
         return view('admin/kontak',['kontak'=>$kontak]);
     }
@@ -47,14 +47,19 @@ class KontakController extends Controller
         }
             $kontak = new kontak;
             $kontak->akun_id = Auth::user()->id;
-            $kontak->namaLink = $request->namaLink;
-            $kontak->no_hp = $request->no_hp;
-            $kontak->email = $request->email;
-            $kontak->facebook = $request->facebook;
-            $kontak->twitter = $request->twitter;
-            $kontak->instagram = $request->instagram;
-            $kontak->media_id=$id;
-            $kontak->save();
+            if(Kontak::where('akun_id',Auth::user()->id)->exists()){
+                return redirect::back()->witherrors("Anda sudah mengisi kontak tersebut!");
+            }else{
+                $kontak->alamat = $request->alamat;
+                $kontak->namaLink = $request->namaLink;
+                $kontak->no_hp = $request->no_hp;
+                $kontak->email = $request->email;
+                $kontak->facebook = $request->facebook;
+                $kontak->twitter = $request->twitter;
+                $kontak->instagram = $request->instagram;
+                $kontak->media_id=$id;
+                $kontak->save();
+            }
             return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -93,7 +98,7 @@ class KontakController extends Controller
             // dd($request->all());
                 $kontak = new Kontak;
                 // return $request->all();
-                $kontak->where('id',$id)->update(['akun_id'=>Auth::user()->id, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit, 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->id]);
+                $kontak->where('id',$id)->update(['akun_id'=>Auth::user()->id,'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit, 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->id]);
 
                 return redirect::back()->with('success','Data berhasil diubah!');
         }else{
@@ -114,7 +119,7 @@ class KontakController extends Controller
             }
             // return $request->all();
                 $kontak = new Kontak;
-                $kontak->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit , 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->mediaID]);
+                $kontak->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit , 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->mediaID]);
 
                 return redirect::back()->with('success','Data berhasil diubah!');
         }

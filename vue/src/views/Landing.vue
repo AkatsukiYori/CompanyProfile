@@ -101,13 +101,17 @@ export default {
         {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 8, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
       ],
-      tentangKami: []
+      tentangKami: [],
+      dataCoba: [],
+      karyawan:[],
     }
   },
   methods: {
     init(){
       this.getVisiMisi()
       this.getTentangKami()
+      this.getGallery()
+      this.getKaryawan()
     },
     getVisiMisi(){
       axios.get(`http://localhost:8000/api/visi_misi`)
@@ -125,6 +129,16 @@ export default {
           this.tentangKami.forEach((data) => {
             console.log(data)
           })
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+    },
+    getKaryawan(){
+      axios.get(`http://localhost:8000/api/karyawan`)
+        .then(res => {
+          this.karyawan = res.data
+            console.log(this.karyawan)
         })
         .catch(err => {
           console.log(err.response.data)

@@ -34,7 +34,7 @@
                             <div class="card-header">
                                 <h2>Gallery Detail</h2>
                             </div>
-                            <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="galleryModal">
+                            <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="galleryModal" style="margin-top: -5.5%; margin-right: 2%;">
                                 Tambah Album
                             </button>
                             <div class="card-body">
@@ -107,8 +107,8 @@
                         <span>Jika dari youtube harap menggunakan link embed (Tekan tombol share dan pilih yang embed)</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -144,8 +144,8 @@
                         <span>Jika dari youtube harap menggunakan link embed (Tekan tombol share dan pilih yang embed)</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Save change</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

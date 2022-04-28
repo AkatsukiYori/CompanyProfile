@@ -84,9 +84,16 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
-                            <h3 class="text-center"><i class="fa fa-map-location-dot"></i> Link</h3>
-                            <h5 style="word-break: break-all;"><a href=""></a>{{ $tak->namaLink }}</h5>
-                            <br>
+                            <h3 class="text-center"><i class="fa-solid fa-map-marker"></i> Alamat</h3>
+                            <h5>{{ $tak->alamat }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row flex justify-content-center">
+                    <div class="col-md-9">
+                        <div class="card-box shadow rounded justify-content-center text-center">
+                            <h3 class="text-center"><i class="fa fa-map-location-dot"></i> Link maps</h3>
+                            <h5><?= $tak->namaLink ?></h5>
                         </div>
                     </div>
                 </div>
@@ -94,22 +101,19 @@
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-facebook"></i> Facebook</h3>
-                            <h5>{{ $tak->facebook }}</h5>
-                            <br>
+                            <h5> <a href="{{ $tak->facebook }}">{{ $tak->facebook }}</a> </h5>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-twitter"></i> Twitter</h3>
-                            <h5>{{ $tak->twitter }}</h5>
-                            <br>
+                            <h5> <a href="{{ $tak->twitter }}">{{ $tak->twitter }}</a></h5>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-instagram"></i> Instagram</h3>
-                            <h5 style="word-break: break-all;"><a href=""></a>{{ $tak->instagram }}</h5>
-                            <br>
+                            <h5 style="word-break: break-all;"><a href="{{ $tak->instagram }}">{{ $tak->instagram }}</a></h5>
                         </div>
                     </div>
                     @endforeach
@@ -137,8 +141,13 @@
                         <input type="file" class="form-control dropify" parsley-trigger="change" name="foto" id="foto">
                     </div>
                     <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" parsley-trigger="change" name="alamat" id="alamat" placeholder="Masukan Alamat">
+                    </div>
+                    <div class="form-group">
                         <label for="Link">Link</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLink" name="namaLink" placeholder="Masukan Link">
+                        <span>Linknya harus dalam bentuk embed</span>
                     </div>
                     <div class="form-group">
                         <label for="no_hp">Telepon</label>
@@ -164,8 +173,8 @@
                         <span> Contoh : https://twitter.com </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -196,6 +205,11 @@
                     <div class="form-group">
                         <label for="link">Link</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLinkEdit" name="namaLinkEdit">
+                        <span>Linknya harus dalam bentuk embed</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" parsley-trigger="change" id="alamatEdit" name="alamatEdit">
                     </div>
                     <div class="form-group">
                         <label for="no_hp">Telepon</label>
@@ -221,8 +235,8 @@
                         <span> Contoh : https://twitter.com </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Ubah</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success">Save change</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -249,6 +263,7 @@
                 success:function(response) {
                     console.log(response[0]);
                     $('#fotoEdit').val(response.foto);
+                    $('#alamatEdit').val(response[0].alamat);
                     $('#namaLinkEdit').val(response[0].namaLink);
                     $('#no_hpEdit').val(response[0].no_hp);
                     $('#emailEdit').val(response[0].email);

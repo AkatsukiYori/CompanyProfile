@@ -16,7 +16,8 @@ class CreateKontakKamiTable extends Migration
         Schema::create('kontak_kami', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('akun_id', false, true);
-            $table->string('foto')->nullable();    
+            $table->string('foto')->nullable();  
+            $table->string('alamat')->nullable();  
             $table->string('email')->nullable();
             $table->text('namaLink')->nullable();
             $table->string('no_hp')->nullable();

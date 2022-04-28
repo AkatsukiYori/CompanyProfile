@@ -14,16 +14,16 @@ class GalleryController extends Controller
         $dataGallery = [];
         foreach($maxGallery as $key => $value){
             $dataGallery[$key]['id'] = $key;
-            $dataGallery[$key]['kategori'] = $value->kategori;
-            $dataGallery[$key]['name'] = $value->name;
+            $dataGallery[$key]['type'] = $value->kategori;
             if($value->link){
                 $sourceId = explode('/',$value->link);
                 $latestData = $sourceId[count($sourceId) - 1];
-                $dataGallery[$key]['sourceId'] = $latestData;
+                $dataGallery[$key]['src'] = $value->link;
+                $dataGallery[$key]['videoid'] = $latestData;
             }else{
-                $dataGallery[$key]['sourceId'] = null;
+                $dataGallery[$key]['videoid'] = "";
+                $dataGallery[$key]['src'] = $value->name;
             }
-            $dataGallery[$key]['link'] = $value->link;
         }
         
         return response()->json($dataGallery, 200);

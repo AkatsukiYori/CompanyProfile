@@ -2,16 +2,12 @@
   <div>
     <Navbar />
     <Beranda :contents="slogan"/>
-    <TentangKSD />
+    <TentangKSD :dataCoba="dataCoba" />
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery :galleryitems="gallery"/>
     <Mitra :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <FAQ :contents="faqs"/>
     <Footer />
-    <div v-for="karya in karyawan" :key="karya.id">
-      knnihn
-      <img :src="require(karya.media)" alt="">
-    </div>
   </div>
 </template>
 <script>
@@ -105,8 +101,9 @@ export default {
         {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 8, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
       ],
+      visiMisi: {},
       tentangKami: [],
-      dataCoba: [],
+      dataCoba: null,
       karyawan:[],
     }
   },
@@ -120,7 +117,8 @@ export default {
     getVisiMisi(){
       axios.get(`http://localhost:8000/api/visi_misi`)
         .then(res=>{
-          console.log(res.data)
+          this.visiMisi = res.data
+          console.log(this.visiMisi)
         })
         .catch(err => {
           console.log(err.response.data)
@@ -148,7 +146,20 @@ export default {
           console.log(err.response.data)
         })
     },
-    getKaryawan
+    getGallery(){
+      axios.get(`http://localhost:8000/api/gallery`)
+        .then(res => {
+          console.log(res.data)
+          this.dataCoba = res.data
+          console.log(this.dataCoba)
+          this.dataCoba.forEach(function(data) {
+            console.log(data)
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   },
   created() {
     this.init()

@@ -173,8 +173,8 @@
                         <span> Contoh : https://twitter.com </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -235,8 +235,8 @@
                         <span> Contoh : https://twitter.com </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Ubah</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-success">Save change</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

@@ -34,7 +34,7 @@
                             <div class="card-header">
                                 <h2>Gallery</h2>
                             </div>
-                            <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="galleryModal">
+                            <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="galleryModal" style="margin-top: -5.5%; margin-right: 2%;">
                                 Tambah Album
                             </button>
                             <div class="card-body">
@@ -105,8 +105,8 @@
                         <input type="file" name="file[]" id="file" class="form-control dropify" multiple="multiple" >
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -135,8 +135,8 @@
                         <input type="text" class="form-control" parsley-trigger="change" id="deskripsi_edit" name="deskripsi" placeholder="Masukan deskripsi">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Save change</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

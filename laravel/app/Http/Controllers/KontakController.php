@@ -47,8 +47,8 @@ class KontakController extends Controller
         }
             $kontak = new kontak;
             $kontak->akun_id = Auth::user()->id;
-            if(Kontak::where('akun_id',$request->id)->exists()){
-                return "Data sudah ditambahkan!";
+            if(Kontak::where('akun_id',Auth::user()->id)->exists()){
+                return redirect::back()->witherrors("Anda sudah mengisi kontak tersebut!");
             }else{
                 $kontak->alamat = $request->alamat;
                 $kontak->namaLink = $request->namaLink;
@@ -58,8 +58,8 @@ class KontakController extends Controller
                 $kontak->twitter = $request->twitter;
                 $kontak->instagram = $request->instagram;
                 $kontak->media_id=$id;
+                $kontak->save();
             }
-            $kontak->save();
             return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
     }
 

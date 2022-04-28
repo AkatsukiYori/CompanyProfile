@@ -26,6 +26,9 @@ use App\Http\Controllers\ProdukController;
 Auth::routes();
 
 Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
+Route::get('/register', function() {
+    return view('auth/login');
+});
 
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard')->middleware('auth');

@@ -29,7 +29,7 @@ Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
 
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
-
+Route::get('/scorebox',[DashboardController::class, 'scrobox'])->name('scorebox')->middleware('auth');
 // Tentang Kami
 Route::GET('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
 Route::POST('/tentang-store',[TentangController::class, 'store'])->name('tentang-store')->middleware('auth');

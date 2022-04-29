@@ -1,7 +1,7 @@
 <template>
-    <div id="about" class="container rounded-t-lg mt-lg-n2 py-12 lg:px-8 xs:px-2 m-auto flex flex-wrap justify-center">
+    <div id="about" class=" rounded-t-lg mt-lg-n2 py-12 lg:px-8 xs:px-2 m-auto flex flex-wrap justify-center">
         <p class="font-bold text-purple-900 lg:text-5xl md:text-4xl sm:text-4xl xs:text-4xl text-justify pb-8">Tentang Kita Serba Digital</p>
-        <div class="grid lg:grid-cols-3 md:px-5 sm:grid-cols-1 xs:grid-cols-1 container gap-8">
+        <div class="grid lg:grid-cols-3 md:px-5 sm:grid-cols-1 xs:grid-cols-1 px-4 gap-8">
             <center>
                 <img src="@/assets/who.png" class="h-96 xs:h-64" alt="Siapa?"/>
                 <p class="font-bold text-purple-900 text-4xl p-4 xs:text-3xl">Siapa Kami?</p>

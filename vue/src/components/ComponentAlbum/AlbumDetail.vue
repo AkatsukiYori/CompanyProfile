@@ -16,19 +16,19 @@
                 Back to home
             </router-link>
         </div>
-        <div class="w-7/12 rounded-2xl" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
+        <div class="w-7/12 rounded-2xl h-full" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
             <p class="text-white text-4xl font-bold text-center p-4">Lorem Ipsum</p>
             <div v-for="album in listAlbum" :key="album.id" class="flex">
                 <div v-for="gambar in album.listGambar" :key="gambar.id" class="w-full">
-                    <div class="p-4 xs:w-20 sm:w-full flex flex-wrap items-center ease-in-out" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 sm:w-full flex flex-wrap items-center ease-in-out" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
                         <img class="w-full" :src="gambar.src" alt="src" >
                     </div>
-                    <div class="p-4 xs:w-20 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
                         <video width="320" height="240">
                             <source :src="gambar.src" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-4 xs:w-20 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'link'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'link'" @click="changeAlbumItem(gambar.src, gambar.type)" >
                         <img class="w-full" :src="'http://img.youtube.com/vi/'+gambar.videoid+'/default.jpg'" alt="">
                     </div>
                 </div>

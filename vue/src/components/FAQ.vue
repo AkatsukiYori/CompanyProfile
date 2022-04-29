@@ -15,8 +15,8 @@
                 <carousel ref="carousel" :items-to-show="1" :items-to-scroll="1" class="testimonial-slider owl-theme pt-24 pb-12" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000">
                   <slide class="testimonial-item" v-for="content in contents" :key="content.id">
                     <div>
-                      <h1 class="text-6xl">{{content.question}}</h1>
-                      <h3 class="text-3xl">{{content.answer}}</h3>
+                      <h1 class="text-6xl sm:text-5xl xs:text-4xl">{{content.question}}</h1>
+                      <h3 class="text-3xl sm:text-2xl xs:text-xl">{{content.answer}}</h3>
                     </div>
                   </slide>
                 </carousel>

@@ -110,7 +110,7 @@ export default {
     init(){
       this.getVisiMisi()
       this.getTentangKami()
-      this.getGallery()
+      // this.getGallery()
       this.getKaryawan()
     },
     getVisiMisi(){

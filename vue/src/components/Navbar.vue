@@ -2,13 +2,14 @@
   <nav
     class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 border drop-shadow-md"
   >
-    <div class="lg:container sm:container flex flex-wrap justify-between items-center lg:mx-auto">
-      <a href="#" class="flex items-center justify-center md:w-1/6 sm:w-2/6">
+    <div class="flex flex-wrap justify-between items-center lg:mx-auto">
+      <a href="#" class="flex items-center justify-center md:w-1/6">
         <img src="@/assets/logo.png" class="mr-3 h-10 sm:h-16" alt="Logo KSD" />
       </a>
       <button
         type="button"
         class="inline-flex items-center p-2 ml-3 text-sm xs:mr-0 text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 text-grey-400 hover:bg-purple-500 focus:ring-purple-600 focus:text-white focus:bg-purple-500 hover:text-white nav-toggler"
+        style="width: auto !important"
         data-target="#mobile-menu"
       >
         <span class="sr-only">Open main menu</span>
@@ -30,59 +31,58 @@
         <ul
           class="flex items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ name: 'Landing' }"
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('home')"
-              >Home</router-link
-                            
+              >Home</router-link 
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('about')"
               >About</a
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('product')"
               >Product</a
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('gallery')"
               >Galeri</a
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('faq')"
               >FAQS</a
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent dark:border-gray-700"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('mitra')"
               >Mitra</a
             >
           </li>
-          <li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
               href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-purple-600 md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-gray-700 dark:hover:text-purple-600 md:dark:hover:bg-transparent"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               @click="movescreen('contact')"
               >Contact</a
             >

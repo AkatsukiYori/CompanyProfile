@@ -8,7 +8,7 @@
                 <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
                 <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
                 </video>
-                <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
+                <iframe ref="leftlink" src="" class="w-full h-60 md:w-3/4 m-auto"></iframe>
             </div>
             <p class="text-center text-3xl font-bold">{{listAlbum[0].title}}</p>
             <p class="text-center text-lg mb-8">{{listAlbum[0].description}}</p>

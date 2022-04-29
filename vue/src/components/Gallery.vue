@@ -3,7 +3,7 @@
     <div>
         <p class="text-purple-700 text-4xl font-semibold pt-7 flex justify-center">Galeri</p>
         <div class="flex flex-wrap my-8">
-            <div class="lg:w-1/2 md:w-4/6 sm:w-full p-8 md:flex md:flex-wrap md:justify-center">
+            <div class="lg:w-1/2 md:w-3/6 sm:w-full p-8 md:flex md:flex-wrap md:justify-center">
                 <div class="flex items-center w-full h-full">
                     <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
                     <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
@@ -11,21 +11,21 @@
                     <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
                 </div>
             </div>
-            <div class="flex md:flex-wrap lg:w-1/2 md:w-2/6 xs:overflow-x-scroll md:overflow-hidden">
-                <div class="lg:w-1/3 md:w-1/2 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
-                    <div class="p-4 rounded-lg xs:w-20 sm:w-full flex flex-wrap items-center ease-in-out" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+            <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden">
+                <div class="w-1/3 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                    <div class="lg:p-4 md:p-2 sl:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
-                    <div class="p-4 rounded-lg xs:w-20 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
-                        <video width="320" height="240">
+                    <div class="lg:p-4 md:p-2 sl:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                        <video width="320" height="240" class="">
                             <source :src="galleryitem.src" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-4 rounded-lg xs:w-20 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                    <div class="lg:p-4 md:p-2 sl:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="'http://img.youtube.com/vi/'+galleryitem.videoid+'/default.jpg'" alt="">
                     </div>
                 </div>
-                <div class="lg:w-1/3 md:w-1/2 p-2 xs:flex xs:justify-center md:flex md:flex-wrap items-center  duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out md:text-sm">
+                <div class="w-1/3 p-2 xs:flex xs:justify-center md:flex md:flex-wrap items-center duration-100 hover:cursor-pointer hover:opacity-80 ease-in-out md:text-sm">
                     <router-link :to="{ name: 'Album' }" class="py-4 md:text-sm lg:text-lg text-white md:w-3/4 xs:w-20 h-full xs:text-xs flex items-center justify-center rounded-xl" style="background: linear-gradient(to left bottom, #ac7df1, #777)">
                         More >>
                     </router-link>

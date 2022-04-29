@@ -26,6 +26,9 @@ use App\Http\Controllers\ProdukController;
 Auth::routes();
 
 Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
+Route::get('/register', function() {
+    return view('auth/login');
+});
 
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
@@ -85,7 +88,7 @@ Route::get('/karyawanDelete/{id}',[KaryawanController::class, 'destroy'])->name(
 
 // Produk
 Route::get('/produk',[ProdukController::class, 'view'])->name('produk')->middleware('auth');
-Route::post('/produkTambah',[ProdukController::Class, 'store'])->name('produkTambah')->middleware('auth');
-Route::get('/produkEdit',[ProdukController::Class, 'edit'])->name('produkEdit')->middleware('auth');
-Route::post('/produkUpdate',[ProdukController::Class, 'update'])->name('produkUpdate')->middleware('auth');
-Route::get('/produkDelete',[ProdukController::Class, 'destroy'])->name('produkDelete')->middleware('auth');
+Route::post('/produk',[ProdukController::class, 'store'])->name('produk-store')->middleware('auth');
+Route::get('/produk-edit/{id}',[ProdukController::class, 'edit'])->name('produk-edit')->middleware('auth');
+Route::post('/produk-update',[ProdukController::class, 'update'])->name('produk-update')->middleware('auth');
+Route::get('/produk-delete/{id}',[ProdukController::class, 'destroy'])->name('produk-delete')->middleware('auth');

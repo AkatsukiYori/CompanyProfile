@@ -186,12 +186,10 @@
             $(document).on('click','.btnDelete',function(e){
                 var id=$(this).attr('id');
                 var media_id=$(this).attr('value');
-                // console.log(id, media_id);
                 var data = {
                             'id': id,
                             'media_id': media_id,
                 };
-                // location.href = "/mitra-delete/"+data;
                 Swal.fire({
                 title: 'Are you sure?',
                 text: "Yakin untuk menghapus data?",

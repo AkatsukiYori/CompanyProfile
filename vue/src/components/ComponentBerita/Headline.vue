@@ -7,21 +7,21 @@
             <img src="@/assets/magnifying.png" alt="" class="w-8 h-8">
         </div>
     </div>
-    <div class="flex">
-        <div class="w-4/6">
-            <img :src="headline.image" alt="">
-            <div style="margin-right: 2.5rem">
+    <div class="lg:flex md:flex">
+        <div class="sm:w-full md:w-4/6 lg:w-4/6 lg:mr-8 md:mr-8 mb-8">
+            <img class="m-auto" :src="headline.image" alt="">
+            <div>
                 <h1 class="text-3xl font-bold text-center">{{headline.title}}</h1>
                 <p class="text-center">{{headline.description}}</p>
             </div>
         </div>
-        <div class="w-2/6 border-purple-600 rounded-xl border-4 p-4">
+        <div class="sm:w-full md:w-2/6 lg:w-2/6 border-purple-600 rounded-xl border-4 p-4">
             <h1 class="text-center text-2xl mb-8">Kategori</h1>
-            <div class="flex">
-                <div class="w-6/12 pr-4">
+            <div class="lg:flex sm:flex">
+                <div class="lg:w-6/12 lg:pr-4 sm:w-6/12 sm:pr-4">
                     <div v-for="kategori in categoryleft" :key="kategori.id" class="kategori">{{kategori.text}}</div>
                 </div>
-                <div class="w-6/12 pl-4">
+                <div class="lg:w-6/12 lg:pl-4 sm:w-6/12 sm:pr-4">
                     <div v-for="kategori in categoryright" :key="kategori.id" class="kategori">{{kategori.text}}</div>
                 </div>
             </div>

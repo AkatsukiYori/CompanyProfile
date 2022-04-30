@@ -9,8 +9,8 @@
                     <div class="p-4 absolute left-0 top-0 w-full h-full opacity-0 hover:opacity-100 transition-all duration-300">
                         <div class="relative w-full h-full">
                             <div class="absolute bottom-0 left-0">
-                                <h1 class="text-white z-10 relative text-3xl text-left">{{berita.title}}</h1>
-                                <p class="text-white z-10 relative text-lg text-left">{{berita.date}}</p>
+                                <h1 class="text-white z-10 relative lg:text-3xl md:text-2xl sm:text-xl xs:text-lg text-left">{{berita.title}}</h1>
+                                <p class="text-white z-10 relative lg:text-lg md:text-base sm:text-sm xs:text-sm text-left">{{berita.date}}</p>
                             </div>
                         </div>
                         <div class="bg-black z-0 opacity-50 w-full h-full absolute left-0 top-0"></div>

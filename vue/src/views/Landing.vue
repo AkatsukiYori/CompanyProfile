@@ -111,14 +111,13 @@ export default {
     init(){
       this.getVisiMisi()
       this.getTentangKami()
-      // this.getGallery()
+      this.getGallery()
       this.getKaryawan()
     },
     getVisiMisi(){
       axios.get(`visi_misi`)
         .then(res=>{
           this.visiMisi = res.data
-          console.log(this.visiMisi)
         })
         .catch(err => {
           console.log(err.response.data)
@@ -143,10 +142,10 @@ export default {
         })
     },
     getGallery(){
-      axios.get(`gallery`)
+      axios.get(`/gallery`)
         .then(res => {
           this.dataCoba = res.data
-          console.log(this.dataCoba)
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)

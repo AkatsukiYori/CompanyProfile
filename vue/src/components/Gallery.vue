@@ -6,8 +6,6 @@
             <div class="lg:w-1/2 md:w-3/6 sm:w-full p-8 md:flex md:flex-wrap md:justify-center">
                 <div class="flex items-center w-full h-full">
                     <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
-                    <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
-                    </video>
                     <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
                 </div>
             </div>
@@ -43,22 +41,27 @@ export default {
                 this.$refs.leftimage.src = newsrc
                 this.$refs.leftimage.style.display = "block"
                 this.$refs.leftlink.style.display = "none"
-            }else if(type=="video"){
+            }else{
                 this.$refs.leftlink.src = newsrc
                 this.$refs.leftimage.style.display = "none"
-                this.$refs.leftlink.style.display = "none"
+                this.$refs.leftlink.style.display = "block"
             }
         },
         updateGalleryImage: function(){
-            this.$refs.leftimage.src = this.galleryItems[0].src
-            this.$refs.leftlink.style.display = "none"
-            if(this.galleryItems[0].type == "image"){
-                this.$refs.leftimage.style.display = "block"
-                this.$refs.leftimage.src = this.galleryItems[0].src
-            }else if(this.galleryItems[0].type == "video"){
-                this.$refs.leftlink.style.display = "block"
-                this.$refs.leftlink.src = this.galleryItems[0].src
-            }
+            console.log(this.galleryItems);
+            // this.$refs.leftimage.style.display = "none"
+            // this.$refs.leftvideo.style.display = "none"
+            // this.$refs.leftlink.style.display = "none"
+            // if(this.galleryItems[0].type == "image"){
+            //     this.$refs.leftimage.style.display = "block"
+            //     this.$refs.leftimage.src = this.galleryItems[0].src
+            // }else if(this.galleryItems[0].type == "video"){
+            //     this.$refs.leftvideo.style.display = "block"
+            //     this.$refs.leftvideo.src = this.galleryItems[0].src
+            // }else{
+            //     this.$refs.leftlink.style.display = "block"
+            //     this.$refs.leftlink.src = this.galleryItems[0].src
+            // }
         },
         changeActive(index){
             for(let x=0; x<8; x++){
@@ -69,7 +72,6 @@ export default {
     },
     mounted(){
         this.updateGalleryImage()
-        console.log(this.galleryItems)
     },
 }
 </script>

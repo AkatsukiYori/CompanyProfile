@@ -8,8 +8,6 @@ use App\Models\VisiMisi;
 class VisiMisiController extends Controller
 {
     public function index(){
-        $visi = VisiMisi::pluck('visi');
-        $misi = VisiMisi::pluck('misi');
-        return response()->json(["visi" => $visi, "misi" => $misi], 200);
+        return response()->json(VisiMisi::all(), 200);
     }
 }

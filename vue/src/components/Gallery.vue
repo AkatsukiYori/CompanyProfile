@@ -12,7 +12,8 @@
                 </div>
             </div>
             <div class="flex md:flex-wrap lg:w-1/2 md:w-2/6 xs:overflow-x-scroll md:overflow-hidden">
-                <div class="lg:w-1/3 md:w-1/2 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                <div class="lg:w-1/3 md:w-1/2 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryItems" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                    {{ galleryitem.src }}
                     <div class="p-4 rounded-lg xs:w-20 sm:w-full flex flex-wrap items-center ease-in-out" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
@@ -32,7 +33,7 @@
 
 <script>
 export default {
-    props: ['galleryitems'],
+    props: ['galleryItems'],
     data(){
         return{
         }
@@ -50,18 +51,15 @@ export default {
             }
         },
         updateGalleryImage: function(){
-            this.$refs.leftimage.src = this.galleryitems[0].src
-            this.$refs.leftlink.style.display = "none"
-            if(this.galleryitems[0].type == "image"){
-                this.$refs.leftimage.style.display = "block"
-                this.$refs.leftimage.src = this.galleryitems[0].src
-            }else if(this.galleryitems[0].type == "video"){
-                this.$refs.leftvideo.style.display = "block"
-                this.$refs.leftvideo.src = this.galleryitems[0].src
-            }else{
-                this.$refs.leftlink.style.display = "block"
-                this.$refs.leftlink.src = this.galleryitems[0].src
-            }
+            // this.$refs.leftimage.src = this.galleryitems[0].src
+            // this.$refs.leftlink.style.display = "none"
+            // if(this.galleryitems[0].type == "image"){
+            //     this.$refs.leftimage.style.display = "block"
+            //     this.$refs.leftimage.src = this.galleryitems[0].src
+            // }else if(this.galleryitems[0].type == "video"){
+            //     this.$refs.leftlink.style.display = "block"
+            //     this.$refs.leftlink.src = this.galleryitems[0].src
+            // }
         },
         changeActive(index){
             for(let x=0; x<8; x++){
@@ -72,6 +70,7 @@ export default {
     },
     mounted(){
         this.updateGalleryImage()
+        console.log(this.galleryItems)
     },
 }
 </script>

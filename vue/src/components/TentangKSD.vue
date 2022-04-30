@@ -18,15 +18,11 @@
                 <p class="xs:text-sm text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet, vel voluptatibus sunt voluptatem eum, maxime nemo odit optio voluptate illo molestiae consequatur animi iste esse! Similique sed, tenetur eveniet aperiam aut error soluta sequi voluptatem accusamus neque omnis perspiciatis accusantium voluptatum dolor optio maxime vero ab! Placeat necessitatibus magni et.</p>
             </center>
             
-            <div v-for="coba in dataCoba" :key="coba.id">
-                {{ coba.src }}
-            </div>
-            
         </div>
     </div>
 </template>
 <script>
 export default{
-    props: ['dataCoba']
+    
 }
 </script>

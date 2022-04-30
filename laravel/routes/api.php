@@ -48,4 +48,5 @@ Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/berita', [BeritaController::class, 'index']);
 
 //gallery
-Route::get('/gallery', [GalleryController::class, 'index']);
+Route::get('gallery', [GalleryController::class, 'index']);
+Route::get('albums', [GalleryController::class, 'ShowAlbums']);

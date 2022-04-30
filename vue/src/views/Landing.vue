@@ -4,7 +4,7 @@
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
     <TentangKSD id="about" />
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
-    <Gallery id="gallery" :galleryitems="gallery"/>
+    <Gallery id="gallery" :galleryItems="dataCoba"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <FAQ id="faq" :contents="faqs"/>
     <Footer id="contact"/>
@@ -115,7 +115,7 @@ export default {
       this.getKaryawan()
     },
     getVisiMisi(){
-      axios.get(`http://localhost:8000/api/visi_misi`)
+      axios.get(`visi_misi`)
         .then(res=>{
           this.visiMisi = res.data
           console.log(this.visiMisi)
@@ -125,36 +125,28 @@ export default {
         })
     },
     getTentangKami(){
-      axios.get(`http://localhost:8000/api/tentang_kami`)
+      axios.get(`tentang_kami`)
         .then(res => {
           this.tentangKami = res.data
-          this.tentangKami.forEach((data) => {
-            console.log(data)
-          })
         })
         .catch(err => {
           console.log(err.response.data)
         })
     },
     getKaryawan(){
-      axios.get(`http://localhost:8000/api/karyawan`)
+      axios.get(`karyawan`)
         .then(res => {
           this.karyawan = res.data
-            console.log(this.karyawan)
         })
         .catch(err => {
           console.log(err.response.data)
         })
     },
     getGallery(){
-      axios.get(`http://localhost:8000/api/gallery`)
+      axios.get(`gallery`)
         .then(res => {
-          console.log(res.data)
           this.dataCoba = res.data
           console.log(this.dataCoba)
-          this.dataCoba.forEach(function(data) {
-            console.log(data)
-          })
         })
         .catch(err => {
           console.log(err)

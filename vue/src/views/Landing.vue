@@ -4,7 +4,7 @@
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
     <TentangKSD id="about" />
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
-    <Gallery id="gallery" :galleryitems="gallery"/>
+    <Gallery id="gallery" :galleryItems="dataCoba"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <FAQ id="faq" :contents="faqs"/>
     <Footer id="contact"/>
@@ -101,8 +101,9 @@ export default {
         {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 9, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
       ],
+      visiMisi: {},
       tentangKami: [],
-      dataCoba: [],
+      dataCoba: null,
       karyawan:[],
     }
   },
@@ -110,38 +111,44 @@ export default {
     init(){
       this.getVisiMisi()
       this.getTentangKami()
-      // this.getGallery()
+      this.getGallery()
       this.getKaryawan()
     },
     getVisiMisi(){
-      axios.get(`http://localhost:8000/api/visi_misi`)
+      axios.get(`visi_misi`)
         .then(res=>{
-          console.log(res.data)
+          this.visiMisi = res.data
         })
         .catch(err => {
           console.log(err.response.data)
         })
     },
     getTentangKami(){
-      axios.get(`http://localhost:8000/api/tentang_kami`)
+      axios.get(`tentang_kami`)
         .then(res => {
           this.tentangKami = res.data
-          this.tentangKami.forEach((data) => {
-            console.log(data)
-          })
         })
         .catch(err => {
           console.log(err.response.data)
         })
     },
     getKaryawan(){
-      axios.get(`http://localhost:8000/api/karyawan`)
+      axios.get(`karyawan`)
         .then(res => {
           this.karyawan = res.data
-            console.log(this.karyawan)
         })
         .catch(err => {
           console.log(err.response.data)
+        })
+    },
+    getGallery(){
+      axios.get(`/gallery`)
+        .then(res => {
+          this.dataCoba = res.data
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
         })
     }
   },

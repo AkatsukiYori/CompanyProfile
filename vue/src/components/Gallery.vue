@@ -36,7 +36,7 @@
 
 <script>
 export default {
-    props: ['galleryitems'],
+    props: ['galleryItems'],
     data(){
         return{
         }

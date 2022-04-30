@@ -17,6 +17,7 @@ class CreateAlbumMediaTable extends Migration
             $table->id();
             $table->bigInteger('akun_id', false, true);
             $table->string('name');
+            $table->bigInteger('album_id');
             $table->enum('kategori', ['image', 'video', 'link']);
             $table->text('link')->nullable();
             $table->foreign('akun_id')->references('id')->on('users');

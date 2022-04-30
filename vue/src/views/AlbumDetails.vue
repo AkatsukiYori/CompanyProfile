@@ -6,6 +6,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import AlbumDetail from '@/components/ComponentAlbum/AlbumDetail.vue';
+import ListAlbum from '@/components/ComponentAlbum/ListAlbum.vue';
 
 export default {
   data(){

@@ -10,8 +10,17 @@ class Album extends Model
     use HasFactory;
     protected $table = 'album';
     protected $guarded = [];
+    protected $appends = ['image'];
 
     public function album_media(){
         return $this->hasMany('App\Models\AlbumMedia');
+    }
+    
+    public function getImageAttribute(){
+        if(app()->isLocal()){
+            return "ok";
+        }else{
+            return "no";
+        }
     }
 }

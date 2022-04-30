@@ -1,14 +1,14 @@
 <template>
 <footer id="footer" class="bg-gray-100 text-center lg:text-left">
   <div class="p-6 text-gray-800">
-    <div class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-4 xs:grid-cols-1 gap-4 md:gap-0">
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-1 gap-4 md:gap-0">
       <div class="mb-6 md:mb-0">
           <center>
-            <img :src="kontak.foto" class="h-32 md:h-20 xs:h-16" alt="Logo KSD" />
+            <img :src="kontak.foto" class="h-32 md:h-full md:p-12 sm:h-full sm:p-8 xs:h-32" alt="Logo KSD" />
           </center>
       </div>
-      <div class="mb-6 md:mb-0">
-          <h5 class="font-medium mb-2 uppercase">Contact Us</h5>
+      <div class="mb-6 md:mb-16">
+          <h5 class="font-medium mb-2 uppercase text-xl">Contact Us</h5>
           <div class="flex flex-wrap items-center w-1/2 m-auto">
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/phone.png" class="w-8 mr-2" alt="">
@@ -33,13 +33,13 @@
           </div>
       </div>
       <div class="mb-6 md:mb-0 text-center">
-        <h5 class="font-medium mb-2 uppercase">General Information</h5>
+        <h5 class="font-medium mb-2 uppercase text-xl">General Information</h5>
         <p class="mb-4">
           Jam Operasional<br>Senin-Sabtu<br>8:30 - 17:00
         </p>
       </div>
       <div class="mb-6 md:mb-0 text-center flex flex-col justify-center">
-        <h5 class="font-medium mb-2 uppercase">Lokasi Kantor</h5>
+        <h5 class="font-medium mb-2 uppercase text-xl">Lokasi Kantor</h5>
         <p class="mb-4">{{ kontak.alamat }}</p>
         <div class="flex justify-center wrapper">
           <span v-html="kontak.linkAlamat"></span>
@@ -66,14 +66,12 @@ export default{
   },
   methods: {
     splitString(){
-      if(this.kontak.twitter){
-        this.twitter = this.kontak.twitter.split('/').splice(-1)[0]
-        this.facebook = this.kontak.facebook.split('/').splice(-1)[0]
-        this.instagram = this.kontak.instagram.split('/').splice(-1)[0]
-      }
+      this.twitter = this.kontak.twitter.split('/').splice(-1)[0]
+      this.facebook = this.kontak.facebook.split('/').splice(-1)[0]
+      this.instagram = this.kontak.instagram.split('/').splice(-1)[0]
     }
   },
-  mounted(){// jika menggunakan mounted maka data tidak akan muncul
+  updated(){
     this.splitString()
   }
 }

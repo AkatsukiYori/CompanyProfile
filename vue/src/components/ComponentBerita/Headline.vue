@@ -21,7 +21,7 @@
                 <div class="lg:w-6/12 lg:pr-4 sm:w-6/12 sm:pr-4">
                     <div v-for="kategori in categoryleft" :key="kategori.id" class="kategori">{{kategori.text}}</div>
                 </div>
-                <div class="lg:w-6/12 lg:pl-4 sm:w-6/12 sm:pr-4">
+                <div class="lg:w-6/12 lg:pl-4 sm:w-6/12 sm:pl-4">
                     <div v-for="kategori in categoryright" :key="kategori.id" class="kategori">{{kategori.text}}</div>
                 </div>
             </div>

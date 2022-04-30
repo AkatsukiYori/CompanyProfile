@@ -1,7 +1,8 @@
 <template>
   <Navbar />
   <Headline :categoryleft="categoryleft" :categoryright="categoryright" :headline="headline"/>
-  <CarouselBerita :carouselBerita="carouselBerita"/>
+  <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
+  <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>
   <ListBerita :listBerita="listBerita"/>
 </template>
 

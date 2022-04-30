@@ -99,7 +99,7 @@ export default {
         {id: 6, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},
         {id: 7, type: "image", src: require("@/assets/logo.png"), videoid: ''},
         {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
-        {id: 8, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
+        {id: 9, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
       ],
       visiMisi: {},
       tentangKami: [],

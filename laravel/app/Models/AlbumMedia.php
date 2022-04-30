@@ -11,9 +11,9 @@ class AlbumMedia extends Model
     use HasFactory;
     protected $table = 'album_media';
     protected $guarded = [];
-    protected $appends = ['url'];
+    protected $appends = ['image'];
     
-    public function getUrlAttribute(){
+    public function getImageAttribute(){
         $album = album::all();
         $albumName = ''; //variabel yang digunakan untuk menampung album name
         

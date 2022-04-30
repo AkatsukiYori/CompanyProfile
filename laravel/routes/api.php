@@ -24,28 +24,28 @@ use App\Http\Controllers\API\ProdukController;
 */
 
 //Visi misi
-Route::get('/visi_misi', [VisiMisiController::class, 'index']);
+Route::get('visi_misi', [VisiMisiController::class, 'index']);
 
 //tentang kami
-Route::get('/tentang_kami', [TentangController::class, 'index']);
+Route::get('tentang_kami', [TentangController::class, 'index']);
 
 //Faqs
-Route::get('/faq', [FaqsController::class, 'index']);
+Route::get('faq', [FaqsController::class, 'index']);
 
 //karyawan
-Route::get('/karyawan', [KaryawanController::class, 'index']);
+Route::get('karyawan', [KaryawanController::class, 'index']);
 
 //kontak
-Route::get('/kontak', [KontakController::class, 'index']);
+Route::get('kontak', [KontakController::class, 'index']);
 
 //mitra
-Route::get('/mitra', [MitraController::class, 'index']);
+Route::get('mitra', [MitraController::class, 'index']);
 
 //produk
-Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('produk', [ProdukController::class, 'index']);
 
 //berita
-Route::get('/berita', [BeritaController::class, 'index']);
+Route::get('berita', [BeritaController::class, 'index']);
 
 //gallery
 Route::get('gallery', [GalleryController::class, 'index']);

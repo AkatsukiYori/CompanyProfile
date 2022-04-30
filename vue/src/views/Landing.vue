@@ -2,12 +2,12 @@
   <div>
     <Navbar style="position: fixed; width: 100%; z-index: 3"/>
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
-    <TentangKSD id="about" />
+    <TentangKSD :tentangKami="tentangKami" id="about" />
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
-    <Gallery id="gallery" :galleryItems="dataCoba"/>
+    <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <FAQ id="faq" :contents="faqs"/>
-    <Footer id="contact"/>
+    <Footer :kontak="kontak" id="contact"/>
   </div>
 </template>
 <script>
@@ -103,8 +103,8 @@ export default {
       ],
       visiMisi: {},
       tentangKami: [],
-      dataCoba: null,
       karyawan:[],
+      kontak: []
     }
   },
   methods: {
@@ -113,6 +113,8 @@ export default {
       this.getTentangKami()
       this.getGallery()
       this.getKaryawan()
+      this.getKontak()
+      this.getProduk()
     },
     getVisiMisi(){
       axios.get(`visi_misi`)
@@ -142,12 +144,28 @@ export default {
         })
     },
     getGallery(){
-      axios.get(`/gallery`)
+      axios.get(`gallery`)
         .then(res => {
-          this.dataCoba = res.data
-          console.log(res.data)
+          this.gallery = res.data
         })
         .catch(err => {
+          console.log(err)
+        })
+    },
+    getKontak(){
+      axios.get('kontak')
+        .then(res => {
+          this.kontak = res.data
+          console.log(this.kontak)
+        }).catch(err => {
+          console.log(err)
+        })
+    },
+    getProduk(){
+      axios.get('produk')
+        .then(res => {
+          this.products = res.data
+        }).catch(err => {
           console.log(err)
         })
     }

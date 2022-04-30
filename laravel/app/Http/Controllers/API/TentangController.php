@@ -15,7 +15,7 @@ class TentangController extends Controller
             $tentangKami[$key]['id'] = $tentang->id;
             $tentangKami[$key]['judul'] = $tentang->judul;
             $tentangKami[$key]['deskripsi'] = $tentang->deskripsi;
-            $tentangKami[$key]['media'] = $tentang->media->name;
+            $tentangKami[$key]['image'] = $tentang->image;
         }
         return response()->json($tentangKami, 200);
     }

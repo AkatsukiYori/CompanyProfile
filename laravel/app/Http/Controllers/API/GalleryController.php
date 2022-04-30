@@ -24,7 +24,7 @@ class GalleryController extends Controller
                 $dataGallery[$key]['videoid'] = $videoId;
             }else{
                 $dataGallery[$key]['videoid'] = "";
-                $dataGallery[$key]['src'] = $value->url;
+                $dataGallery[$key]['src'] = $value->image;
             }
         }
         

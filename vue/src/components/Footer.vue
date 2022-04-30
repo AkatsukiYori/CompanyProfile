@@ -4,7 +4,7 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-4 xs:grid-cols-1 gap-4 md:gap-0">
       <div class="mb-6 md:mb-0">
           <center>
-            <img src="@/assets/logo.png" class="h-32 md:h-20 xs:h-16" alt="Logo KSD" />
+            <img :src="kontak.foto" class="h-32 md:h-20 xs:h-16" alt="Logo KSD" />
           </center>
       </div>
       <div class="mb-6 md:mb-0">
@@ -12,23 +12,23 @@
           <div>
             <div class="flex items-center justify-center mb-2">
               <img src="@/assets/phone.png" class="w-8 mr-2" alt="">
-              <p>08123456789</p>
+              <a :href="kontak.no_hp" target="_blank"><p>{{ kontak.no_hp }}</p></a>
             </div>
             <div class="flex items-center justify-center mb-2">
               <img src="@/assets/email.png" class="w-8 mr-2" alt="">
-              <p>08123456789</p>
+              <a :href="kontak.email" target="_blank"><p>{{ kontak.email }}</p></a>
             </div>
             <div class="flex items-center justify-center mb-2">
               <img src="@/assets/facebook.png" class="w-8 mr-2" alt="">
-              <p>08123456789</p>
+              <a :href="kontak.facebook" target="_blank"><p>{{ ((kontak.facebook).split("/")).slice(-1)[0] }}</p></a>
             </div>
             <div class="flex items-center justify-center mb-2">
               <img src="@/assets/twitter.png" class="w-8 mr-2" alt="">
-              <p>08123456789</p>
+              <a :href="kontak.facebook" target="_blank"><p>{{ ((kontak.facebook).split("/")).slice(-1)[0] }}</p></a>
             </div>
             <div class="flex items-center justify-center mb-2">
               <img src="@/assets/instagram.png" class="w-8 mr-2" alt="">
-              <p>08123456789</p>
+              <a :href="kontak.instagram" target="_blank"><p>{{ kontak.no_hp }}</p></a>
             </div>
           </div>
       </div>
@@ -54,7 +54,11 @@
   </div>
 </footer>   
 </template>
-
+<script>
+export default{
+  props: ['kontak']
+}
+</script>
 <style>
   .wrapper {
     position: relative;

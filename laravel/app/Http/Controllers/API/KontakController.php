@@ -9,7 +9,7 @@ class KontakController extends Controller
 {
     public function index(){
         $kontak = Kontak::with('media')->get();
-        $foto = $kontak[0]->media->name;
+        $foto = $kontak[0]->image;
         $email = $kontak[0]->email;
         $linkAlamat = $kontak[0]->namaLink;
         $no_hp = $kontak[0]->no_hp;

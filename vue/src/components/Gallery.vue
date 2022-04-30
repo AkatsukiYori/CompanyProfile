@@ -1,27 +1,26 @@
 <template>
-
     <div>
         <p class="text-purple-700 text-4xl font-semibold pt-7 flex justify-center">Galeri</p>
-        <div class="flex flex-wrap my-8">
-            <div class="lg:w-1/2 md:w-3/6 sm:w-full p-8 md:flex md:flex-wrap md:justify-center">
-                <div class="flex items-center w-full h-full">
+        <div class="flex flex-wrap my-8 justify-center items-center">
+            <div ref="iframeref" class="lg:w-1/2 md:w-3/6 sm:w-full sm:h-full p-8 md:flex md:flex-wrap md:justify-center">
+                <div ref="iframeref2" class="flex items-center w-full h-full">
                     <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
-                    <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
+                    <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto md:h-full">
                     </video>
-                    <iframe ref="leftlink" src="" class="w-full h-4/6 md:w-3/4 m-auto"></iframe>
+                    <iframe ref="leftlink" src="" class="w-full h-full md:w-full m-auto"></iframe>
                 </div>
             </div>
-            <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden">
+            <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden sm:h-auto">
                 <div class="w-1/3 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
-                    <div class="lg:p-4 md:p-2 sm:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                    <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
-                    <div class="lg:p-4 md:p-2 sm:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                    <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'video'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <video width="320" height="240" class="">
                             <source :src="galleryitem.src" type="video/mp4">
                         </video>
                     </div>
-                    <div class="lg:p-4 md:p-2 sm:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
+                    <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 rounded-lg xs:w-32 sm:w-32 md:w-full lg:w-full flex flex-wrap items-center ease-in-out items-center h-full" v-else-if="galleryitem.type == 'link'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="'http://img.youtube.com/vi/'+galleryitem.videoid+'/default.jpg'" alt="">
                     </div>
                 </div>
@@ -44,21 +43,22 @@ export default {
     },
     methods: {
         changeGalleryItem(newsrc, type){
+            this.$refs.leftimage.style.display = "none"
+            this.$refs.leftvideo.style.display = "none"
+            this.$refs.leftlink.style.display = "none"
+            this.$refs.iframeref.style.height = "auto"
+            this.$refs.iframeref2.style.height = "100%"
             if(type=="image"){
                 this.$refs.leftimage.src = newsrc
                 this.$refs.leftimage.style.display = "block"
-                this.$refs.leftvideo.style.display = "none"
-                this.$refs.leftlink.style.display = "none"
             }else if(type=="video"){
                 this.$refs.leftvideo.src = newsrc
-                this.$refs.leftimage.style.display = "none"
                 this.$refs.leftvideo.style.display = "block"
-                this.$refs.leftlink.style.display = "none"
             }else{
                 this.$refs.leftlink.src = newsrc
-                this.$refs.leftimage.style.display = "none"
-                this.$refs.leftvideo.style.display = "none"
                 this.$refs.leftlink.style.display = "block"
+                this.$refs.iframeref.style.height = "500px"
+                this.$refs.iframeref2.style.height = "100%"
             }
         },
         updateGalleryImage: function(){
@@ -92,5 +92,11 @@ export default {
 <style scoped>
 .activeGallery{
     border: 3px solid #9333EA;
+}
+
+@media (min-width: 640px){
+    .sm\:gallerysm{
+        height: 900px;
+    }
 }
 </style>

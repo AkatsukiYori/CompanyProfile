@@ -1,10 +1,10 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-bold pb-8">Album Details</h1>
-    <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
-    <div class="flex">
-        <div class="w-5/12 mr-8 self-center">
-            <div class="flex items-center w-full mb-4">
+  <div class="mb-8">
+    <h1 class="p-8 text-4xl font-bold">Album Details</h1>
+    <div class="px-8 bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
+    <div class="lg:flex md:flex">
+        <div ref="iframeref" class="px-8 w-full sm:h-full mr-8 self-center sm:mb-8 xs:mb-8">
+            <div ref="iframeref2" class="flex items-center w-full mb-4">
                 <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
                 <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
                 </video>
@@ -16,24 +16,24 @@
                 Back to home
             </router-link>
         </div>
-        <div class="w-7/12 rounded-2xl h-full" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
-            <p class="text-white text-4xl font-bold text-center p-4">Lorem Ipsum</p>
-            <div v-for="album in listAlbum" :key="album.id" class="flex">
-                <div v-for="gambar in album.listGambar" :key="gambar.id" class="w-full">
-                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 sm:w-full flex flex-wrap items-center ease-in-out" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                        <img class="w-full" :src="gambar.src" alt="src" >
-                    </div>
-                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                        <video width="320" height="240">
-                            <source :src="gambar.src" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="lg:p-4 md:p-2 sl:p-1 xs:p-1 md:w-full lg:w-full flex flex-wrap items-center ease-in-out" v-else-if="gambar.type == 'link'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                        <img class="w-full" :src="'http://img.youtube.com/vi/'+gambar.videoid+'/default.jpg'" alt="">
+            <div class="w-full lg:rounded-2xl md:rounded-2xl p-2 mr-8 sm:overflow-y-scroll xs:overflow-y-scroll sm:albumdetailclass xs:albumdetailclass" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
+                <p class="text-white lg:text-4xl md:text-3xl sm:text-2xl xs:text-xl font-bold text-center p-4">Album Content</p>
+                <div v-for="album in listAlbum" :key="album.id" class="flex flex-wrap items-center ease-in-out items-center h-full md:overflow-hidden sm:h-auto">
+                    <div v-for="gambar in album.albumItems" :key="gambar.id" class="w-1/3">
+                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 sm:w-full h-full" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                            <img class="w-full" :src="gambar.src" alt="src" >
+                        </div>
+                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 md:w-full lg:w-full" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                            <video width="320" height="240">
+                                <source :src="gambar.src" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 md:w-full lg:w-full h-full" v-else-if="gambar.type == 'link'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                            <img class="w-full" :src="'http://img.youtube.com/vi/'+gambar.videoid+'/default.jpg'" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
   </div>
 </template>
@@ -52,20 +52,17 @@ export default {
     },
     methods: {
         changeAlbumItem(newsrc, type){
+            this.$refs.leftimage.style.display = "none"
+            this.$refs.leftvideo.style.display = "none"
+            this.$refs.leftlink.style.display = "none"
             if(type=="image"){
                 this.$refs.leftimage.src = newsrc
                 this.$refs.leftimage.style.display = "block"
-                this.$refs.leftvideo.style.display = "none"
-                this.$refs.leftlink.style.display = "none"
             }else if(type=="video"){
                 this.$refs.leftvideo.src = newsrc
-                this.$refs.leftimage.style.display = "none"
                 this.$refs.leftvideo.style.display = "block"
-                this.$refs.leftlink.style.display = "none"
             }else{
                 this.$refs.leftlink.src = newsrc
-                this.$refs.leftimage.style.display = "none"
-                this.$refs.leftvideo.style.display = "none"
                 this.$refs.leftlink.style.display = "block"
             }
         },
@@ -73,15 +70,15 @@ export default {
             this.$refs.leftimage.style.display = "none"
             this.$refs.leftvideo.style.display = "none"
             this.$refs.leftlink.style.display = "none"
-            if(this.listAlbum[0].listGambar[0].type == "image"){
+            if(this.listAlbum[0].albumItems[0].type == "image"){
                 this.$refs.leftimage.style.display = "block"
-                this.$refs.leftimage.src = this.listAlbum[0].listGambar[0].src
-            }else if(this.listAlbum[0].listGambar[0].type == "video"){
+                this.$refs.leftimage.src = this.listAlbum[0].albumItems[0].src
+            }else if(this.listAlbum[0].albumItems[0].type == "video"){
                 this.$refs.leftvideo.style.display = "block"
-                this.$refs.leftvideo.src = this.listAlbum[0].listGambar[0].src
+                this.$refs.leftvideo.src = this.listAlbum[0].albumItems[0].src
             }else{
                 this.$refs.leftlink.style.display = "block"
-                this.$refs.leftlink.src = this.listAlbum[0].listGambar[0].src
+                this.$refs.leftlink.src = this.listAlbum[0].albumItems[0].src
             }
         },
     },
@@ -106,5 +103,15 @@ export default {
     height: 40px;
     margin: 0 12px 24px 0;
     text-align: center;
+}
+@media (min-width: 640px){
+    .sm\:albumdetailclass{
+        height: 500px;
+    }
+}
+@media (min-width: 360px){
+    .sm\:albumdetailclass{
+        height: 500px;
+    }
 }
 </style>

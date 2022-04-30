@@ -3,11 +3,11 @@
     <h1 class="text-4xl font-bold">List Berita</h1>
     <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
     <div>
-        <div class="flex w-full" v-for="berita in listBerita" :key="berita.id">
-            <div class="w-5/12 mr-16">
+        <div class="flex w-full mb-8" v-for="berita in listBerita" :key="berita.id">
+            <div class="lg:w-5/12 md:w-6/12 lg:mr-16 md:mr-8">
                 <img :src="berita.image" alt="">
             </div>
-            <div class="">
+            <div class="lg:w-7/12 md:w-6/12">
                 <div class="flex">
                     <div class="kategori" v-for="category in berita.categories" :key="category.id">{{category}}</div>
                 </div>

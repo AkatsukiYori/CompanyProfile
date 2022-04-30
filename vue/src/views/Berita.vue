@@ -38,7 +38,7 @@ export default {
                 {id: 5, title: 'Judul Berita', image: require('@/assets/berita.png'), date: '05 Febuari 2022'},
             ],
             listBerita: [
-                {id: 1, title: 'Judul Berita', description: 'Deskripsi Beritaddddddddddddddddddddddddddd', image: require('@/assets/berita.png'), datetime: '05 Febuari 2022, 08:00 WIB', categories: ['testsdfsdfsdf1', 'test2', 'test3']},
+                {id: 1, title: 'Judul Berita', description: 'Deskripsi Berita ddddddd ddd ddd dddd dddd dddd dd', image: require('@/assets/berita.png'), datetime: '05 Febuari 2022, 08:00 WIB', categories: ['testsdfsdfsdf1', 'test2', 'test3']},
                 {id: 2, title: 'Judul Berita2', description: 'Deskripsi Berita', image: require('@/assets/berita.png'), datetime: '05 Febuari 2022, 08:00 WIB', categories: ['test1', 'tesdsdfst2']},
                 {id: 3, title: 'Judul Berita3', description: 'Deskripsi Berita', image: require('@/assets/berita.png'), datetime: '05 Febuari 2022, 08:00 WIB', categories: ['tsdfdest1', 'test2', 'test3']},
             ],

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden sm:h-auto">
-                <div class="w-1/3 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems.slice(0,8)" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                <div class="w-1/3 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryitems" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
                     <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>

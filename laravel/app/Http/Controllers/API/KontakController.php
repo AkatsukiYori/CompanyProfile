@@ -11,6 +11,7 @@ class KontakController extends Controller
         $kontak = Kontak::with('media')->get();
         $foto = $kontak[0]->image;
         $email = $kontak[0]->email;
+        $alamat = $kontak[0]->alamat;
         $linkAlamat = $kontak[0]->namaLink;
         $no_hp = $kontak[0]->no_hp;
         $facebook = $kontak[0]->facebook;
@@ -19,6 +20,7 @@ class KontakController extends Controller
         return response()->json([
             "foto" => $foto,
             "email" => $email,
+            "alamat" => $alamat,
             "linkAlamat" => $linkAlamat,
             "no_hp" => $no_hp,
             "facebook" => $facebook,

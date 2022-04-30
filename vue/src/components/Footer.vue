@@ -9,26 +9,26 @@
       </div>
       <div class="mb-6 md:mb-0">
           <h5 class="font-medium mb-2 uppercase">Contact Us</h5>
-          <div>
-            <div class="flex items-center justify-center mb-2">
+          <div class="flex flex-wrap items-center w-1/2 m-auto">
+            <div class="flex justify-start w-full mb-2">
               <img src="@/assets/phone.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.no_hp" target="_blank"><p>{{ kontak.no_hp }}</p></a>
+              <p>{{ kontak.no_hp }}</p>
             </div>
-            <div class="flex items-center justify-center mb-2">
+            <div class="flex justify-start w-full mb-2">
               <img src="@/assets/email.png" class="w-8 mr-2" alt="">
               <a :href="kontak.email" target="_blank"><p>{{ kontak.email }}</p></a>
             </div>
-            <div class="flex items-center justify-center mb-2">
+            <div class="flex justify-start w-full mb-2">
               <img src="@/assets/facebook.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.facebook" target="_blank"><p>{{ ((kontak.facebook).split("/")).slice(-1)[0] }}</p></a>
+              <a :href="kontak.facebook" target="_blank"><p>{{ facebook }}</p></a>
             </div>
-            <div class="flex items-center justify-center mb-2">
+            <div class="flex justify-start w-full mb-2">
               <img src="@/assets/twitter.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.facebook" target="_blank"><p>{{ ((kontak.facebook).split("/")).slice(-1)[0] }}</p></a>
+              <a :href="kontak.twitter" target="_blank"><p>{{ twitter }}</p></a>
             </div>
-            <div class="flex items-center justify-center mb-2">
+            <div class="flex justify-start w-full mb-2">
               <img src="@/assets/instagram.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.instagram" target="_blank"><p>{{ kontak.no_hp }}</p></a>
+              <a :href="kontak.instagram" target="_blank"><p>{{ instagram }}</p></a>
             </div>
           </div>
       </div>
@@ -40,9 +40,9 @@
       </div>
       <div class="mb-6 md:mb-0 text-center flex flex-col justify-center">
         <h5 class="font-medium mb-2 uppercase">Lokasi Kantor</h5>
-        <p class="mb-4">Jln. Sulawesi, Gg. Keluarga, No.7</p>
+        <p class="mb-4">{{ kontak.alamat }}</p>
         <div class="flex justify-center wrapper">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.817211786115!2d109.32341001409586!3d-0.042711035544086236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d59066d968bad%3A0xd0c3a192027beb5b!2sGg.%20Keluarga%20No.7%2C%20Akcaya%2C%20Kec.%20Pontianak%20Sel.%2C%20Kota%20Pontianak%2C%20Kalimantan%20Barat%2078113!5e0!3m2!1sid!2sid!4v1650681070487!5m2!1sid!2sid" width="390" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span v-html="kontak.linkAlamat"></span>
         </div>
       </div>
     </div>
@@ -56,7 +56,26 @@
 </template>
 <script>
 export default{
-  props: ['kontak']
+  props: ['kontak'],
+  data(){
+    return {
+      twitter: '',
+      facebook: '',
+      instagram: ''
+    }
+  },
+  methods: {
+    splitString(){
+      if(this.kontak.twitter){
+        this.twitter = this.kontak.twitter.split('/').splice(-1)[0]
+        this.facebook = this.kontak.facebook.split('/').splice(-1)[0]
+        this.instagram = this.kontak.instagram.split('/').splice(-1)[0]
+      }
+    }
+  },
+  mounted(){// jika menggunakan mounted maka data tidak akan muncul
+    this.splitString()
+  }
 }
 </script>
 <style>

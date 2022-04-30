@@ -12,7 +12,7 @@ class ProdukController extends Controller
         $product = [];
         foreach($produk as $key => $value){
             $product[$key]['id'] = $key;
-            $product[$key]['foto'] = $value->media->name;
+            $product[$key]['image'] = $value->image;
         }
         
         return $product;

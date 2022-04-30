@@ -13,11 +13,7 @@ class Kontak extends Model
     protected $guarded = [];
     
     public function getImageAttribute(){
-        if(app()->isLocal()){
-            return url('/') . '/storage/kontak/' . media::all()[0]->name;
-        }else{
-            return url('/') . '/api/storage/kontak/' . media::all()[0]->name;
-        }
+        return (app()->isLocal()) ? url('/') . '/storage/kontak/' . $this->media->name : url('/') . '/api/storage/kontak/' . $this->media->name ;
     }
 
     public function media() {

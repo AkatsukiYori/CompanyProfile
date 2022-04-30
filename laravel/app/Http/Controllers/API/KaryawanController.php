@@ -16,7 +16,7 @@ class KaryawanController extends Controller
             $Karyawan[$key]['id'] = $key;
             $Karyawan[$key]['nama'] = $kary->nama;
             $Karyawan[$key]['jabatan'] = $kary->jabatan;
-            $Karyawan[$key]['media'] = "http://localhost:8000/public/storage/karyawan/".$kary->media->name;
+            $Karyawan[$key]['image'] = $kary->image;
 
         }
         return response()->json($Karyawan, 200);

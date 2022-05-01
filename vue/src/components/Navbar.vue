@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 border drop-shadow-md"
+    class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 border drop-shadow-md "
   >
     <div class="flex flex-wrap justify-between items-center lg:mx-auto">
       <a href="#" class="flex items-center justify-center md:w-1/6">
@@ -27,15 +27,14 @@
           ></path>
         </svg>
       </button>
-      <div class="w-full hidden md:!block md:w-5/6 sm:w-full" id="mobile-menu">
+      <div class="w-full hidden md:!block md:w-5/6 sm:w-full " id="mobile-menu">
         <ul
-          class="flex items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
+          class="flex transition-all duration-500 items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
           <li class="xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ name: 'Landing' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              @click="movescreen('home')"
               >Home</router-link 
             >
           </li>
@@ -86,6 +85,12 @@
               @click="movescreen('contact')"
               >Contact</a
             >
+          </li>
+          <li class="xs:w-full sm:w-full md:w-auto p-0">
+            <router-link :to="{ name: 'Berita' }"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                Berita
+              </router-link>
           </li>
         </ul>
       </div>

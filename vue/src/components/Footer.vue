@@ -55,6 +55,7 @@
 </footer>   
 </template>
 <script>
+import { nextTick } from 'vue'
 export default{
   props: ['kontak'],
   data(){
@@ -66,14 +67,12 @@ export default{
   },
   methods: {
     splitString(){
-      if(this.kontak.twitter){
-        this.twitter = this.kontak.twitter.split('/').splice(-1)[0]
-        this.facebook = this.kontak.facebook.split('/').splice(-1)[0]
-        this.instagram = this.kontak.instagram.split('/').splice(-1)[0]
-      }
+      this.twitter = this.kontak.twitter.split('/').splice(-1)[0]
+      this.facebook = this.kontak.facebook.split('/').splice(-1)[0]
+      this.instagram = this.kontak.instagram.split('/').splice(-1)[0]
     }
   },
-  mounted(){// jika menggunakan mounted maka data tidak akan muncul
+  updated(){// jika menggunakan mounted maka data tidak akan muncul
     this.splitString()
   }
 }

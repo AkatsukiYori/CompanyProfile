@@ -50,22 +50,22 @@ export default {
                 this.$refs.iframeref2.style.height = "100%"
             }
         },
-        updateGalleryImage: function(){
+        updateGalleryImage(){
             this.$refs.leftimage.style.display = "none"
             this.$refs.leftlink.style.display = "none"
-            if(this.galleryItems[0].type == "image"){
-                this.$refs.leftimage.style.display = "block"
-                this.$refs.leftimage.src = this.galleryItems[0].src
-            }else{
-                this.$refs.leftlink.style.display = "block"
-                this.$refs.leftlink.src = this.galleryItems[0].src
-            }
+            // if(this.galleryItems[0].type == "image"){
+            //     this.$refs.leftimage.style.display = "block"
+            //     this.$refs.leftimage.src = this.galleryItems[0].src
+            // }else{
+            //     this.$refs.leftlink.style.display = "block"
+            //     this.$refs.leftlink.src = this.galleryItems[0].src
+            // }
         },
         changeActive(index){
             for(let x=0; x<8; x++){
                 this.$refs.galleryitem[x].classList.remove('activeGallery');
             }
-            this.$refs.galleryitem[index-1].classList.add('activeGallery')
+            this.$refs.galleryitem[index].classList.add('activeGallery')
         }
     },
     mounted(){

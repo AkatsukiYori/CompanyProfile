@@ -11,9 +11,9 @@ class FaqsController extends Controller
         $faqs = Faqs::All();
         $faq = [];
         foreach($faqs as $key => $value){
-            $faq[$key]['id'] = $value->id;
-            $faq[$key]['pertanyaan'] = $value->pertanyaan;
-            $faq[$key]['jawaban'] = $value->jawaban;
+            $faq[$key]['id'] = $key;
+            $faq[$key]['question'] = $value->pertanyaan;
+            $faq[$key]['answer'] = $value->jawaban;
         }
         
         return response()->json($faq, 200);

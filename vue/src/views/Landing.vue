@@ -36,72 +36,13 @@ export default {
     return{
       slogan: [
         {id: 1, image: require('@/assets/laptop.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
-        {id: 2, image: require('@/assets/laptop.png'), title: "Visi", description: "Membangun sebuah layanan digital yang bermanfaat untuk Indonesia yang menggunakan teknologi untuk menciptakan dampak dan solusi di bidang pendidikan, ketenagakerjaan dan sosial.", color: '#bf00fe'},
-        {id: 3, image: require('@/assets/laptop.png'), title: "Misi", description: "Menciptakan layanan digital dan edukasi kepada setiap user dalam peningkatan interpersonal skill yang berdampak pada lingkungan user", color: '#bf00fe'},
+        {id: 2, image: require('@/assets/laptop.png'), title: "Visi", description: "", color: '#bf00fe'},
+        {id: 3, image: require('@/assets/laptop.png'), title: "Misi", description: "", color: '#bf00fe'},
       ],
-      products: [
-        {id: 1, image: require('@/assets/logo.png')},
-        {id: 2, image: require('@/assets/logotest.jpg')},
-        {id: 3, image: require('@/assets/logo.png')},
-        {id: 4, image: require('@/assets/logotest.jpg')},
-        {id: 5, image: require('@/assets/logo.png')},
-        {id: 6, image: require('@/assets/logotest.jpg')},
-        {id: 7, image: require('@/assets/logo.png')},
-        {id: 8, image: require('@/assets/logotest.jpg')},
-        {id: 9, image: require('@/assets/logotest.jpg')},
-      ],
-      faqs: [
-        {id: 1, question: "Apa kabar?", answer: "Baik"},
-        {id: 2, question: "Apa kabar2?", answer: "Baik"},
-        {id: 3, question: "Apa kabar3?", answer: "Baik"},
-        {id: 4, question: "Apa kabar4?", answer: "Baik"},
-        {id: 5, question: "Apa kabar5?", answer: "Baik"},
-      ],
-      mitra1: [
-        {id: 1, image: require('@/assets/logo.png')},
-        {id: 2, image: require('@/assets/logo.png')},
-        {id: 3, image: require('@/assets/logo.png')},
-        {id: 4, image: require('@/assets/logo.png')},
-        {id: 5, image: require('@/assets/logo.png')},
-        {id: 6, image: require('@/assets/logo.png')},
-        {id: 7, image: require('@/assets/logo.png')},
-        {id: 8, image: require('@/assets/logo.png')},
-        {id: 9, image: require('@/assets/logo.png')},
-      ],
-      mitra2: [
-        {id: 1, image: require('@/assets/logo.png')},
-        {id: 2, image: require('@/assets/logo.png')},
-        {id: 3, image: require('@/assets/logo.png')},
-        {id: 4, image: require('@/assets/logo.png')},
-        {id: 5, image: require('@/assets/logo.png')},
-        {id: 6, image: require('@/assets/logo.png')},
-        {id: 7, image: require('@/assets/logo.png')},
-        {id: 8, image: require('@/assets/logo.png')},
-        {id: 9, image: require('@/assets/logo.png')},
-      ],
-      mitra3: [
-        {id: 1, image: require('@/assets/logo.png')},
-        {id: 2, image: require('@/assets/logo.png')},
-        {id: 3, image: require('@/assets/logo.png')},
-        {id: 4, image: require('@/assets/logo.png')},
-        {id: 5, image: require('@/assets/logo.png')},
-        {id: 6, image: require('@/assets/logo.png')},
-        {id: 7, image: require('@/assets/logo.png')},
-        {id: 8, image: require('@/assets/logo.png')},
-        {id: 9, image: require('@/assets/logo.png')},
-      ],
-      gallery:[
-        {id: 1, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},
-        {id: 2, type: "image", src: require("@/assets/logotest.jpg"), videoid: ''},
-        {id: 3, type: "image", src: require("@/assets/logotest.jpg"), videoid: ''},
-        {id: 4, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},
-        {id: 5, type: "link", src: 'https://www.youtube.com/embed/9EDZixuODrw', videoid: '9EDZixuODrw'},
-        {id: 6, type: "video", src: require("@/assets/testvideo.mp4"), videoid: ''},
-        {id: 7, type: "image", src: require("@/assets/logo.png"), videoid: ''},
-        {id: 8, type: "image", src: require("@/assets/logo.png"), videoid: ''},
-        {id: 9, type: "morebutton", src: require("@/assets/logo.png"), videoid: ''},
-      ],
-      visiMisi: {},
+      products: [],
+      faqs: [],
+      mitra1: [], mitra2: [], mitra3: [],
+      gallery:[],
       tentangKami: [],
       karyawan:[],
       kontak: []
@@ -115,11 +56,20 @@ export default {
       this.getKaryawan()
       this.getKontak()
       this.getProduk()
+      this.getMitra()
+      this.getFaq()
     },
     getVisiMisi(){
       axios.get(`visi_misi`)
         .then(res=>{
-          this.visiMisi = res.data
+          this.slogan.forEach((data, index) => {
+            if(data.title == "Visi"){
+              this.slogan[index].description = res.data.visi
+            }else if(data.title == "Misi"){
+              this.slogan[index].description = res.data.misi
+            }
+          })
+          
         })
         .catch(err => {
           console.log(err.response.data)
@@ -156,7 +106,6 @@ export default {
       axios.get('kontak')
         .then(res => {
           this.kontak = res.data
-          console.log(this.kontak)
         }).catch(err => {
           console.log(err)
         })
@@ -168,6 +117,24 @@ export default {
         }).catch(err => {
           console.log(err)
         })
+    },
+    getMitra(){
+      axios.get(`mitra`)
+        .then(res => {
+          this.mitra1 = res.data.mitra1
+          this.mitra2 = res.data.mitra2
+          this.mitra3 = res.data.mitra3
+        }).catch(err => {
+          console.log(err)
+        })
+    },
+    getFaq(){
+      axios.get('faq')
+        .then(res => {
+          this.faqs = res.data
+        }).catch(err => [
+          console.log(err)
+        ])
     }
   },
   created() {

@@ -32,11 +32,11 @@
           class="flex transition-all duration-500 items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
           <li class="xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing' }"
-              href="#"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >Home</router-link 
-            >
+            <router-link :to="{ name: 'Landing' }" href="#"
+              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="movescreen('home')"
+              >
+                Home
+              </router-link>
           </li>
           <li class="xs:w-full sm:w-full md:w-auto p-0">
             <a
@@ -87,10 +87,9 @@
             >
           </li>
           <li class="xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Berita' }"
-              class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="/berita" class="block text-center py-2 pr-4 pl-3 text-gray-500 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                 Berita
-              </router-link>
+              </a>
           </li>
         </ul>
       </div>

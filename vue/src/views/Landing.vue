@@ -97,6 +97,7 @@ export default {
       axios.get(`gallery`)
         .then(res => {
           this.gallery = res.data
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)

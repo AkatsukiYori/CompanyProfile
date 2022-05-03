@@ -6,34 +6,27 @@
         <div ref="iframeref" class="px-8 w-full sm:h-full mr-8 self-center sm:mb-8 xs:mb-8">
             <div ref="iframeref2" class="flex items-center w-full mb-4">
                 <img ref="leftimage" src="" alt="Gambar" class="w-11/12 md:w-3/4 m-auto">
-                <video ref="leftvideo" src="" controls class="w-11/12 md:w-3/4 m-auto">
-                </video>
                 <iframe ref="leftlink" src="" class="w-full h-60 md:w-3/4 m-auto"></iframe>
             </div>
-            <p class="text-center text-3xl font-bold">{{listAlbum[0].title}}</p>
-            <p class="text-center text-lg mb-8">{{listAlbum[0].description}}</p>
+            <p class="text-center text-3xl font-bold">{{ title }}</p>
+            <p class="text-center text-lg mb-8">{{ description }}</p>
             <router-link :to="{ name: 'Album' }" style="background-color: #9333EA" class="w-full m-auto rounded-3xl bg-black h-8 text-white text-lg font-bold text-center">
                 Back to home
             </router-link>
         </div>
-            <div class="w-full lg:rounded-2xl md:rounded-2xl p-2 mr-8 sm:overflow-y-scroll xs:overflow-y-scroll sm:albumdetailclass xs:albumdetailclass" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
-                <p class="text-white lg:text-4xl md:text-3xl sm:text-2xl xs:text-xl font-bold text-center p-4">Album Content</p>
-                <div v-for="album in listAlbum" :key="album.id" class="flex flex-wrap items-center ease-in-out items-center h-full md:overflow-hidden sm:h-auto">
-                    <div v-for="gambar in album.albumItems" :key="gambar.id" class="w-1/3">
-                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 sm:w-full h-full" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                            <img class="w-full" :src="gambar.src" alt="src" >
-                        </div>
-                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 md:w-full lg:w-full" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                            <video width="320" height="240">
-                                <source :src="gambar.src" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 md:w-full lg:w-full h-full" v-else-if="gambar.type == 'link'" @click="changeAlbumItem(gambar.src, gambar.type)" >
-                            <img class="w-full" :src="'http://img.youtube.com/vi/'+gambar.videoid+'/default.jpg'" alt="">
-                        </div>
+        <div class="w-full lg:rounded-2xl md:rounded-2xl p-2 mr-8 sm:overflow-y-scroll xs:overflow-y-scroll sm:albumdetailclass xs:albumdetailclass pb-8" style="background: linear-gradient(15deg, #C56FE1 0%, #CB81F2 50%, #8F41F1 100%)">
+            <p class="text-white lg:text-4xl md:text-3xl sm:text-2xl xs:text-xl font-bold text-center p-4">Album Content</p>
+            <div class="flex flex-wrap items-center ease-in-out h-full md:overflow-hidden sm:h-auto">
+                <div v-for="gambar in albumItems" :key="gambar.id" class="lg:w-1/3 xs:w-1/2">
+                    <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 sm:w-full h-full" v-if="gambar.type == 'image'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                        <img class="w-full" :src="gambar.src" alt="src" >
+                    </div>
+                    <div class="lg:p-4 md:p-2 sm:p-2 xs:p-2 md:w-full lg:w-full h-full" v-else-if="gambar.type == 'video'" @click="changeAlbumItem(gambar.src, gambar.type)" >
+                        <img class="w-full" :src="'http://img.youtube.com/vi/'+gambar.videoid+'/default.jpg'" alt="">
                     </div>
                 </div>
             </div>
+        </div>
     </div>
   </div>
 </template>
@@ -43,7 +36,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 export default {
-    props: ['listAlbum'],
+    props: ['albumItems', 'title', 'description'],
     components: {
         Carousel,
         Slide,
@@ -53,34 +46,26 @@ export default {
     methods: {
         changeAlbumItem(newsrc, type){
             this.$refs.leftimage.style.display = "none"
-            this.$refs.leftvideo.style.display = "none"
             this.$refs.leftlink.style.display = "none"
             if(type=="image"){
                 this.$refs.leftimage.src = newsrc
                 this.$refs.leftimage.style.display = "block"
-            }else if(type=="video"){
-                this.$refs.leftvideo.src = newsrc
-                this.$refs.leftvideo.style.display = "block"
-            }else{
+            }else if(type == "video"){
                 this.$refs.leftlink.src = newsrc
                 this.$refs.leftlink.style.display = "block"
             }
         },
         updateGalleryImage: function(){
             this.$refs.leftimage.style.display = "none"
-            this.$refs.leftvideo.style.display = "none"
             this.$refs.leftlink.style.display = "none"
-            if(this.listAlbum[0].albumItems[0].type == "image"){
+            if(this.albumItems[0].type == "image"){
                 this.$refs.leftimage.style.display = "block"
-                this.$refs.leftimage.src = this.listAlbum[0].albumItems[0].src
-            }else if(this.listAlbum[0].albumItems[0].type == "video"){
-                this.$refs.leftvideo.style.display = "block"
-                this.$refs.leftvideo.src = this.listAlbum[0].albumItems[0].src
-            }else{
+                this.$refs.leftimage.src = this.albumItems[0].src
+            }else if(this.albumItems[0].type == "video"){
                 this.$refs.leftlink.style.display = "block"
-                this.$refs.leftlink.src = this.listAlbum[0].albumItems[0].src
+                this.$refs.leftlink.src = this.albumItems[0].src
             }
-        },
+        }
     },
     mounted(){
         this.updateGalleryImage()

@@ -11,9 +11,10 @@ const routes = [
     component: Landing
   },
   {
-    path: '/albumdetails',
+    path: '/album/:title',
     name: 'AlbumDetails',
-    component: AlbumDetails
+    component: AlbumDetails,
+    params: true
   },
   {
     path: '/album',

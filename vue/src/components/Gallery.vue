@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden">
-                <div class="lg:w-1/3 md:w-1/2 md:flex md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryItems" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
+                <div class="lg:w-1/3 md:w-1/2 md:flex xs:px-2 md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryItems" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
                     <div class="lg:p-4 md:p-2 sm:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
                     </div>
@@ -32,6 +32,7 @@ export default {
     props: ['galleryItems'],
     data(){
         return{
+            dataGallery: []
         }
     },
     methods: {
@@ -50,16 +51,19 @@ export default {
                 this.$refs.iframeref2.style.height = "100%"
             }
         },
+        getDataGallery(){
+            this.dataGallery = JSON.stringify(this.galleryItems)
+        },
         updateGalleryImage(){
             this.$refs.leftimage.style.display = "none"
             this.$refs.leftlink.style.display = "none"
-            // if(this.galleryItems[0].type == "image"){
-            //     this.$refs.leftimage.style.display = "block"
-            //     this.$refs.leftimage.src = this.galleryItems[0].src
-            // }else{
-            //     this.$refs.leftlink.style.display = "block"
-            //     this.$refs.leftlink.src = this.galleryItems[0].src
-            // }
+            if(this.galleryItems[0].type == "image"){
+                this.$refs.leftimage.style.display = "block"
+                this.$refs.leftimage.src = this.galleryItems[0].src
+            }else{
+                this.$refs.leftlink.style.display = "block"
+                this.$refs.leftlink.src = this.galleryItems[0].src
+            }
         },
         changeActive(index){
             for(let x=0; x<8; x++){
@@ -68,7 +72,7 @@ export default {
             this.$refs.galleryitem[index].classList.add('activeGallery')
         }
     },
-    mounted(){
+    updated(){
         this.updateGalleryImage()
     },
 }

@@ -17,10 +17,6 @@ class Album extends Model
     }
     
     public function getImageAttribute(){
-        if(app()->isLocal()){
-            return "ok";
-        }else{
-            return "no";
-        }
+        return $this->album_media->where('kategori', 'image')->take(1);
     }
 }

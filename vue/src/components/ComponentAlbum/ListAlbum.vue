@@ -1,20 +1,18 @@
 <template>
   <div class="p-8">
-    <div class="flex justify-between">
-        <h1 class="text-4xl font-bold pb-8">List Album</h1>
-        <div class="flex items-center self-start">
+    <div class="flex flex-wrap md:justify-between xs:justify-center">
+        <h1 class="text-4xl font-bold pb-8 md:w-1/2 xs:w-full">List Album</h1>
+        <div class="flex items-center self-start pb-8 xs:w-5/6 md:w-1/2">
             <input class="rounded-3xl border-2 mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" type="text" placeholder="Search Album">
             <img src="@/assets/magnifying.png" alt="" class="w-8 h-8">
         </div>
     </div>
     <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
-    <div>
-        <div v-for="row in listRowAlbum" :key="row.id" class="lg:flex md:flex w-full mb-16">
-            <div v-for="album in row.listAlbum" :key="album.id" class="px-8 sm:mb-12 xs:mb-12" @click="albumDetails(album.id)">
-                <p class="text-center text-xl font-bold">{{album.title}}</p>
-                <img :src="album.image" alt="">
-                <p class="text-center text-lg">{{album.date}}</p>
-            </div>
+    <div class="flex flex-wrap">
+        <div v-for="album in listAlbum" :key="album.id" class="px-8 lg:w-1/3 md:w-1/2 xs:w-full sm:mb-12 xs:mb-12" @click="albumDetails(album.title, album.album_media, album.description)">
+            <p class="text-center text-xl font-bold">{{album.title}}</p>
+            <img :src="album.image" alt="">
+            <p class="text-center text-lg">{{album.date}}</p>
         </div>
     </div>
   </div>
@@ -25,17 +23,26 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 export default {
-    props: ['listRowAlbum'],
+    props: ['listAlbum'],
     components: {
         Carousel,
         Slide,
         Pagination,
         Navigation,
     },
+    data(){
+        return {
+            albumItems: []
+        }
+    },
     methods: {
-        albumDetails(id){
-            console.log(id)
-            this.$router.push('/albumDetails');
+        albumDetails(title, dataAlbum, description){
+            dataAlbum.forEach((data, index) => {
+                this.albumItems.push(data)
+            })
+            if(this.albumItems){
+                this.$router.push({name: 'AlbumDetails', params: { title, albumItems: JSON.stringify(this.albumItems), description }})
+            }
         }
     }
 }

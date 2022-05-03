@@ -1,9 +1,9 @@
 <template>
   <div class="p-8 mb-12">
-    <div class="flex justify-between">
+    <div class="flex flex-wrap justify-between">
         <h1 class="text-4xl font-bold pb-8">Berita Terkini</h1>
-        <div class="flex items-center self-start">
-            <input class="rounded-3xl border-2 mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" type="text" placeholder="Search Berita">
+        <div class="flex items-center self-start pb-8">
+            <input class="rounded-3xl border-2 xs:w-full md:w-1/2 mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" type="text" placeholder="Search Berita">
             <img src="@/assets/magnifying.png" alt="" class="w-8 h-8">
         </div>
     </div>

@@ -1,38 +1,36 @@
 <template>
   <Navbar />
-  <ListAlbum :listRowAlbum="listRowAlbum"/>
+  <ListAlbum :listAlbum="listAlbum"/>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
 import ListAlbum from '@/components/ComponentAlbum/ListAlbum.vue';
+import axios from 'axios';
 
 export default {
   data(){
     return{
-      listRowAlbum: [
-        {
-          id: 1,
-          listAlbum: [
-            {id: 1, title: 'Album Perpisahan', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-            {id: 2, title: 'Album Perpisahan 2', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-            {id: 3, title: 'Album Perpisahan 3', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-          ]
-        },
-        {
-          id: 2,
-          listAlbum: [
-            {id: 1, title: 'Album Perpisahan', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-            {id: 2, title: 'Album Perpisahan 2', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-            {id: 3, title: 'Album Perpisahan 3', date: '05 Febuari 2022', image: require('@/assets/berita.png')},
-          ]
-        },
-      ],
+      listAlbum: []
     }
   },
   components:{
     Navbar,
     ListAlbum,
+  },
+  methods: {
+    getAlbums(){
+      axios.get(`albums`)
+        .then(res => {
+          this.listAlbum = res.data
+          console.log(this.listAlbum)
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  },
+  created(){
+    this.getAlbums()
   }
 }
 </script>

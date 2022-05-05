@@ -50,3 +50,4 @@ Route::get('berita', [BeritaController::class, 'index']);
 //gallery
 Route::get('gallery', [GalleryController::class, 'index']);
 Route::get('albums', [GalleryController::class, 'ShowAlbums']);
+Route::get('albums/{name}', [GalleryController::class, 'GetAlbum']);

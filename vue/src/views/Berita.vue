@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <Headline :categoryleft="categoryleft" :categoryright="categoryright" :headline="headline"/>
+  <Headline :categories="categoryleft" :headline="headline"/>
   <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
   <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>
   <ListBerita :listBerita="listBerita"/>
@@ -15,15 +15,7 @@ export default {
     data(){
         return{
             categoryleft: [
-                {id: 1, text: 'test1'},
-                {id: 2, text: 'test2'},
-                {id: 3, text: 'test1'},
-                {id: 4, text: 'test2'},
-                {id: 5, text: 'test1'},
-                {id: 6, text: 'test2'},
-            ],
-            categoryright: [
-                {id: 1, text: 'test1'},
+                {id: 1, text: 'mangga dimakan'},
                 {id: 2, text: 'test2'},
                 {id: 3, text: 'test1'},
                 {id: 4, text: 'test2'},

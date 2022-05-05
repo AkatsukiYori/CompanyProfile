@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <ListAlbum :listAlbum="listAlbum"/>
+  <ListAlbum ref="list" :data="data" :listAlbum="listAlbum"/>
 </template>
 
 <script>
@@ -11,7 +11,8 @@ import axios from 'axios';
 export default {
   data(){
     return{
-      listAlbum: []
+      listAlbum: [],
+      data: null
     }
   },
   components:{
@@ -19,18 +20,32 @@ export default {
     ListAlbum,
   },
   methods: {
-    getAlbums(){
-      axios.get(`albums`)
-        .then(res => {
-          this.listAlbum = res.data
-          console.log(this.listAlbum)
-        }).catch(err => {
-          console.log(err)
-        })
+    getAlbums(value){
+      if(!value){
+          axios.get(`albums`)
+          .then(res => {
+            this.listAlbum = res.data
+          }).catch(err => {
+            console.log(err)
+          })
+      }else{
+        axios.get(`albums/${value}`)
+          .then(res => {
+            this.listAlbum = res.data
+          }).catch(err => {
+            console.log(err.message)
+          })
+      }
     }
   },
   created(){
     this.getAlbums()
+  },
+  mounted(){
+    this.$watch(
+      "$refs.list.data", (new_value, old_value) => {
+        this.getAlbums(new_value)
+      })
   }
 }
 </script>

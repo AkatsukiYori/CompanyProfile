@@ -66,7 +66,7 @@ export default {
             }
         },
         changeActive(index){
-            for(let x=0; x<8; x++){
+            for(let x=0; x<this.$refs.galleryitem.length; x++){
                 this.$refs.galleryitem[x].classList.remove('activeGallery');
             }
             this.$refs.galleryitem[index].classList.add('activeGallery')

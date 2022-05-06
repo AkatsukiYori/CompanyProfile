@@ -1,0 +1,58 @@
+<template>
+  <div class="w-full ourteambg relative" style="height: 700px">
+      <div class="absolute right-16 top-4">
+          <div class="flex">
+              <div>
+                  <img src="@/assets/OurTeam/Ratri.png" alt="">
+              </div>
+              <div class="pt-4 pl-3">
+                  <h1 class="font-bold text-2xl">Ratri Kanti Restu, SP, M. Pd</h1>
+                  <p class="text-xl pb-4 border-b-2" style="border-color: rgba(0,0,0,0.2)">President Commissioner</p>
+              </div>
+          </div>
+          <div class="absolute right-0 top-32">
+              <h1 class="font-bold text-2xl text-center">Firman Cahyadi</h1>
+              <p class="text-xl pb-4 text-center">Chief Executive Officer</p>
+              <img class="m-auto" src="@/assets/OurTeam/Firman.png" alt="">
+          </div>
+      </div>
+      <div class="absolute left-16 bottom-4">
+          <div class="absolute left-0 bottom-28">
+              <img class="m-auto pb-4" src="@/assets/OurTeam/Erwin.png" alt="">
+              <h1 class="font-bold text-2xl text-center">Erwin Adhi Pratama</h1>
+              <p class="text-xl pb-4 text-center">Head of Relationship</p>
+          </div>
+          <div class="flex">
+              <div class="pb-4 pr-3 self-end">
+                  <h1 class="font-bold border-t-2 text-2xl text-right pt-4" style="border-color: rgba(0,0,0,0.2)">Endrieqa Surachman</h1>
+                  <p class="text-xl text-right">Head of Network and Infrastructure</p>
+              </div>
+              <div>
+                  <img src="@/assets/OurTeam/Endrieqa.png" alt="">
+              </div>
+          </div>
+      </div>
+      <div style="top: 48%" class="absolute left-2/4 -translate-x-2/4 -translate-y-2/4 w-full">
+          <h1 style="transform: rotate(28deg)" class="text-white text-5xl font-bold text-center">Our Team</h1>
+          <p style="transform: rotate(28deg)" class="text-white text-xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <router-link :to="{ name: 'OurTeam' }" href="#" class="font-bold text-white text-2xl absolute right-4 bottom-4">
+        See More >
+      </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+.ourteambg{
+    background-image: url('@/assets/ourteambg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+</style>

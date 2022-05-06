@@ -3,6 +3,7 @@ import AlbumDetails from '../views/AlbumDetails.vue'
 import Album from '../views/Album.vue'
 import Berita from '../views/Berita.vue'
 import Landing from '../views/Landing.vue';
+import OurTeam from '../views/OurTeam.vue';
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/berita',
     name: 'Berita',
     component: Berita
+  },
+  {
+    path: '/ourteam',
+    name: 'OurTeam',
+    component: OurTeam
   }
 ]
 

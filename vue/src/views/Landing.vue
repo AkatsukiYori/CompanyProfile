@@ -6,6 +6,7 @@
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
+    <OurTeam />
     <FAQ id="faq" :contents="faqs"/>
     <Footer :kontak="kontak" id="contact"/>
   </div>
@@ -16,6 +17,7 @@ import Beranda from '@/components/Beranda.vue';
 import Gallery from '@/components/Gallery.vue';
 import Carousel from '@/components/Carousel.vue';
 import Mitra from '@/components/Mitra.vue';
+import OurTeam from '@/components/OurTeam.vue';
 import FAQ from '@/components/FAQ.vue';
 import TentangKSD from '@/components/TentangKSD.vue';
 import Footer from '@/components/Footer.vue';
@@ -28,6 +30,7 @@ export default {
     Gallery,
     Carousel,
     Mitra,
+    OurTeam,
     FAQ,
     TentangKSD,
     Footer

@@ -9,5 +9,15 @@ export default{
 }
 </script>
 <style>
+::-webkit-scrollbar {
+  width: 16px;
+}
 
+::-webkit-scrollbar-thumb {
+  background: #7e22ce;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #581c87; 
+}
 </style>

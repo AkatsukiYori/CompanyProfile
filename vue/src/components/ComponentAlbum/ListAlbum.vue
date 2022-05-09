@@ -33,7 +33,7 @@ export default {
         return {
             albumItems: [],
             data: ''
-        }
+        }   
     },
     methods: {
         albumDetails(title, dataAlbum, description){

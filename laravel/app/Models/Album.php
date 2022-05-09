@@ -16,6 +16,10 @@ class Album extends Model
         return $this->hasMany('App\Models\AlbumMedia');
     }
     
+    public function new_album(){
+        return $this->hasMany('App\Models\AlbumMedia')->orderBy('created_at','DESC');
+    }
+    
     public function getImageAttribute(){
         return $this->album_media->where('kategori', 'image')->take(1);
     }

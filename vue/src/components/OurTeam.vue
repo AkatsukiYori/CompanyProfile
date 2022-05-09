@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 <div>
   <div class="w-full ourteambg relative lg:block md:hidden sm:hidden xs:hidden" style="height: 700px">
       <div class="absolute right-16 top-4">
@@ -39,6 +40,7 @@
       </div>
       <router-link :to="{ name: 'OurTeam' }" href="#" class="font-bold text-white text-2xl absolute right-4 bottom-4">
         See More >
+        {{ pc.nama }}
       </router-link>
   </div>
   <div class="w-full ourteambg relative lg:hidden md:block sm:block xs:block" style="height: 700px">
@@ -61,6 +63,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 

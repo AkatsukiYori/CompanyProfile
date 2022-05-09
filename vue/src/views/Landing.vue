@@ -6,7 +6,7 @@
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
-    <OurTeam />
+    <OurTeam :ourteamcontent="ourteamcontent"/>
     <FAQ id="faq" :contents="faqs"/>
     <Footer :kontak="kontak" id="contact"/>
   </div>
@@ -48,7 +48,13 @@ export default {
       gallery:[],
       tentangKami: [],
       karyawan:[],
-      kontak: []
+      kontak: [],
+      ourteamcontent: [
+        {id: 1, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')},
+        {id: 2, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')},
+        {id: 3, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')},
+        {id: 4, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')}
+      ]
     }
   },
   methods: {
@@ -128,6 +134,7 @@ export default {
           this.mitra1 = res.data.mitra1
           this.mitra2 = res.data.mitra2
           this.mitra3 = res.data.mitra3
+          console.log(res.data.mitra1)
         }).catch(err => {
           console.log(err)
         })

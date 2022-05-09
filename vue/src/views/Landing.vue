@@ -6,7 +6,7 @@
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
-    <OurTeam />
+    <OurTeam :karyawan="karyawan" />
     <FAQ id="faq" :contents="faqs"/>
     <Footer :kontak="kontak" id="contact"/>
   </div>
@@ -93,7 +93,7 @@ export default {
           this.karyawan = res.data
         })
         .catch(err => {
-          console.log(err.response.data)
+          console.log(err)
         })
     },
     getGallery(){

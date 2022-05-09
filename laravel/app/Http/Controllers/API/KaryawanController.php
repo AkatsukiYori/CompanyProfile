@@ -9,14 +9,24 @@ use  App\Models\Karyawan;
 class KaryawanController extends Controller
 {
     public function index(){
-        $karyawan = Karyawan::with('media')->get();
+        $karyawan = Karyawan::with('media')->orderBy('created_at', 'DESC')->get();
         // return $karyawan;
-        $Karyawan = [];
+        $Karyawan = [
+            "nama1" => "",
+            "nama2" => "",
+            "nama3" => "",
+            "nama4" => "",
+            "image1" => "",
+            "image2" => "",
+            "image3" => "",
+            "image4" => "",
+            "jabatan1" => "",
+            "jabatan2" => "",
+            "jabatan3" => "",
+            "jabatan4" => ""
+        ];
         foreach($karyawan as $key => $kary){
-            $Karyawan[$key]['id'] = $key;
-            $Karyawan[$key]['nama'] = $kary->nama;
-            $Karyawan[$key]['jabatan'] = $kary->jabatan;
-            $Karyawan[$key]['image'] = $kary->image;
+            (strtolower($kary->jabatan) == "presiden commisioner") ? $Karyawan->nama1 = $kary->nama : '';
 
         }
         return response()->json($Karyawan, 200);

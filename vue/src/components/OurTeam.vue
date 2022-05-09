@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full ourteambg relative" style="height: 700px">
+  <div v-for="item in karyawan" :key="item.id" class="w-full ourteambg relative" style="height: 700px">
       <div class="absolute right-16 top-4">
           <div class="flex">
-              <div>
-                  <img src="@/assets/OurTeam/Ratri.png" alt="">
+              <div class="rounded-full">
+                  <img class="w-full" :src="item.image" alt="">
               </div>
               <div class="pt-4 pl-3">
                   <h1 class="font-bold text-2xl">Ratri Kanti Restu, SP, M. Pd</h1>
@@ -13,7 +13,7 @@
           <div class="absolute right-0 top-32">
               <h1 class="font-bold text-2xl text-center">Firman Cahyadi</h1>
               <p class="text-xl pb-4 text-center">Chief Executive Officer</p>
-              <img class="m-auto" src="@/assets/OurTeam/Firman.png" alt="">
+              <img class="m-auto" src="item" alt="">
           </div>
       </div>
       <div class="absolute left-16 bottom-4">
@@ -38,13 +38,28 @@
       </div>
       <router-link :to="{ name: 'OurTeam' }" href="#" class="font-bold text-white text-2xl absolute right-4 bottom-4">
         See More >
+        {{ pc.nama }}
       </router-link>
   </div>
 </template>
 
 <script>
 export default {
-
+    props: ['karyawan'],
+    data(){
+        return{
+            pc: {}
+        }
+    },
+    methods: {
+      getJabatan(input){
+          console.log(input)
+      } 
+    },
+    updated(){
+        // console.log([... this.karyawan])
+        console.log(this.karyawan)
+    }
 }
 </script>
 

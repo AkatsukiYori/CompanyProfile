@@ -145,7 +145,7 @@
                         <input type="text" class="form-control" parsley-trigger="change" name="alamat" id="alamat" placeholder="Masukan Alamat">
                     </div>
                     <div class="form-group">
-                        <label for="Link">Link</label>
+                        <label for="Link">Link google maps</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLink" name="namaLink" placeholder="Masukan Link">
                         <span>Linknya harus dalam bentuk embed</span>
                     </div>
@@ -203,7 +203,7 @@
                         <input type="file" class="form-control dropify" parsley-trigger="change" name="fotoEdit" id="fotoEdit">
                     </div>
                     <div class="form-group">
-                        <label for="link">Link</label>
+                        <label for="link">Link google maps</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLinkEdit" name="namaLinkEdit">
                         <span>Linknya harus dalam bentuk embed</span>
                     </div>

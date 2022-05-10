@@ -9,26 +9,51 @@ use  App\Models\Karyawan;
 class KaryawanController extends Controller
 {
     public function index(){
-        $karyawan = Karyawan::with('media')->orderBy('created_at', 'DESC')->get();
+        $karyawan = Karyawan::orderBy('created_at', 'DESC')->get();
         // return $karyawan;
-        $Karyawan = [
-            "nama1" => "",
-            "nama2" => "",
-            "nama3" => "",
-            "nama4" => "",
-            "image1" => "",
-            "image2" => "",
-            "image3" => "",
-            "image4" => "",
-            "jabatan1" => "",
-            "jabatan2" => "",
-            "jabatan3" => "",
-            "jabatan4" => ""
-        ];
+        $namaPC = ""; $namaCEO = ""; $namaHR = ""; $namaHN = "";
+        $imagePC = ""; $imageCEO = ""; $imageHR = ""; $imageHN = "";
+        $jabatanPC = ""; $jabatanCEO = ""; $jabatanHR = ""; $jabatanHN = "";
         foreach($karyawan as $key => $kary){
-            (strtolower($kary->jabatan) == "presiden commisioner") ? $Karyawan->nama1 = $kary->nama : '';
-
+            if(strtolower($kary->jabatan) == "president commisioner"){
+                $namaPC = $kary->nama;
+                $imagePC = $kary->image;
+                $jabatanPC = $kary->jabatan;
+            }elseif(strtolower($kary->jabatan) == "chief executive officer"){
+                $namaCEO = $kary->nama;
+                $imageCEO = $kary->image;
+                $jabatanCEO = $kary->jabatan;
+            }elseif(strtolower($kary->jabatan) == "head of relationship"){
+                $namaHR = $kary->nama;
+                $imageHR = $kary->image;
+                $jabatanHR = $kary->jabatan;
+            }elseif(strtolower($kary->jabatan) == "head of network and infrastructure"){
+                $namaHN = $kary->nama;
+                $imageHN = $kary->image;
+                $jabatanHN = $kary->jabatan;
+            }
         }
+        
+        $Karyawan = array([
+            "namaPC" => $namaPC,
+            "namaCEO" => $namaCEO,
+            "namaHR" => $namaHR,
+            "namaHN" => $namaHN,
+            "imagePC" => $imagePC,
+            "imageCEO" => $imageCEO,
+            "imageHR" => $imageHR,
+            "imageHN" => $imageHN,
+            "jabatanPC" => $jabatanPC,
+            "jabatanCEO" => $jabatanCEO,
+            "jabatanHR" => $jabatanHR,
+            "jabatanHN" => $jabatanHN,
+        ]);
+        
         return response()->json($Karyawan, 200);
+    }
+    
+    public function getTeam(){
+        $karyawan = Karyawan::all();
+        
     }
 }

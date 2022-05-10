@@ -1,34 +1,34 @@
 <template>
-  <div v-for="item in karyawan" :key="item.id" class="w-full ourteambg relative" style="height: 700px">
+  <div v-for="item in karyawan" class="w-full ourteambg relative" style="height: 700px">
       <div class="absolute right-16 top-4">
           <div class="flex">
-              <div class="rounded-full">
-                  <img class="w-full" :src="item.image" alt="">
+              <div>
+                  <img class="w-full" :src="item.imagePC" alt="">
               </div>
               <div class="pt-4 pl-3">
-                  <h1 class="font-bold text-2xl">Ratri Kanti Restu, SP, M. Pd</h1>
-                  <p class="text-xl pb-4 border-b-2" style="border-color: rgba(0,0,0,0.2)">President Commissioner</p>
+                  <h1 class="font-bold text-2xl">{{item.namaPC}}</h1>
+                  <p class="text-xl pb-4 border-b-2" style="border-color: rgba(0,0,0,0.2)">{{ item.jabatanPC }}</p>
               </div>
           </div>
           <div class="absolute right-0 top-32">
-              <h1 class="font-bold text-2xl text-center">Firman Cahyadi</h1>
-              <p class="text-xl pb-4 text-center">Chief Executive Officer</p>
-              <img class="m-auto" src="item" alt="">
+              <h1 class="font-bold text-2xl text-center">{{ item.namaCEO }}</h1>
+              <p class="text-xl pb-4 text-center">{{ item.jabatanCEO }}</p>
+              <img class="m-auto" :src="item.imageCEO" alt="">
           </div>
       </div>
       <div class="absolute left-16 bottom-4">
           <div class="absolute left-0 bottom-28">
-              <img class="m-auto pb-4" src="@/assets/OurTeam/Erwin.png" alt="">
-              <h1 class="font-bold text-2xl text-center">Erwin Adhi Pratama</h1>
-              <p class="text-xl pb-4 text-center">Head of Relationship</p>
+              <img class="m-auto pb-4" :src="item.imageHR" alt="">
+              <h1 class="font-bold text-2xl text-center">{{ item.namaHR }}</h1>
+              <p class="text-xl pb-4 text-center">{{ item.jabatanHR }}</p>
           </div>
           <div class="flex">
               <div class="pb-4 pr-3 self-end">
-                  <h1 class="font-bold border-t-2 text-2xl text-right pt-4" style="border-color: rgba(0,0,0,0.2)">Endrieqa Surachman</h1>
-                  <p class="text-xl text-right">Head of Network and Infrastructure</p>
+                  <h1 class="font-bold border-t-2 text-2xl text-right pt-4" style="border-color: rgba(0,0,0,0.2)">{{ item.namaHN }}</h1>
+                  <p class="text-xl text-right">{{ item.jabatanHN }}</p>
               </div>
               <div>
-                  <img src="@/assets/OurTeam/Endrieqa.png" alt="">
+                  <img :src="item.imageHN" alt="">
               </div>
           </div>
       </div>

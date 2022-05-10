@@ -7,41 +7,41 @@
             <img :src="kontak.foto" class="h-32 md:h-full md:p-12 sm:h-full sm:p-8 xs:h-32" alt="Logo KSD" />
           </center>
       </div>
-      <div class="mb-6 md:mb-16">
-          <h5 class="font-medium mb-2 uppercase text-xl">Contact Us</h5>
-          <div class="flex flex-wrap items-center w-1/2 m-auto">
+      <div class="mb-6 md:mb-16 xs:flex xs:flex-wrap sm:block">
+          <h5 class="font-medium mb-2 uppercase md:text-xl xs:pr-1 xs:text-base xs:w-1/3 xs:flex xs:items-center xs:text-left sm:text-center sm:w-full"><p>Contact Us</p></h5>
+          <div class="flex flex-wrap items-center sm:w-full m-auto xs:w-2/3">
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/phone.png" class="w-8 mr-2" alt="">
-              <p>{{ kontak.no_hp }}</p>
+              <p class="w-full text-left">{{ kontak.no_hp }}</p>
             </div>
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/email.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.email" target="_blank"><p>{{ kontak.email }}</p></a>
+              <a :href="kontak.email" class="w-full text-left" target="_blank"><p>{{ kontak.email }}</p></a>
             </div>
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/facebook.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.facebook" target="_blank"><p>{{ facebook }}</p></a>
+              <a :href="kontak.facebook" class="w-full text-left" target="_blank"><p>{{ facebook }}</p></a>
             </div>
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/twitter.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.twitter" target="_blank"><p>{{ twitter }}</p></a>
+              <a :href="kontak.twitter" class="w-full text-left" target="_blank"><p>{{ twitter }}</p></a>
             </div>
             <div class="flex justify-start w-full mb-2">
               <img src="@/assets/instagram.png" class="w-8 mr-2" alt="">
-              <a :href="kontak.instagram" target="_blank"><p>{{ instagram }}</p></a>
+              <a :href="kontak.instagram" class="w-full text-left" target="_blank"><p>{{ instagram }}</p></a>
             </div>
           </div>
       </div>
-      <div class="mb-6 md:mb-0 text-center">
-        <h5 class="font-medium mb-2 uppercase text-xl">General Information</h5>
-        <p class="mb-4">
+      <div class="mb-6 md:mb-0 text-center xs:flex xs:flex-wrap sm:block xs:justify-end">
+        <h5 class="font-medium mb-2 uppercase text-xl xs:text-base md:text-xl xs:w-1/3 xs:flex xs:items-center sm:text-center xs:text-left sm:w-full">General Information</h5>
+        <p class="mb-4 xs:w-2/3 md:block sm:flex sm:justify-end md:w-5/6">
           Jam Operasional<br>Senin-Sabtu<br>8:30 - 17:00
         </p>
       </div>
       <div class="mb-6 md:mb-0 text-center flex flex-col justify-center">
-        <h5 class="font-medium mb-2 uppercase text-xl">Lokasi Kantor</h5>
-        <p class="mb-4">{{ kontak.alamat }}</p>
-        <div class="flex justify-center wrapper">
+        <h5 class="font-medium mb-2 uppercase md:text-xl xs:text-base xs:flex xs:items-center">Lokasi Kantor</h5>
+        <p class="mb-4 xs:w-2/3 md:w-full">{{ kontak.alamat }}</p>
+        <div class="flex justify-center wrapper w-full">
           <span v-html="kontak.linkAlamat"></span>
         </div>
       </div>

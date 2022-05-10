@@ -6,7 +6,7 @@
     <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
-    <OurTeam :ourteamcontent="ourteamcontent"/>
+    <OurTeam :karyawan="karyawan" :ourteamcontent="ourteamcontent"/>
     <FAQ id="faq" :contents="faqs"/>
     <Footer :kontak="kontak" id="contact"/>
   </div>
@@ -94,13 +94,16 @@ export default {
         })
     },
     getKaryawan(){
-      axios.get(`karyawan`)
-        .then(res => {
-          this.karyawan = res.data
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      var reqOne = axios.get(`karyawan`);
+      var reqTwo = axios.get(`getCarouselKaryawan`);
+      
+      axios.all([reqOne, reqTwo]).then(axios.spread((...res) => {
+        this.karyawan = res[0].data;
+        this.ourteamcontent = res[1].data;
+        console.log(this.ourteamcontent)
+      })).catch(err => {
+        console.log(err.message);
+      })
     },
     getGallery(){
       axios.get(`gallery`)
@@ -134,7 +137,6 @@ export default {
           this.mitra1 = res.data.mitra1
           this.mitra2 = res.data.mitra2
           this.mitra3 = res.data.mitra3
-          console.log(res.data.mitra1)
         }).catch(err => {
           console.log(err)
         })

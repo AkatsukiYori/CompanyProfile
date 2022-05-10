@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="w-full ourteambg relative lg:block xs:hidden" v-for="item in karyawan" style="height: 700px">
+  <div class="w-full ourteambg relative lg:block xs:hidden h-screen p-10" v-for="item in karyawan">
       <div class="absolute right-16 top-4">
           <div class="flex">
               <div>

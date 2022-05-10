@@ -52,8 +52,25 @@ class KaryawanController extends Controller
         return response()->json($Karyawan, 200);
     }
     
+    public function getCarouselKaryawan(){
+        $karyawan = Karyawan::all();
+        $Karyawan = [];
+        foreach($karyawan as $key => $value){
+            if(strtolower($value->jabatan) == "president commisioner" || strtolower($value->jabatan) == "chief executive officer" || strtolower($value->jabatan) == "head of relationship" || strtolower($value->jabatan) == "head of network and infrastructure"){
+                $Karyawan[$key]['id'] = $key;
+                $Karyawan[$key]['name'] = $value->nama;
+                $Karyawan[$key]['division'] = $value->jabatan;
+                $Karyawan[$key]['image'] = $value->image;
+            }
+        }
+        return response()->json($Karyawan, 200);
+    }
+    
     public function getTeam(){
         $karyawan = Karyawan::all();
-        
+        $Karyawan = [];
+        foreach($karyawan as $key => $value){
+            
+        }
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\BeritaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Auth::routes();
 
 Route::get('/',[DashboardController::class, 'view'])->middleware('auth');
 Route::get('/register', function() {
-    return view('auth/login');
+    abort(404);
 });
 
 // Dashboard
@@ -92,3 +93,10 @@ Route::post('/produk',[ProdukController::class, 'store'])->name('produk-store')-
 Route::get('/produk-edit/{id}',[ProdukController::class, 'edit'])->name('produk-edit')->middleware('auth');
 Route::post('/produk-update',[ProdukController::class, 'update'])->name('produk-update')->middleware('auth');
 Route::get('/produk-delete/{id}',[ProdukController::class, 'destroy'])->name('produk-delete')->middleware('auth');
+
+// Berita
+Route::get('/berita', [BeritaController::class, 'view'])->name('berita')->middleware('auth');
+Route::post('/berita', [BeritaController::class, 'store'])->name('berita-store')->middleware('auth');
+Route::get('/berita-edit/{id}', [BeritaController::class, 'edit'])->name('berita-edit')->middleware('auth');
+Route::post('/berita-update', [BeritaController::class, 'update'])->name('berita-update')->middleware('auth');
+Route::get('/berita-delete/{id}', [BeritaController::class, 'destroy'])->name('berita-delete')->middleware('auth');

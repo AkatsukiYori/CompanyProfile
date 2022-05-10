@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Gambar">Gambar</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar" name="gambar" >
+                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar" name="gambar" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Gambar">Gambar</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar_edit" name="gambar">
+                        <input type="file" class="form-control dropify" parsley-trigger="change" id="gambar_edit" name="gambar" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
@@ -161,6 +161,7 @@
         })
 
         $(document).on('click','.btnEdit',function(e){
+            e.preventDefault();
             var id = $(this).attr('id');
             $.ajax({
                 method:"get",
@@ -194,6 +195,7 @@
             $('#tentangModalEdit').modal('show');
         })
         $(document).on('click','.btnDelete',function(e){
+            e.preventDefault();
             var id=$(this).attr('id');
             var media_id=$(this).attr('value');
             var data = {
@@ -213,6 +215,7 @@
                     $.ajax({
                         method:'get',
                         url : '/tentang-delete/'+id,
+                        data: data,
                         success: function(data) {
                             swal.fire({
                                 type: 'success',

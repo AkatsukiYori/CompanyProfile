@@ -20,7 +20,7 @@ class CreateBeritaTable extends Migration
             $table->string('slug');
             $table->enum('headline', ['y', 'n']);      
             $table->bigInteger('media_id')->nullable();             
-            $table->text('isi');
+            $table->text('isi_berita');
             $table->datetime('tgl_posting');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();

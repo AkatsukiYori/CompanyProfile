@@ -42,7 +42,7 @@
                                         <button type="button" class="btn btn-warning btnEdit mr-1" id="{{ $tak->id }}" data-toggle="modal" data-target="kontakeditModal">
                                             Edit Kontak
                                         </button>
-                                        <button type="button" class="btn btn-danger btnDelete" id="{{ $tak->id }}">
+                                        <button type="button" class="btn btn-danger btnDelete" id="{{ $tak->id }}" value="{{$tak->media->id}}">
                                             Hapus Kontak
                                         </button>
                                         @endforeach
@@ -101,19 +101,19 @@
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-facebook"></i> Facebook</h3>
-                            <h5> <a href="{{ $tak->facebook }}">{{ $tak->facebook }}</a> </h5>
+                            <h5> <a href="{{ $tak->facebook }}" target="_blank">{{ $tak->facebook }}</a> </h5>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-twitter"></i> Twitter</h3>
-                            <h5> <a href="{{ $tak->twitter }}">{{ $tak->twitter }}</a></h5>
+                            <h5> <a href="{{ $tak->twitter }}" target="_blank">{{ $tak->twitter }}</a></h5>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
                             <h3 class="text-center"><i class="mdi mdi-instagram"></i> Instagram</h3>
-                            <h5 style="word-break: break-all;"><a href="{{ $tak->instagram }}">{{ $tak->instagram }}</a></h5>
+                            <h5 style="word-break: break-all;"><a href="{{ $tak->instagram }}" target="_blank">{{ $tak->instagram }}</a></h5>
                         </div>
                     </div>
                     @endforeach
@@ -138,14 +138,18 @@
                     @csrf
                     <div class="form-group">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" name="foto" id="foto">
+                        <input type="file" class="form-control dropify" parsley-trigger="change" name="foto" id="foto" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" parsley-trigger="change" name="alamat" id="alamat" placeholder="Masukan Alamat">
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="Link">Link google maps</label>
+=======
+                        <label for="Link">Link Google Maps</label>
+>>>>>>> 9d10a1a1 (berita done, fix bug di setiap menu except gallery)
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLink" name="namaLink" placeholder="Masukan Link">
                         <span>Linknya harus dalam bentuk embed</span>
                     </div>
@@ -200,10 +204,10 @@
                         <input type="hidden" name="Filename" id="Filename">
                         <input type="hidden" name="mediaID" id="mediaID">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" parsley-trigger="change" name="fotoEdit" id="fotoEdit">
+                        <input type="file" class="form-control dropify" parsley-trigger="change" name="fotoEdit" id="fotoEdit" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
-                        <label for="link">Link google maps</label>
+                        <label for="link">Link Google Maps</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLinkEdit" name="namaLinkEdit">
                         <span>Linknya harus dalam bentuk embed</span>
                     </div>
@@ -298,6 +302,11 @@
         $(document).on('click','.btnDelete',function(e) {
             e.preventDefault();
             var id = $(this).attr('id');
+            var media_id=$(this).attr('value');
+            var data = {
+                'id' : id,
+                'media_id' : media_id,
+            };
             
             Swal.fire({
                 title: 'Are you sure?',
@@ -312,6 +321,7 @@
                     $.ajax({
                         method: 'get',
                         url: '/kontak-delete/'+id,
+                        data : data,
                         success: function(data) {
                             swal.fire({
                                 type: 'success',

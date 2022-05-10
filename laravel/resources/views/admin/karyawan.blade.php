@@ -64,7 +64,7 @@
                                                 <td>{{ $karya->jabatan }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btnEdit rounded" id="{{ $karya->id }}" data-toggle="modal" data-target="#karyawanModaledit"><i class="fa-solid fa-pencil mr-1"></i> Edit</button>
-                                                    <button type="button" class="btn btn-danger btnDelete rounded" id="{{ $karya->id }}" value="{{ $karya->id }}"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
+                                                    <button type="button" class="btn btn-danger btnDelete rounded" id="{{ $karya->id }}" value="{{ $karya->media->id }}"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -96,7 +96,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" id="foto" name="foto" required>
+                        <input type="file" class="form-control dropify" id="foto" name="foto" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                         <span>Resolution</span>
                     </div>
                     <div class="form-group">
@@ -140,7 +140,11 @@
                         <input type="hidden" name="Filename" id="Filename">
                         <input type="hidden" name="mediaID" id="mediaID">
                         <label for="foto">Foto</label>
+<<<<<<< HEAD
                         <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit">
+=======
+                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
+>>>>>>> 9d10a1a1 (berita done, fix bug di setiap menu except gallery)
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -170,6 +174,7 @@
         $('#fotoEdit').dropify();
 
         $(document).on('click','.btnEdit',function(e) {
+            e.preventDefault();
             var id = $(this).attr('id');
             $.ajax({
                 method: 'get',
@@ -204,7 +209,13 @@
         })
 
         $(document).on('click','.btnDelete',function(e){
+            e.preventDefault();
             var id=$(this).attr('id');
+            var media_id=$(this).attr('value');
+            var data = {
+                'id' : id,
+                'media_id' : media_id,
+            }
 
             Swal.fire({
             title: 'Are you sure?',
@@ -219,6 +230,7 @@
                     $.ajax({
                         method:'get',
                         url : '/karyawanDelete/'+id,
+                        data : data,
                         success: function(data) {
                             swal.fire({
                                 type: 'success',

@@ -26,7 +26,7 @@ class ProdukController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'deskripsi' => 'required',
-            'foto' => 'required|mimes:jpg,jpeg,png'
+            'foto' => 'required|image'
         ]);
         if($validator->fails()) {
             $messages = $validator->messages();
@@ -68,7 +68,7 @@ class ProdukController extends Controller
         $validator = Validator::make($request->all(), [
             'nameEdit' => 'required',
             'deskripsiEdit' => 'required',
-            'fotoEdit' => 'mimes:jpg,jpeg,png'
+            'fotoEdit' => 'image'
         ]);
         if($validator->fails()) {
             $messages = $validator->messages();

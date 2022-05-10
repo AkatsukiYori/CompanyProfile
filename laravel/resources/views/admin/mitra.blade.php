@@ -153,6 +153,7 @@
 
 
             $(document).on('click','.btnEdit',function(e) {
+                e.preventDefault();
                 var id = $(this).attr('id');
                 $.ajax({
                     method:"get",
@@ -184,6 +185,7 @@
 
 
             $(document).on('click','.btnDelete',function(e){
+                e.preventDefault();
                 var id=$(this).attr('id');
                 var media_id=$(this).attr('value');
                 var data = {

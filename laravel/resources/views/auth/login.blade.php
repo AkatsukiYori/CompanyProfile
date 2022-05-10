@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <div class="card">
+                        <div class="card mt-5">
                             <div class="text-center pt-4">
                                 <img src="{{url('images/logo.png')}}" height="100">
                             </div>

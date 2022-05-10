@@ -11,6 +11,7 @@ use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class TentangController extends Controller
 {
@@ -24,7 +25,7 @@ class TentangController extends Controller
         $validator = Validator::make($request->all(), [
             "judul_tentang" => "required",
             "deskripsi" => "required",
-            "gambar" => "required|mimes:jpg,jpeg,png",
+            "gambar" => "required|image",
         ]);
 
         if($validator ->fails()){
@@ -62,7 +63,7 @@ class TentangController extends Controller
         $validator = Validator::make($request->all(), [
             "judul_tentang" => "required",
             "deskripsi_edit" => "required",
-            "gambar" => "mimes:jpg,jpeg,png",
+            "gambar" => "image",
         ]);
 
         if($validator ->fails()){
@@ -107,8 +108,17 @@ class TentangController extends Controller
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }
     }
-    public function delete($id){
-        Tentang::where('id',$id)->delete();
+    public function delete($id, Request $request){  
+        $tentangDB = Tentang::find($id);
+        $mediaDB = Media::find($request->media_id);
+        $imageDestination = 'storage/tentang/'.$mediaDB->name;
+
+        if(File::exists($imageDestination)) {
+            File::delete($imageDestination);
+        }
+        $tentangDB->delete();
+        $mediaDB->delete();
+
         return Redirect::back()->with('success', 'Data Berhasil Dihapus');
     }
 }

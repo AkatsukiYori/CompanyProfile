@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Navbar style="position: fixed; width: 100%; z-index: 3"/>
+    <Navbar navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
     <TentangKSD :tentangKami="tentangKami" id="about" />
-    <Carousel id="product" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
+    <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <OurTeam :karyawan="karyawan" :ourteamcontent="ourteamcontent"/>
@@ -148,6 +148,9 @@ export default {
         }).catch(err => [
           console.log(err)
         ])
+    },
+    navbarupdate(){
+
     }
   },
   created() {

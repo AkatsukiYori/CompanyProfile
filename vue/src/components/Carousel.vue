@@ -1,4 +1,5 @@
 <template>
+<div id="product">
 <div ref="containerref" class="button-container md:block xs:hidden">
   <h1 class="overflow-y-hidden pt-16 m-auto text-center text-white text-4xl">{{headertitle}}</h1>
   <carousel ref="carousel" :items-to-show="3.2" :items-to-scroll="1" class="pt-16 pb-12" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000">
@@ -27,6 +28,7 @@
     <a href="#0" class="prevbutton md:block xs:hidden">
         <img @click="next()" src="@/assets/images/client/right.png" alt="client">
     </a>
+</div>
 </div>
 
 </template>

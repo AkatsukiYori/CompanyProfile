@@ -1,35 +1,35 @@
 <template>
 <div>
-  <div class="w-full ourteambg relative lg:block md:hidden sm:hidden xs:hidden" style="height: 700px">
+  <div class="w-full ourteambg relative lg:block xs:hidden" v-for="item in karyawan" style="height: 700px">
       <div class="absolute right-16 top-4">
           <div class="flex">
               <div>
-                  <img class="w-48 h-48 rounded-full" src="@/assets/OurTeam/Ratri.png" alt="">
+                  <img class="w-48 h-48 rounded-full" :src="item.imagePC" alt="">
               </div>
               <div class="pt-4 pl-3">
-                  <h1 class="font-bold text-2xl">Ratri Kanti Restu, SP, M. Pd</h1>
-                  <p class="text-xl pb-4 border-b-2" style="border-color: rgba(0,0,0,0.2)">President Commissioner</p>
+                  <h1 class="font-bold text-2xl">{{item.namaPC}}</h1>
+                  <p class="text-xl pb-4 border-b-2" style="border-color: rgba(0,0,0,0.2)">{{item.jabatanPC}}</p>
               </div>
           </div>
           <div class="absolute right-0 top-32">
-              <h1 class="font-bold text-2xl text-center">Firman Cahyadi</h1>
-              <p class="text-xl pb-4 text-center">Chief Executive Officer</p>
-              <img class="w-48 h-48 m-auto rounded-full" src="@/assets/OurTeam/Firman.png" alt="">
+              <h1 class="font-bold text-2xl text-center">{{item.namaCEO}}</h1>
+              <p class="text-xl pb-4 text-center">{{item.jabatanCEO}}</p>
+              <img class="w-48 h-48 m-auto rounded-full" :src="item.imageCEO" alt="">
           </div>
       </div>
       <div class="absolute left-16 bottom-4">
           <div class="absolute left-0 bottom-28">
-              <img class="w-48 h-48 m-auto rounded-full" src="@/assets/OurTeam/Erwin.png" alt="">
-              <h1 class="font-bold text-2xl text-center mt-4">Erwin Adhi Pratama</h1>
-              <p class="text-xl pb-4 text-center">Head of Relationship</p>
+              <img class="w-48 h-48 m-auto rounded-full" :src="item.imageHR" alt="">
+              <h1 class="font-bold text-2xl text-center mt-4">{{item.namaHR}}</h1>
+              <p class="text-xl pb-4 text-center">{{item.jabatanHR}}</p>
           </div>
           <div class="flex">
               <div class="pb-4 pr-3 self-end">
-                  <h1 class="font-bold border-t-2 text-2xl text-right pt-4" style="border-color: rgba(0,0,0,0.2)">Endrieqa Surachman</h1>
-                  <p class="text-xl text-right">Head of Network and Infrastructure</p>
+                  <h1 class="font-bold border-t-2 text-2xl text-right pt-4" style="border-color: rgba(0,0,0,0.2)">{{item.namaHN}}</h1>
+                  <p class="text-xl text-right">{{item.jabatanHN}}</p>
               </div>
               <div>
-                  <img class="w-48 h-48 rounded-full" src="@/assets/OurTeam/Endrieqa.png" alt="">
+                  <img class="w-48 h-48 rounded-full" :src="item.imageHN" alt="">
               </div>
           </div>
       </div>
@@ -41,7 +41,7 @@
         See More >
       </router-link>
   </div>
-  <div class="w-full ourteambg relative lg:hidden md:block sm:block xs:block" style="height: 700px">
+  <div class="w-full ourteambg relative lg:hidden xs:block" style="height: 700px">
     <carousel ref="carousel" :items-to-show="1" :items-to-scroll="1" class="md:pt-32 sm:pt-54 xs:pt-44" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000">
         <slide class="flex-col" v-for="member in ourteamcontent" :key="member.id">
             <img :src="member.image" alt="" class="md:w-4/12 sm:w-6/12 xs:w-6/12">
@@ -65,7 +65,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 export default {
-    props: ['ourteamcontent'],
+    props: ['karyawan', 'ourteamcontent'],
     components: {
         Carousel,
         Slide,

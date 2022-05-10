@@ -12,6 +12,7 @@ use App\Models\Media;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class KaryawanController extends Controller
 {
@@ -23,8 +24,9 @@ class KaryawanController extends Controller
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            "foto" => "required|mimes:png,jpeg,jpg",
+            "foto" => "required|image",
             "nama" => "required",
+            "kategori" => "required",
             "jabatan" => "required",
         ]);
         if($validator->fails()) {
@@ -50,6 +52,7 @@ class KaryawanController extends Controller
             $karyawan = new Karyawan;
             $karyawan->akun_id = Auth::user()->id;
             $karyawan->nama = $request->nama;
+            $karyawan->kategori = $request->kategori;
             $karyawan->jabatan = $request->jabatan;
             $karyawan->media_id = $id;
             $karyawan->save();
@@ -71,8 +74,9 @@ class KaryawanController extends Controller
         $namafile = explode(".",$request->Filename);
         
         $validator = Validator::make($request->all(), [
-            "fotoEdit" => "required|mimes:png,jpeg,jpg",
+            "fotoEdit" => "image",
             "namaEdit" => "required",
+            "kategoriEdit" => "required",
             "jabatanEdit" => "required",
         ]);
         if($validator->fails()) {
@@ -97,7 +101,7 @@ class KaryawanController extends Controller
                 $id=$media->id;
                 }
                 $karyawan = new Karyawan;
-                $karyawan->where('id',$id)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
+                $karyawan->where('id',$id)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'kategori'=>$request->kategoriEdit, 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }else{
             if($request->hasFile('fotoEdit')){
@@ -119,7 +123,7 @@ class KaryawanController extends Controller
                 $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id,'name'=>$namaf,'kategori'=>$kategori,'jenis'=>$jenis,'tgl_media'=>$tgl_media]);
                 }
                 $karyawan = new Karyawan;
-                $karyawan->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
+                $karyawan->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'kategori'=>$request->kategoriEdit, 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }
     }

@@ -39,11 +39,13 @@
                             <div class="card-body">
                                 <table id="karyawanTable" width="100%" class="table table-bordered dt-responsive nowrap table-stripped">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>Nama</th>
+                                            <th>Kategori</th>
                                             <th>Jabatan</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,6 +60,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $karya->nama }}</td>
+                                                <td>{{ strtolower($karya->kategori) }}</td>
                                                 <td>{{ $karya->jabatan }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btnEdit rounded" id="{{ $karya->id }}" data-toggle="modal" data-target="#karyawanModaledit"><i class="fa-solid fa-pencil mr-1"></i> Edit</button>
@@ -101,6 +104,10 @@
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama karyawan" required>
                     </div>
                     <div class="form-group">
+                        <label for="kategory">Kategori</label>
+                        <input type="text" class="form-control" id="kategory" name="kategori" placeholder="Masukan kategori">
+                    </div>
+                    <div class="form-group">
                         <label for="jabatan">Jabatan</label>
                         <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukan jabatan karyawan" required>
                     </div>
@@ -133,11 +140,15 @@
                         <input type="hidden" name="Filename" id="Filename">
                         <input type="hidden" name="mediaID" id="mediaID">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" required>
+                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="namaEdit" name="namaEdit" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" required>
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
@@ -166,6 +177,7 @@
                 success:function(response) {
                     // console.log(response);
                     $('#namaEdit').val(response[0].nama);
+                    $('#kategoriEdit').val(response[0].kategori);
                     $('#jabatanEdit').val(response[0].jabatan);
                     $('#editID').val(response[0].id);
                     $('#Filename').val(response[0].media.name);

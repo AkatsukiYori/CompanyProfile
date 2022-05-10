@@ -18,14 +18,18 @@ class MitraController extends Controller
         foreach($mitras as $key => $value){
             $counter+=1;
             if($counter == 1){
+                $mitraPart1[$key]['id'] = $key;
                 $mitraPart1[$key]['image'] = $value->image;
             }else if($counter == 2){
+                $mitraPart2[$key]['id'] = $key;
                 $mitraPart2[$key]['image'] = $value->image;
             }else{
+                $mitraPart3[$key]['id'] = $key;
                 $mitraPart3[$key]['image'] = $value->image;
                 $counter = 0;
             }
         }
+
         return response()->json(["mitra1" => $mitraPart1, "mitra2" => $mitraPart2, "mitra3" => $mitraPart3], 200);
     }
 }

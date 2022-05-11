@@ -12,6 +12,7 @@ use App\Models\Media;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 
 
 class KontakController extends Controller
@@ -24,7 +25,7 @@ class KontakController extends Controller
     public function store(Request $request){
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            "foto" => "mimes:jpg,jpeg,png",
+            "foto" => "required|image",
         ]);
         if($validator ->fails()){
             $messages = $validator->messages();
@@ -71,7 +72,7 @@ class KontakController extends Controller
     public function update(Request $request) {
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            "fotoEdit" => "mimes:jpg,jpeg,png",
+            "fotoEdit" => "image",
         ]);
 
         if($validator ->fails()){
@@ -125,8 +126,17 @@ class KontakController extends Controller
         }
     }
 
-    public function destroy($id) {
-        Kontak::where('id',$id)->delete();
+    public function destroy($id, Request $request) {
+        $kontakDB = Kontak::find($id);
+        $mediaDB = Media::find($request->media_id);
+        $imageDestination = 'storage/kontak/'.$mediaDB->name;
+        
+        if(File::exists($imageDestination)) {
+            File::delete($imageDestination);
+        }
+        $kontakDB->delete();
+        $mediaDB->delete();
+
         return redirect::back()->with('success','Data berhasil dihapus!');
     }
 }

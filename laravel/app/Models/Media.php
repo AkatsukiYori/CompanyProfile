@@ -26,4 +26,7 @@ class Media extends Model
     public function produk() {
         return $this->hasOne('App\Models\Produk');
     }
+    public function berita() {
+        return $this->hasOne('App\Models\Berita');
+    }
 }

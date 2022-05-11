@@ -24,7 +24,7 @@ class MitraController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png'
+            'image' => 'required|image'
         ]);
         if($validator ->fails()) {
             $messages = $validator->messages();
@@ -64,7 +64,7 @@ class MitraController extends Controller
     public function update(Request $request) {
         $validator = Validator::make($request->all(), [
             'nameEdit' => 'required',
-            'imageEdit' => 'mimes:jpg,jpeg,png'
+            'imageEdit' => 'image'
         ]);
 
         if($validator->fails()) {

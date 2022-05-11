@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 // Model
 use App\Models\Karyawan;
 use App\Models\Media;
 
 // Pre-existing
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class KaryawanController extends Controller
 {
@@ -60,8 +61,16 @@ class KaryawanController extends Controller
             return redirect::back()->with('success','Data karyawan berhasil ditambahkan!');
     }
 
-    public function destroy($id) {
-        Karyawan::where('id',$id)->delete();
+    public function destroy($id, Request $request) {
+        $karyawanDB = Karyawan::find($id);
+        $mediaDB = Media::find($request->media_id);
+        $imageDestination = 'storage/karyawan/'.$mediaDB->name;
+        
+        if(File::exists($imageDestination)) {
+            File::delete($imageDestination);
+        }
+        $karyawanDB->delete();
+        $mediaDB->delete();
         return redirect::back()->with('success','Data berhasil dihapus!');
     }
 

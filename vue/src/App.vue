@@ -13,8 +13,12 @@ export default{
   width: 16px;
 }
 
+::-webkit-scrollbar-track {
+  background: white; 
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #7e22ce;
+  background: #b806b2;
 }
 
 ::-webkit-scrollbar-thumb:hover {

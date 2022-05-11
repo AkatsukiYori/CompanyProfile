@@ -68,9 +68,30 @@ class KaryawanController extends Controller
     
     public function getTeam(){
         $karyawan = Karyawan::all();
-        $Karyawan = [];
+        $categories = [];
+        $members = [];
         foreach($karyawan as $key => $value){
-            
+            if(!in_array($value->kategori, $categories)){
+                array_push($categories, $value->kategori);
+            }
         }
+        
+        foreach($categories as $key => $value){
+            foreach($karyawan as $memberKey => $member){
+                if($member->kategori == $value){
+                    $members[$key]['id'] = $key;
+                    $members[$key]['kategori'] = ucfirst($value);
+                    
+                    $memberArray = array(
+                        'id' => $memberKey,
+                        'member' => $member->nama,
+                        'division' => $member->jabatan,
+                        'image' => $member->image,
+                    );
+                    $members[$key]['members'][] = $memberArray;
+                }
+            }
+        }
+        return response()->json($members, 200);
     }
 }

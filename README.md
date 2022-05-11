@@ -3,4 +3,4 @@
 
 ![Company Profile Logo](vue/src/assets/logo.png)
 
-console.log('hi there')
+console.log('hi there').

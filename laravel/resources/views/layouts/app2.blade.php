@@ -224,12 +224,14 @@
                                 <span> Mitra </span>
                             </a>
                         </li>
+                        
                         <li>
                             <a href="{{ route('berita') }}">
                                 <i class="fa-solid fa-newspaper mr-2"></i>
                                 <span> Berita </span>
                             </a>
                         </li>
+                        
                     </ul>
 
                 </div>

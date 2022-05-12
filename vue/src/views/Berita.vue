@@ -11,6 +11,7 @@ import Navbar from '@/components/Navbar.vue';
 import Headline from '@/components/ComponentBerita/Headline.vue';
 import CarouselBerita from '@/components/ComponentBerita/CarouselBerita.vue';
 import ListBerita from '@/components/ComponentBerita/ListBerita.vue';
+import axios from 'axios';
 export default {
     data(){
         return{
@@ -50,7 +51,16 @@ export default {
                 left: 0,
             })
         }
-    },  
+    },
+    created(){
+        axios.get(`berita`)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    },
     mounted(){
         this.scrollup()
     }

@@ -12,15 +12,21 @@ class BeritaController extends Controller
     
     public function index(){
         $berita = Berita::orderBy('created_at', 'DESC')->take(5)->get();
-        $headline = Berita::orderBy('created_at', 'DESC')->where('headline', 'y')->take(1)->get();
+        $head = Berita::orderBy('created_at', 'DESC')->where('headline', 'y')->take(1)->get();
         $random = Berita::inRandomOrder()->get();
+        
+        $headline = [
+            "title" => $head[0]->judul,
+            "description" => $head[0]->isi_berita,
+            "image" => $head[0]->image
+        ];
         
         $news = [];
         $category = [];
         $randomNews = [];
         
         foreach($random as $key => $value){
-            if($value->id == $headline[0]->id){
+            if($value->id == $head[0]->id){
                 continue;
             }
             $randomArray = [
@@ -33,15 +39,27 @@ class BeritaController extends Controller
             array_push($randomNews, $randomArray);
         }
         
+        $arrayKategori = [];
+        
         foreach($berita as $key => $value){
-            if(!in_array($value->kategori, $category)){
-                array_push($category, $value->kategori);
+            $kategori = explode(',', $value->kategori);
+            foreach($kategori as $kat => $cat){
+                array_push($arrayKategori, $cat);
             }
+            $arrayKategori = array_unique($arrayKategori);
+        }
+        
+        foreach($arrayKategori as $key => $value){
+            $categoryArray = [
+                "id" => $key,
+                "text" => $value
+            ];
+            array_push($category, $categoryArray);   
         }
         
         foreach($berita as $key => $value){
-            if($headline[0]->id == $value->id){
-                $this->headlineId = $headline[0]->id;
+            if($head[0]->id == $value->id){
+                $this->headId = $head[0]->id;
                 continue;
             }
             

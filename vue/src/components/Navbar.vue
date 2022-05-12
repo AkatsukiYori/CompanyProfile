@@ -152,7 +152,7 @@ export default {
         $("#mobile-menu").toggleClass("hidden");
       })
     });
-  
+    
   },
   updated(){
     $( document ).ready(function() {

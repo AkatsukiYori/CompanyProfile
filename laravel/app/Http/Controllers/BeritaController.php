@@ -28,8 +28,24 @@ class BeritaController extends Controller
             'judulBerita' => 'required',
             'foto' => 'image|required',
             'isiBerita' => 'required',
+            'kategori' => 'required',
             'headline' => 'required'
         ]);
+        
+        $checkCategory = array_map('trim',explode(',',strtolower($request->kategori)));
+        $kategori = "";
+        
+        if(count($checkCategory) > 1){
+            foreach($checkCategory as $key => $value){
+                if($kategori != ""){
+                    $kategori .= ','.$value;
+                    continue;
+                }
+                $kategori = $value;
+            }
+        }else{
+            $kategori = $checkCategory[0];
+        }
 
         if($validator->fails()) {
             $message = $validator->messages();
@@ -57,6 +73,7 @@ class BeritaController extends Controller
         $beritaDB->judul = $request->judulBerita;
         $beritaDB->slug = Str::slug($request->judulBerita);
         $beritaDB->headline = $request->headline;
+        $beritaDB->kategori = $kategori;
         $beritaDB->media_id = $idMedia;
         $beritaDB->isi = $request->isiBerita;
         $beritaDB->tgl_posting = date('Y-m-d');
@@ -74,8 +91,24 @@ class BeritaController extends Controller
             'judulBeritaEdit' => 'required',
             'fotoEdit' => 'image',
             'isiBeritaEdit' => 'required',
+            'kategoriEdit' => 'required',
             'headlineEdit' => 'required'
         ]);
+        
+        $checkCategory = array_map('trim',explode(',',strtolower($request->kategoriEdit)));
+        $kategori = "";
+        
+        if(count($checkCategory) > 1){
+            foreach($checkCategory as $key => $value){
+                if($kategori != ""){
+                    $kategori .= ','.$value;
+                    continue;
+                }
+                $kategori = $value;
+            }
+        }else{
+            $kategori = $checkCategory[0];
+        }
 
         if($validator->fails()) {
             $message = $validator->messages();
@@ -103,6 +136,7 @@ class BeritaController extends Controller
         $beritaDB->judul = $request->judulBeritaEdit;
         $beritaDB->slug = Str::slug($request->judulBeritaEdit);
         $beritaDB->headline = $request->headlineEdit;
+        $beritaDB->kategori = $kategori;
         $beritaDB->media_id = $request->mediaID;
         $beritaDB->isi = $request->isiBeritaEdit;
         $beritaDB->tgl_posting = date('Y-m-d');

@@ -47,6 +47,7 @@
                                                 <th>No</th>
                                                 <th>Judul Berita</th>
                                                 <th>Headline</th>
+                                                <th>Kategori</th>
                                                 <th>Foto</th>
                                                 <th>Isi Berita</th>
                                                 <th>Action</th>
@@ -69,6 +70,7 @@
                                                         No
                                                     @endif
                                                 </td>
+                                                <td>{{ $data->kategori }}</td>
                                                 <td class="text-center">
                                                     <img src="{{ asset('/storage/berita/'.$data->media->name) }}" width="150" alt="">
                                                 </td>
@@ -123,6 +125,10 @@
                             <textarea name="isiBerita" id="isiBerita" cols="30" rows="5" class="form-control ckeditor"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="kategori">Kategori</label>
+                            <input type="text" class="form-control" id="kategori" name="kategori" parsley-trigger="change" placeholder="Masukan judul berita">
+                        </div>
+                        <div class="form-group">
                             <label for="">Headline</label>
                             <br>
                             <div class="form-check form-check-inline">
@@ -173,6 +179,10 @@
                             <textarea name="isiBeritaEdit" id="isiBeritaEdit" cols="30" rows="5" class="form-control ckeditor"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="kategoriEdit">kategoriEdit</label>
+                            <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" parsley-trigger="change" placeholder="Masukan judul berita">
+                        </div>
+                        <div class="form-group">
                             <label for="">Headline</label>
                             <br>
                             <div class="form-check form-check-inline">
@@ -220,6 +230,7 @@
                             $('#optionNoEdit').attr('checked', 'checked');
                         }
                         CKEDITOR.instances['isiBeritaEdit'].setData(response[0].isi);
+                        $('#kategoriEdit').val(response[0].kategori);
                         var lokasi_gambar = "{{ asset('storage/berita') }}"+'/'+response[0].media.name;
                         var fileDropper = $("#fotoEdit").dropify({
                             messages: { default: "Seret dan lepas logo di sini atau klik", replace: "Seret dan lepas logo di sini atau klik", remove: "Remove", error: "Terjadi kesalahan" },

@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="ourteam"/>
+  <Navbar navbaron="ourteam" style="position: fixed; width: 100%; z-index: 3"/>
   <MemberTeam :listCategory="listCategory"/>
 </template>
 
@@ -26,6 +26,17 @@ export default {
       }).catch(err => {
         console.log(err.message);
       })
+  },
+  methods:{
+    scrollup(){
+        window.scroll({
+            top: 0,
+            left: 0,
+        })
+    },
+  },
+  mounted(){
+      this.scrollup()
   }
 }
 </script>

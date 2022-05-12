@@ -150,15 +150,19 @@ export default {
           console.log(err)
         ])
     },
-    navbarupdate(){
-
-    }
+    scrollup(){
+        window.scroll({
+            top: 0,
+            left: 0,
+        })
+    },
   },
   created() {
     this.init()
   },
   mounted(){
     this.isMounted = true;
+    this.scrollup()
   },
 }
 </script>

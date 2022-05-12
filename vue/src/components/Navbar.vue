@@ -32,14 +32,14 @@
           class="navbarcontainer flex transition-all duration-500 items-center justify-end sm:w-full flex-col md:flex-row md:mt-0 md:text-sm md:font-medium"
         >
           <li id="navbarhome" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'home' }}" href="#"
+            <router-link :to="{ path: '/' }" href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg" @click="movescreen('home')"
               >
                 Home
               </router-link>
           </li>
           <li id="navbarabout" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'about' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('about')"
@@ -47,7 +47,7 @@
             >
           </li>
           <li id="navbarproduct" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'product' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('product')"
@@ -55,7 +55,7 @@
             >
           </li>
           <li id="navbargallery" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'gallery' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('gallery')"
@@ -63,7 +63,7 @@
             >
           </li>
           <li id="navbarmitra" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'mitra' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('mitra')"
@@ -71,7 +71,7 @@
             >
           </li>
           <li id="navbarfaq" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'faq' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('faq')"
@@ -79,7 +79,7 @@
             >
           </li>
           <li id="navbarcontact" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Landing', params: { id: 'contact' }}"
+            <router-link :to="{ path: '/' }"
               href="#"
               class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('contact')"

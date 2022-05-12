@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="album"/>
+  <Navbar navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
   <ListAlbum ref="list" :data="data" :listAlbum="listAlbum"/>
 </template>
 
@@ -36,17 +36,24 @@ export default {
             console.log(err.message)
           })
       }
-    }
+    },
+    scrollup(){
+        window.scroll({
+            top: 0,
+            left: 0,
+        })
+    },
   },
   created(){
     this.getAlbums()
   },
   mounted(){
     this.$watch(
-      "$refs.list.data", (new_value, old_value) => {
-        this.getAlbums(new_value)
-      })
-  }
+    "$refs.list.data", (new_value, old_value) => {
+      this.getAlbums(new_value)
+    })
+    this.scrollup()
+  },
 }
 </script>
 

@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-bold">Berita Trending</h1>
     <div class="flex">
         <carousel ref="carousel" :items-to-show="numOfElements" :items-to-scroll="1" class="pt-8 pb-12" :wrap-around="true" :breakpoints="breakpoints">
-            <slide v-for="berita in carouselBerita" :key="berita.id">
+            <slide v-for="berita in carouselBerita" class="px-4" :key="berita.id">
                 <div class="relative">
                     <img :src="berita.image" alt="" class="w-full">
                     <div class="p-4 absolute left-0 top-0 w-full h-full opacity-0 hover:opacity-100 transition-all duration-300">

@@ -55,7 +55,10 @@ export default {
     created(){
         axios.get(`berita`)
             .then(res => {
-                console.log(res.data)
+                this.headline = res.data.headline;
+                this.categoryleft = res.data.category;
+                this.listBerita = res.data.berita;
+                this.carouselBerita = res.data.random;
             })
             .catch(err => {
                 console.log(err.message)

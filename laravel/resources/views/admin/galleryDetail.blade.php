@@ -35,7 +35,7 @@
                                 <h2>Gallery Detail</h2>
                             </div>
                             <button type="button" class="btn btn-primary tambah float-right" data-toggle="modal" data-target="galleryModal" style="margin-top: -5.5%; margin-right: 2%;">
-                                Tambah Album
+                                Tambah Media
                             </button>
                             <div class="card-body">
                                 <table id="galleryTable" width="100%" class="table table-bordered dt-responsive nowrap">
@@ -57,7 +57,7 @@
                                                             <td><?= $al->link?></td>
                                                             @endif
                                                         <td><button class="btn btn-warning btnEdit" id="{{$al->id}}"><i class="fa fa-pencil"></i></button>
-                                                            <button class="btn btn-danger btnDelete" id="{{$al->id}}"><i class="fa fa-trash"></i></button></td>
+                                                            <button class="btn btn-danger btnDelete" id="{{$al->id}}" value="{{$alb->name}}"><i class="fa fa-trash"></i></button></td>
                                                         </tr>
                                                     @endforeach
                                            @endforeach
@@ -77,7 +77,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Media</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -207,7 +207,10 @@
         })
         $(document).on('click', '.btnDelete', function(e){
                 var id = $(this).attr('id');
-
+                var judul_album = $(this).attr('value');
+                var data = {
+                    'name_album' : judul_album,
+                };
                 Swal.fire({
                 title: 'Are you sure?',
                 text: "Yakin untuk menghapus data?",
@@ -221,6 +224,7 @@
                         $.ajax({
                             method:'get',
                             url : '/gallery-detail-delete/'+id,
+                            data : data,
                             success: function(data) {
                                 swal.fire({
                                     type: 'success',
@@ -231,7 +235,6 @@
                                 })
                             }
                         })
-                        // console.log("hello");
                     }
                 })
         });

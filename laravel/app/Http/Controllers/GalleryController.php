@@ -10,6 +10,7 @@ use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
 {
@@ -82,8 +83,26 @@ class GalleryController extends Controller
         return Redirect::back()->with('success', 'Data Berhasil Diupdate');
     }
     public function delete($id){
-        Album::find($id)->delete();
-        AlbumMedia::where('album_id',$id)->delete();
+        $albumDB = Album::find($id);
+        $dataAlbumMedia = AlbumMedia::where('album_id', $id)->get();
+        $arrayMedia = [];
+        foreach($dataAlbumMedia as $data) {
+            $arrayMedia[] = $data->name;
+        }
+        $arrayTest = [];
+        for($i = 0; $i < count($arrayMedia); $i++) {
+            $imageDestination = 'storage/album/'. $albumDB->name ."/".$arrayMedia[$i];
+            if(File::exists($imageDestination)) {
+                File::delete($imageDestination);
+            }
+            $arrayTest[] = $imageDestination;
+        }
+        $folderDestination = 'storage/album/'.$albumDB->name;
+        if(File::exists($folderDestination)) {
+            File::deleteDirectory($folderDestination);
+        }
+        $albumDB->delete();
+        AlbumMedia::where('album_id', $id)->delete();
     }
     public function detail($id){
         $album = Album::with('album_media')->where('id',$id)->get();
@@ -146,7 +165,13 @@ class GalleryController extends Controller
             return Redirect::back()->with('success', 'Data Berhasil Update');
         }
     }
-    public function detailDelete($id){
-         AlbumMedia::where('id',$id)->delete();
+    public function detailDelete($id, Request $request){
+        $dataAlbumMedia = AlbumMedia::where('id',$id)->get();
+        $imageDestination = 'storage/album/'.$request->name_album.'/'.$dataAlbumMedia[0]->name;
+        
+        if(File::exists($imageDestination)) {
+            File::delete($imageDestination);
+        }
+        AlbumMedia::where('id',$id)->delete();
     }
 }

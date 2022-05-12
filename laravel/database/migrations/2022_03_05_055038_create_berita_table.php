@@ -18,7 +18,8 @@ class CreateBeritaTable extends Migration
             $table->bigInteger('akun_id', false, true);            
             $table->string('judul');            
             $table->string('slug');
-            $table->enum('headline', ['y', 'n']);      
+            $table->enum('headline', ['y', 'n']);
+            $table->string('kategori');
             $table->bigInteger('media_id')->nullable();             
             $table->text('isi_berita');
             $table->datetime('tgl_posting');

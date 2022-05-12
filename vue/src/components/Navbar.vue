@@ -33,7 +33,7 @@
         >
           <li id="navbarhome" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ name: 'Landing' }" href="#"
-              class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg" @click="movescreen('home')"
+              class="block text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg" @click="movescreen('')"
               >
                 Home
               </router-link>
@@ -102,13 +102,15 @@ export default {
   props: ['navbaron'],
   methods: {
     movescreen(id){
-      var scrollDiv = document.getElementById(id).offsetTop;
-      window.scrollTo(0, scrollDiv);
-      var listnavbar = document.getElementsByClassName('navbaritem')
-      for(let x=0; x < listnavbar.length; x++){
-        listnavbar[x].classList.remove('activenavbar');
+      if(document.getElementById(id) != null){
+        var scrollDiv = document.getElementById(id).offsetTop;
+        window.scrollTo(0, scrollDiv);
+        var listnavbar = document.getElementsByClassName('navbaritem')
+        for(let x=0; x < listnavbar.length; x++){
+          listnavbar[x].classList.remove('activenavbar');
+        }
+        document.getElementById('navbar'+id).classList.add('activenavbar');
       }
-      document.getElementById('navbar'+id).classList.add('activenavbar');
     },
     setnavbar(element){
       document.getElementById('navbar'+element).classList.add('activenavbar');
@@ -118,6 +120,16 @@ export default {
     if(this.navbaron != null){
       this.setnavbar(this.navbaron);
     }
+    
+    $(document).ready(function () {
+      $(".nav-toggler").click(function() {
+          $("#mobile-menu").animate({
+              height: "toggle",
+              display: "!block",
+          });
+        $("#mobile-menu").toggleClass("hidden");
+      })
+    });
   }
 };
 
@@ -134,15 +146,6 @@ export default {
 // });
 
 // sendiri
-$(document).ready(function () {
-  $(".nav-toggler").click(function() {
-      $("#mobile-menu").animate({
-          height: "toggle",
-            display: "!block",
-      });
-    $("#mobile-menu").toggleClass("hidden");
-  })
-});
 </script>
 <style scoped>
 .activenavbar > a{

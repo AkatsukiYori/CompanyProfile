@@ -8,6 +8,10 @@ import OurTeam from '../views/OurTeam.vue';
 const routes = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/:id',
     name: 'Landing',
     component: Landing
   },

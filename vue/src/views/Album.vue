@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar navbaron="album"/>
   <ListAlbum ref="list" :data="data" :listAlbum="listAlbum"/>
 </template>
 

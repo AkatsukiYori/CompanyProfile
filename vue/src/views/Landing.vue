@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-if="isMounted">
     <Navbar navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
     <TentangKSD :tentangKami="tentangKami" id="about" />
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
-    <Gallery id="gallery" :galleryItems="gallery"/>
+    <Gallery id="gallery" ref="gallerycomponent" :galleryItems="gallery"/>
     <Mitra id="mitra" :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Mitra'" :mitra1="mitra1" :mitra2="mitra2" :mitra3="mitra3"/>
     <OurTeam :karyawan="karyawan" :ourteamcontent="ourteamcontent"/>
     <FAQ id="faq" :contents="faqs"/>
@@ -54,7 +54,8 @@ export default {
         {id: 2, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')},
         {id: 3, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')},
         {id: 4, name: "Firman", division: "CEO", image: require('@/assets/OurTeam/Firman.png')}
-      ]
+      ],
+      isMounted: false,
     }
   },
   methods: {
@@ -155,6 +156,9 @@ export default {
   },
   created() {
     this.init()
+  },
+  mounted(){
+    this.isMounted = true;
   },
 }
 </script>

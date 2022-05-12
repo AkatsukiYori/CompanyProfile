@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar navbaron="ourteam"/>
   <MemberTeam :listCategory="listCategory"/>
 </template>
 

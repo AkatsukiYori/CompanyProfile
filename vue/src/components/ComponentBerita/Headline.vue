@@ -16,8 +16,8 @@
         </div>
         <div class="sm:w-full md:w-2/6 lg:w-2/6 border-purple-600 rounded-xl border-4 p-4">
             <h1 class="text-center text-2xl mb-8">Kategori</h1>
-            <div class="flex flex-wrap">
-                <div class="w-5/12 kategori mx-2 flex items-center justify-center" v-for="category in categories" :key="category.id">
+            <div class="flex flex-wrap justify-center">
+                <div class="lg:w-5/12 md:w-full sm:w-5/12 xs:w-full kategori mx-2 flex items-center justify-center" v-for="category in categories" :key="category.id">
                     {{ category.text }}
                 </div>
             </div>

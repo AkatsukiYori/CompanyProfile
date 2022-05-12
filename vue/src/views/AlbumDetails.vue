@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
   <AlbumDetail :albumItems="albumItems" :title="albumTitle" :description="albumDescription"/>
 </template>
 
@@ -24,10 +24,19 @@ export default {
       this.albumItems = JSON.parse(this.$route.params.albumItems)
       this.albumDescription = this.$route.params.description
       this.albumTitle = this.$route.params.albumTitle
+    },
+    scrollup(){
+        window.scroll({
+            top: 0,
+            left: 0,
+        })
     }
   },
   created(){
     this.getParams()
+  },
+  mounted(){
+      this.scrollup()
   }
 }
 </script>

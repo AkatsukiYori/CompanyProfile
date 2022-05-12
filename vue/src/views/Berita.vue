@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="berita"/>
+  <Navbar navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
   <Headline :categories="categoryleft" :headline="headline"/>
   <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
   <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>
@@ -43,6 +43,17 @@ export default {
         CarouselBerita,
         ListBerita,
     },
+    methods: {
+        scrollup(){
+            window.scroll({
+                top: 0,
+                left: 0,
+            })
+        }
+    },  
+    mounted(){
+        this.scrollup()
+    }
 }
 </script>
 

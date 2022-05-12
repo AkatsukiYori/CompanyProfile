@@ -3,9 +3,15 @@ import AlbumDetails from '../views/AlbumDetails.vue'
 import Album from '../views/Album.vue'
 import Berita from '../views/Berita.vue'
 import Landing from '../views/Landing.vue';
+import NotFound from '../views/NotFound.vue';
 import OurTeam from '../views/OurTeam.vue';
 
 const routes = [
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  },
   {
     path: '/',
     name: 'Landing',

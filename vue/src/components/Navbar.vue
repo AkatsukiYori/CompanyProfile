@@ -151,7 +151,7 @@ export default {
           });
         $("#mobile-menu").toggleClass("hidden");
       })
-    };
+    });
     
   },
   updated(){

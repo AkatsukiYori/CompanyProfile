@@ -1,6 +1,6 @@
 <template>
   <Navbar navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
-  <ListAlbum ref="list" :data="data" :listAlbum="listAlbum"/>
+  <ListAlbum ref="list" :data="data" :listAlbum="listAlbum" style="padding-top: 130px;"/>
 </template>
 
 <script>

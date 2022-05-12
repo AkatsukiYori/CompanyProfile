@@ -1,6 +1,6 @@
 <template>
   <Navbar navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
-  <AlbumDetail :albumItems="albumItems" :title="albumTitle" :description="albumDescription"/>
+  <AlbumDetail :albumItems="albumItems" :title="albumTitle" :description="albumDescription" style="padding-top: 100px;"/>
 </template>
 
 <script>

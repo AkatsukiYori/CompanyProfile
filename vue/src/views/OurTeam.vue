@@ -1,6 +1,6 @@
 <template>
   <Navbar navbaron="ourteam" style="position: fixed; width: 100%; z-index: 3"/>
-  <MemberTeam :listCategory="listCategory"/>
+  <MemberTeam :listCategory="listCategory" style="padding-top: 90px;"/>
 </template>
 
 <script>

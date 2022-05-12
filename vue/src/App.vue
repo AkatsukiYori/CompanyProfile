@@ -18,7 +18,7 @@ export default{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b806b2;
+  background: #7e22ce;
 }
 
 ::-webkit-scrollbar-thumb:hover {

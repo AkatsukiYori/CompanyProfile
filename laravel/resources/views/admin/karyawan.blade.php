@@ -140,11 +140,7 @@
                         <input type="hidden" name="Filename" id="Filename">
                         <input type="hidden" name="mediaID" id="mediaID">
                         <label for="foto">Foto</label>
-<<<<<<< HEAD
-                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit">
-=======
                         <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
->>>>>>> 9d10a1a1 (berita done, fix bug di setiap menu except gallery)
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>

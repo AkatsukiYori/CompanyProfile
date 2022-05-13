@@ -6,6 +6,7 @@ import Berita from '../views/Berita.vue'
 import Landing from '../views/Landing.vue';
 import NotFound from '../views/NotFound.vue';
 import OurTeam from '../views/OurTeam.vue';
+import AboutView from '../views/AboutView.vue';
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/ourteam',
     name: 'OurTeam',
     component: OurTeam
+  },
+  {
+    path: '/coba',
+    name: 'Coba',
+    component: AboutView
   }
 ]
 

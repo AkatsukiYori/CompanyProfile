@@ -14,7 +14,7 @@ class Berita extends Model
     protected $appends = ['image'];
     
     public function getImageAttribute(){
-        return (app()->isLocal()) ? url('/') . '/storage/media/' . $this->media->name : url('/') . '/api/storage/media/' . $this->media->name;
+        return (app()->isLocal()) ? url('/') . '/storage/berita/' . $this->media->name : url('/') . '/api/storage/berita/' . $this->media->name;
     }
 
     public function media() {

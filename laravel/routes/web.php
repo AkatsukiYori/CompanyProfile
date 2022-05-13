@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\categoryBeritaController;
 
 /*
 |--------------------------------------------------------------------------

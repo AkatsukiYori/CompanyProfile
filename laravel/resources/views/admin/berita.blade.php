@@ -48,6 +48,7 @@
                                                 <th>Judul Berita</th>
                                                 <th>Headline</th>
                                                 <th>Kategori</th>
+                                                <th>Jumlah Views</th>
                                                 <th>Foto</th>
                                                 <th>Isi Berita</th>
                                                 <th>Action</th>
@@ -71,6 +72,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $data->kategori }}</td>
+                                                <td>{{ $data->views }} views</td>
                                                 <td class="text-center">
                                                     <img src="{{ asset('/storage/berita/'.$data->media->name) }}" width="150" alt="">
                                                 </td>

@@ -11,7 +11,7 @@ class BeritaController extends Controller
     public $headlineId;
     
     public function index(){
-        $berita = Berita::orderBy('created_at', 'DESC')->take(5)->get();
+        $berita = Berita::orderBy('created_at', 'DESC')->get();
         $head = Berita::orderBy('created_at', 'DESC')->where('headline', 'y')->take(1)->get();
         $random = Berita::inRandomOrder()->get();
         

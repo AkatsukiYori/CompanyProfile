@@ -2,19 +2,19 @@
   <div class="mb-8">
     <div class="flex items-center w-auto h-24 ml-8 mb-8">
       <img src="@/assets/arrow.png" class="w-6 h-6 mr-2" alt="">
-      <router-link :to="{ path: '/' }" href="#" class="text-xl font-bold">
+      <router-link :to="{ path: '/berita' }" href="#" class="text-xl font-bold">
         Back to Home
       </router-link>
     </div>
     <div class="flex mx-32">
-      <div class="basis-10/12 mr-32">
-        <h1 class="text-left text-5xl font-bold text-slate-700 break-all mb-2">Testusoiefuoisufdiofijsoiduoifusdoifuoisdufoisdfuoisdfo</h1>
-        <p class="text-lg font-semibold">05 Febuari 2022, 05:02 WIB</p>
-        <img src="@/assets/berita.png" class="w-full my-12" alt="">
-        <p>Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 Test123 </p>
+      <div class="basis-10/12 md:mr-32">
+        <h1 class="text-left text-5xl font-bold text-slate-700 break-all mb-2">{{ berita.title }}</h1>
+        <p class="text-lg font-semibold">{{ berita.datetime }}</p>
+        <img :src="berita.image" class="w-full my-12" alt="">
+        <span v-html="berita.description"></span>
       </div>
       <div class="basis-3/12">
-        <div class="beritalain w-full mr-8 overflow-y-scroll pb-8" style="">
+        <div class="beritalain w-full mr-8 overflow-y-scroll pb-8" >
           <p class="text-2xl text-center font-bold border-b-4 pb-2 border-purple-600 text-slate-700">Berita Lainnya</p>
           <div class="relative p-4" v-for="berita in beritaLain" :key="berita.id">
             <img :src="berita.image" alt="" class="w-full">
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  props: ['beritaLain']
+  props: ['beritaLain', 'berita'],
 }
 </script>
 

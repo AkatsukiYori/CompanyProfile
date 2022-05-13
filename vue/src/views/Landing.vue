@@ -1,7 +1,7 @@
 <template>
   <div v-if="isMounted">
     <Navbar :whitetheme="whitetheme" navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
-    <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
+    <Beranda id="home" :contents="slogan" class="md:pt-20 xs:pt-16"/>
     <TentangKSD :tentangKami="tentangKami" id="about" />
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" ref="gallerycomponent" :galleryItems="gallery"/>
@@ -102,7 +102,6 @@ export default {
       axios.all([reqOne, reqTwo]).then(axios.spread((...res) => {
         this.karyawan = res[0].data;
         this.ourteamcontent = res[1].data;
-        console.log(this.ourteamcontent)
       })).catch(err => {
         console.log(err.message);
       })
@@ -111,7 +110,6 @@ export default {
       axios.get(`gallery`)
         .then(res => {
           this.gallery = res.data
-          console.log(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -122,7 +120,7 @@ export default {
         .then(res => {
           this.kontak = res.data
         }).catch(err => {
-          console.log(err)
+          console.log(err.message)
         })
     },
     getProduk(){
@@ -130,7 +128,7 @@ export default {
         .then(res => {
           this.products = res.data
         }).catch(err => {
-          console.log(err)
+          console.log(err.message)
         })
     },
     getMitra(){
@@ -140,7 +138,7 @@ export default {
           this.mitra2 = res.data.mitra2
           this.mitra3 = res.data.mitra3
         }).catch(err => {
-          console.log(err)
+          console.log(err.message)
         })
     },
     getFaq(){
@@ -148,7 +146,7 @@ export default {
         .then(res => {
           this.faqs = res.data
         }).catch(err => [
-          console.log(err)
+          console.log(err.message)
         ])
     },
     scrollup(){

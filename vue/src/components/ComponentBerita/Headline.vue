@@ -7,11 +7,11 @@
         </div>
     </div>
     <div class="lg:flex md:flex">
-        <div class="sm:w-full md:w-4/6 lg:w-4/6 lg:mr-8 md:mr-8 mb-8">
+        <div class="sm:w-full md:w-4/6 lg:w-4/6 lg:mr-8 md:mr-8 mb-8 cursor-pointer" @click="beritaDetails(headline.image,headline.title, headline.datetime, headline.description, headline.slug)">
             <img class="m-auto" :src="headline.image" alt="">
-            <div>
+            <div class="mt-4">
                 <h1 class="text-3xl font-bold text-center">{{headline.title}}</h1>
-                <p class="text-center">{{headline.description}}</p>
+                <span v-html="headline.description" class="text-center"></span>
             </div>
         </div>
         <div class="sm:w-full md:w-2/6 lg:w-2/6 border-purple-600 rounded-xl border-4 p-4">
@@ -28,7 +28,12 @@
 
 <script>
 export default {
-    props: ['headline', 'categories']
+    props: ['headline', 'categories'],
+    methods: {
+        beritaDetails(image, title, datetime, description, slug){
+            this.$router.push({name: 'BeritaDetails', params: {slug, title, image, description, datetime}})
+        }
+    }
 }
 </script>
 

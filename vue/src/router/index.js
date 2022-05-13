@@ -36,7 +36,7 @@ const routes = [
     component: Berita
   },
   {
-    path: '/berita/:title',
+    path: '/berita/:slug',
     name: 'BeritaDetails',
     component: BeritaDetails,
     params: true

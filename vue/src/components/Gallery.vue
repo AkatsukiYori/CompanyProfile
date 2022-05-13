@@ -8,7 +8,7 @@
                     <iframe ref="leftlink" src="" class="w-full h-full md:w-full m-auto"></iframe>
                 </div>
             </div>
-            <div class="flex md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden">
+            <div class="flex px-8 md:flex-wrap lg:w-1/2 md:w-1/2 xs:w-full xs:overflow-x-scroll md:overflow-hidden">
                 <div class="lg:w-1/3 md:w-1/2 md:flex xs:px-2 md:flex-wrap hover:border-4 transition-all duration-100 hover:cursor-pointer border-purple-600" v-for="galleryitem in galleryItems" :key="galleryitem.id" ref="galleryitem" @click="changeActive(galleryitem.id)">
                     <div class="lg:p-4 md:p-2 sm:p-0 xs:p-0 rounded-lg xs:w-32 sm:w-32 flex flex-wrap items-center ease-in-out items-center h-full lg:w-full" v-if="galleryitem.type == 'image'" @click="changeGalleryItem(galleryitem.src, galleryitem.type)" >
                         <img class="w-full" :src="galleryitem.src" alt="src" >
@@ -87,5 +87,18 @@ export default {
     .sm\:gallerysm{
         height: 900px;
     }
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7e22ce;
+  border-radius: 10px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7e22ce;
 }
 </style>

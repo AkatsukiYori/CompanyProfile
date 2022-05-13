@@ -17,8 +17,11 @@ class BeritaController extends Controller
         
         $headline = [
             "title" => $head[0]->judul,
-            "description" => $head[0]->isi_berita,
-            "image" => $head[0]->image
+            "description" => $head[0]->isi,
+            "image" => $head[0]->image,
+            "slug" => $head[0]->slug,
+            "kategori" => explode(',',$head[0]->kategori),
+            "datetime" => date_format(date_create($head[0]->created_at), 'j F Y, H:i T'),
         ];
         
         $news = [];
@@ -32,7 +35,11 @@ class BeritaController extends Controller
             $randomArray = [
                 "id" => $key,
                 "title" => $value->judul,
+                "description" => $value->isi,
+                "slug" => $value->slug,
                 "image" => $value->image,
+                "datetime" => date_format(date_create($value->created_at), 'j F Y, H:i T'),
+                "categories" => explode(',',$value->kategori),
                 "date" => date_format(date_create($value->tgl_posting), 'j F Y')
             ];
             
@@ -66,7 +73,7 @@ class BeritaController extends Controller
             $newsArray = [
                 "id" => $key,
                 "title" => $value->judul,
-                "description" => $value->isi_berita,
+                "description" => $value->isi,
                 "slug" => $value->slug,
                 "image" => $value->image,
                 "datetime" => date_format(date_create($value->created_at), 'j F Y, H:i T'),

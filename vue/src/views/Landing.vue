@@ -1,6 +1,6 @@
 <template>
   <div v-if="isMounted">
-    <Navbar navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
+    <Navbar :whitetheme="whitetheme" navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
     <Beranda id="home" :contents="slogan" style="padding-top: 90px;"/>
     <TentangKSD :tentangKami="tentangKami" id="about" />
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
@@ -37,6 +37,7 @@ export default {
   },
   data(){
     return{
+      whitetheme: true,
       slogan: [
         {id: 1, image: require('@/assets/laptop.png'), title: "Slogan", description: "Inovasi Tanpa Data Adalah Inovasi Tanpa Solusi, Data Tanpa Inovasi Adalah Solusi Yang Tidak Berdampak Pada Jalan Keluar Yang Dibutuhkan", color: '#bf00fe'},
         {id: 2, image: require('@/assets/laptop.png'), title: "Visi", description: "", color: '#bf00fe'},

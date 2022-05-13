@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AlbumDetails from '../views/AlbumDetails.vue'
 import Album from '../views/Album.vue'
+import BeritaDetails from '../views/BeritaDetails.vue'
 import Berita from '../views/Berita.vue'
 import Landing from '../views/Landing.vue';
 import NotFound from '../views/NotFound.vue';
@@ -32,6 +33,12 @@ const routes = [
     path: '/berita',
     name: 'Berita',
     component: Berita
+  },
+  {
+    path: '/berita/:title',
+    name: 'BeritaDetails',
+    component: BeritaDetails,
+    params: true
   },
   {
     path: '/ourteam',

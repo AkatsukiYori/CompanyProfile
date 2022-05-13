@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
+  <Navbar :whitetheme="whitetheme" navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
   <BeritaDetail :beritaLain="beritaLain" style="padding-top: 100px;"/>
 </template>
 
@@ -10,6 +10,7 @@ import BeritaDetail from '@/components/ComponentBerita/BeritaDetail.vue';
 export default {
   data(){
     return{
+      whitetheme: true,
       albumItems: [],
       albumDescription: '',
       albumTitle: '',

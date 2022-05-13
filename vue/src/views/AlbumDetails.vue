@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
+  <Navbar :whitetheme="whitetheme" navbaron="album" style="position: fixed; width: 100%; z-index: 3"/>
   <AlbumDetail :albumItems="albumItems" :title="albumTitle" :description="albumDescription" style="padding-top: 100px;"/>
 </template>
 
@@ -10,6 +10,7 @@ import AlbumDetail from '@/components/ComponentAlbum/AlbumDetail.vue';
 export default {
   data(){
     return{
+      whitetheme: true,
       albumItems: [],
       albumDescription: '',
       albumTitle: ''

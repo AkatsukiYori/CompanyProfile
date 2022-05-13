@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
+  <Navbar :whitetheme="whitetheme" navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
   <Headline :categories="categoryleft" :headline="headline" style="padding-top: 130px;"/>
   <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
   <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>
@@ -14,6 +14,7 @@ import ListBerita from '@/components/ComponentBerita/ListBerita.vue';
 export default {
     data(){
         return{
+            whitetheme: true,
             categoryleft: [
                 {id: 1, text: 'mangga dimakan'},
                 {id: 2, text: 'test2'},

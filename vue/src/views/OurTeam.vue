@@ -1,5 +1,5 @@
 <template>
-  <Navbar navbaron="ourteam" style="position: fixed; width: 100%; z-index: 3"/>
+  <Navbar :whitetheme="whitetheme" navbaron="ourteam" style="position: fixed; width: 100%; z-index: 3"/>
   <MemberTeam :listCategory="listCategory" style="padding-top: 90px;" />
 </template>
 
@@ -11,7 +11,8 @@ import axios from 'axios';
 export default {
   data(){
     return{
-        listCategory: []
+      whitetheme: true,
+      listCategory: []
     }
   },
   components:{

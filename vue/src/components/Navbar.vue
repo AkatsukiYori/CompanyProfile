@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="border-gray-200 px-2 sm:px-4 py-2.5 drop-shadow-md navbarbg" v-if="!whitetheme"
+    class="whitetheme border-gray-200 px-2 sm:px-4 py-2.5 drop-shadow-md navbarbg" v-if="!whitetheme"
   >
     <div class="flex flex-wrap justify-between items-center lg:mx-auto">
       <a href="#" class="flex items-center justify-center md:w-1/6">
@@ -108,7 +108,7 @@
     </div>
   </nav>
   <nav v-else
-    class="border-gray-200 px-2 sm:px-4 py-2.5 drop-shadow-md navbarbg"
+    class="purpletheme border-gray-200 px-2 sm:px-4 py-2.5 drop-shadow-md navbarbg"
   >
     <div class="flex flex-wrap justify-between items-center lg:mx-auto">
       <a href="#" class="flex items-center justify-center md:w-1/6">
@@ -142,7 +142,7 @@
           <li id="navbarhome" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
 
             <router-link :to="{ path: '/' }" href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg" @click="movescreen('home')"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg" @click="movescreen('home')"
 
               >
                 Home
@@ -151,7 +151,7 @@
           <li id="navbarabout" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:font-black lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('about')"
               >About</router-link
             >
@@ -159,7 +159,7 @@
           <li id="navbarproduct" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('product')"
               >Product</router-link
             >
@@ -167,7 +167,7 @@
           <li id="navbargallery" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('gallery')"
               >Galeri</router-link
             >
@@ -175,7 +175,7 @@
           <li id="navbarmitra" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('mitra')"
               >Mitra</router-link
             >
@@ -183,7 +183,7 @@
           <li id="navbarfaq" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('faq')"
               >FAQS</router-link
             >
@@ -191,23 +191,23 @@
           <li id="navbarcontact" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
             <router-link :to="{ path: '/' }"
               href="#"
-              class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
+              class="block text-white text-center py-2 pr-4 pl-3 hover:font-black border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg"
               @click="movescreen('contact')"
               >Contact</router-link
             >
           </li>
           <li id="navbarberita" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Berita' }" class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
+            <router-link :to="{ name: 'Berita' }" class="block text-white text-center py-2 pr-4 pl-3 border-b hover:font-black border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
                 Berita
               </router-link>
           </li>
           <li id="navbaralbum" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'Album' }" class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
+            <router-link :to="{ name: 'Album' }" class="block text-white text-center py-2 pr-4 pl-3 border-b hover:font-black border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
                 Album
               </router-link>
           </li>
           <li id="navbarourteam" class="navbaritem xs:w-full sm:w-full md:w-auto p-0">
-            <router-link :to="{ name: 'OurTeam' }" class="block text-white text-center py-2 pr-4 pl-3 border-b border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
+            <router-link :to="{ name: 'OurTeam' }" class="block text-white text-center py-2 pr-4 pl-3 border-b hover:font-black border-gray-300 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 dark:text-gray-400 md:dark:hover:text-purple-600 dark:hover:bg-purple-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 lg:text-lg">
                 Our Team
               </router-link>
           </li>
@@ -284,8 +284,12 @@ export default {
 // sendiri
 </script>
 <style scoped>
-.activenavbar > a{
+.whitetheme .activenavbar > a{
   color: #9333ea;
+}
+
+.purpletheme .activenavbar > a{
+  font-weight: 900;
 }
 
 .navbarcontainer{

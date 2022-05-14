@@ -119,6 +119,11 @@ class BeritaController extends Controller
         return response()->json($news, 200);
     }
     
+    public function getKategori($kategori){
+        $berita = Berita::all();
+        return $berita;
+    }
+    
     public function updateViews(Request $request,$id){
         $berita = Berita::find($id);
         $berita->views += 1;

@@ -1,6 +1,6 @@
 <template>
-  <Navbar :whitetheme="whitetheme" navbaron="berita" style="position: fixed; width: 100%; z-index: 3"/>
-  <BeritaDetail :beritaLain="beritaLain" style="padding-top: 100px;"/>
+  <Navbar :whitetheme="whitetheme" navbaron="berita" style="position: sticky; top: 0; z-index: 3"/>
+  <BeritaDetail :beritaLain="beritaLain" style=""/>
 </template>
 
 <script>

@@ -1,47 +1,49 @@
 <template>
   <div class="profile-card">
-      <div class="profile-img">
+      <!-- <div class="profile-img">
           <img src="@/assets/logo.png" alt="">
       </div>
-      <div v-for="user in userData">
+      <div v-for="user in data">
           <h3>{{ user.name }}</h3>
-          <h3>{{ user.division }}</h3>
-      </div>
+      </div> -->
+      <div v-if="errMsg">{{ errMsg }}</div>
+      <Suspense>
+          <template #default>
+              <div v-for="user in data">
+                <h3>{{ user.name }}</h3>
+              </div>
+          </template>
+          <template #fallback>
+              loading
+          </template>
+      </Suspense>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-async function coba(){
-    const varCoba = [];
-    axios.get('getCarouselKaryawan')
-        .then(res => {
-            varCoba = res.data
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
-        
-    return {varCoba}
-}
+import { ref, onErrorCaptured } from 'vue'
+import axios from 'axios'
 
 export default {
-    async setup() {
-        const userData = await coba();
+    setup(){
+      const errMsg = ref(null);
+      onErrorCaptured(e => {
+          errMsg.value = "gagal";
+          return true
+      });
+      
+      return errMsg;
+    },
+    async setup () {
+        const userData = await axios.get('getCarouselKaryawan')
+        
+        const data = userData.data
+        console.log(data)
         
         return {
-            userData
+            data
         }
     }
-    // data() {
-    //     return {
-    //         userData: {
-    //             name: "ok",
-    //             bio: "tidak"
-    //         }
-    //     }
-    // },
 }
 </script>
 

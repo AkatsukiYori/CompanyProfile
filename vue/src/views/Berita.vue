@@ -72,5 +72,7 @@ export default {
 </script>
 
 <style>
-
+.hilangbeneran{
+    display: none !important;
+}
 </style>

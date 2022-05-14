@@ -14,7 +14,7 @@ export default{
 }
 
 ::-webkit-scrollbar-track {
-  background: white; 
+  background: white;
 }
 
 ::-webkit-scrollbar-thumb {

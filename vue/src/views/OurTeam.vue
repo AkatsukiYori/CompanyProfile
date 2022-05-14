@@ -23,7 +23,6 @@ export default {
     axios.get(`team`)
       .then(res => {
         this.listCategory = res.data;
-        console.log(this.listCategory);
       }).catch(err => {
         console.log(err.message);
       })

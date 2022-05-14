@@ -6,19 +6,14 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import BeritaDetail from '@/components/ComponentBerita/BeritaDetail.vue';
+import axios from 'axios';
 
 export default {
   data(){
     return{
       whitetheme: true,
-      albumItems: [],
-      albumDescription: '',
-      albumTitle: '',
-      beritaLain: [
-        {id: 1, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-        {id: 2, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-        {id: 3, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-      ]
+      berita: {},
+      beritaLain: []
     }
   },
   components:{
@@ -26,11 +21,28 @@ export default {
     BeritaDetail,
   },
   methods: {
-    // getParams(){
-    //   this.albumItems = JSON.parse(this.$route.params.albumItems)
-    //   this.albumDescription = this.$route.params.description
-    //   this.albumTitle = this.$route.params.albumTitle
-    // },
+    getParams(){
+      this.berita = {
+        id: this.$route.params.id,
+        title: this.$route.params.title,
+        image: this.$route.params.image,
+        description: this.$route.params.description,
+        slug: this.$route.params.slug,
+        datetime: this.$route.params.datetime,
+      }
+    },
+    getBeritaLain(){
+      axios.get(`berita`)
+        .then(res => {
+          this.beritaLain = res.data.random
+        })
+    },
+    updateViews(){
+      axios.put(`berita/${this.berita.id}`)
+      .catch(err => {
+          console.log(err.message)
+        })
+    },
     scrollup(){
         window.scroll({
             top: 0,
@@ -38,11 +50,15 @@ export default {
         })
     }
   },
-//   created(){
-//     this.getParams()
-//   },
+  created(){
+    this.getParams()
+    this.getBeritaLain()
+  },
   mounted(){
     this.scrollup()
+  },
+  updated(){
+    this.updateViews()
   }
 }
 </script>

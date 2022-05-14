@@ -48,6 +48,9 @@ Route::get('produk', [ProdukController::class, 'index']);
 
 //berita
 Route::get('berita', [BeritaController::class, 'index']);
+Route::get('get-berita/{name}', [BeritaController::class, 'getBerita']);
+Route::get('berita/{kategori}', [BeritaController::class, 'getKategori']);
+Route::put('berita/{id}', [BeritaController::class, 'updateViews']);
 
 //gallery
 Route::get('gallery', [GalleryController::class, 'index']);

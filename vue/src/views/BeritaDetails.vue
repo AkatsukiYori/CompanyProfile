@@ -13,11 +13,7 @@ export default {
     return{
       whitetheme: true,
       berita: {},
-      beritaLain: [
-        {id: 1, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-        {id: 2, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-        {id: 3, title: 'judul', date: '05 Febuari 2022', image: require('@/assets/logo.png')},
-      ]
+      beritaLain: []
     }
   },
   components:{
@@ -27,6 +23,7 @@ export default {
   methods: {
     getParams(){
       this.berita = {
+        id: this.$route.params.id,
         title: this.$route.params.title,
         image: this.$route.params.image,
         description: this.$route.params.description,
@@ -38,7 +35,12 @@ export default {
       axios.get(`berita`)
         .then(res => {
           this.beritaLain = res.data.random
-          console.log(this.beritaLain)
+        })
+    },
+    updateViews(){
+      axios.put(`berita/${this.berita.id}`)
+      .catch(err => {
+          console.log(err.message)
         })
     },
     scrollup(){
@@ -54,6 +56,9 @@ export default {
   },
   mounted(){
     this.scrollup()
+  },
+  updated(){
+    this.updateViews()
   }
 }
 </script>

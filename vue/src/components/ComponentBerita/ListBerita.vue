@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-bold">List Berita</h1>
     <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
     <div>
-        <div class="lg:flex md:flex w-full mb-8 cursor-pointer hover:bg-gray-200 p-4 transition-all duration-200" @click="beritaDetails(berita.image,berita.title, berita.datetime, berita.description, berita.slug)" v-for="berita in listBerita" :key="berita.id">
+        <div class="lg:flex md:flex w-full mb-8 cursor-pointer hover:bg-gray-200 p-4 transition-all duration-200" @click="beritaDetails(berita.id, berita.image,berita.title, berita.datetime, berita.description, berita.slug)" v-for="berita in listBerita" :key="berita.id">
             <div class="lg:w-5/12 md:w-6/12 lg:mr-16 md:mr-8 sm:w-full sm:mr-8 xs:w-full xs:mr-8 flex justify-center">
                 <img :src="berita.image" alt="">
             </div>
@@ -40,8 +40,8 @@ export default {
         Navigation,
     },
     methods: {
-        beritaDetails(image, title, datetime, description, slug){
-            this.$router.push({name: 'BeritaDetails', params: {slug, title, image, description, datetime}})
+        beritaDetails(id, image, title, datetime, description, slug){
+            this.$router.push({name: 'BeritaDetails', params: {id,slug, title, image, description, datetime}})
         }
     }
 }

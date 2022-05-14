@@ -2,7 +2,7 @@
   <div class="p-8 mb-12">
     <div class="flex flex-wrap justify-end">
         <div class="flex items-center self-start pb-8 md:w-1/3 xs:w-full">
-            <input class="rounded-3xl border-2 xs:w-full md:w-full mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" v-model="data" @keyup.enter="findBerita" @keyup="checkInput" type="text" placeholder="Klik enter untuk cari berita">
+            <input class="rounded-3xl border-2 xs:w-full md:w-full mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" v-model="data" @keyup.enter="findBerita" @keyup="checkInput" type="text" placeholder="Tekan enter untuk cari berita">
         </div>
     </div>
     <div v-if="!isSearching">
@@ -18,7 +18,7 @@
             <div class="sm:w-full md:w-2/6 lg:w-2/6 border-purple-600 rounded-xl border-4 p-4">
                 <h1 class="text-center text-2xl mb-8">Kategori</h1>
                 <div class="flex flex-wrap justify-center">
-                    <div class="lg:w-5/12 md:w-full sm:w-5/12 xs:w-full kategori mx-2 flex items-center justify-center" v-for="category in categories" :key="category.id">
+                    <div class="lg:w-5/12 md:w-full sm:w-5/12 xs:w-full kategori mx-2 flex items-center justify-center hover:cursor-pointer" v-for="category in categories" :key="category.id" @click="findKategori(category.text)">
                         {{ category.text }}
                     </div>
                 </div>
@@ -26,7 +26,12 @@
         </div>
     </div>
     <div class="p-8 mb-12" v-else>
-        <h1 class="text-4xl font-bold">Search Result</h1>
+        <h1 class="text-4xl font-bold">Category: Sports</h1>
+        <div v-if="isKategori" class="flex">
+            <div class="border-2 rounded-full text-violet-600 hover:bg-violet-600 hover:text-white border-violet-600 px-3 py-1 mx-1" v-for="category in categories">
+                {{ category.text }}
+            </div>
+        </div>
         <div class="bgimage fixed opacity-50 bottom-0 left-0 w-full h-full -z-10"></div>
         <div>
             <div class="lg:flex md:flex w-full mb-8 cursor-pointer hover:bg-gray-200 p-4 transition-all duration-200" @click="beritaDetails(berita.id, berita.image,berita.title, berita.datetime, berita.description, berita.slug)" v-for="berita in listBerita" :key="berita.id">
@@ -56,6 +61,8 @@
 
 <script>
 import axios from 'axios';
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 const hilang = document.getElementsByClassName('hilang');
 
@@ -64,8 +71,15 @@ export default {
         return{
             isSearching: false,
             data: '',
-            listBerita: []
+            listBerita: [],
+            isKategori: false,
         }
+    },
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
     },
     props: ['headline', 'categories'],
     methods: {
@@ -95,9 +109,26 @@ export default {
         checkInput(){
             if(!this.data){
                 this.isSearching = false
+                this.isKategori = false
                 for(var i = 0; i < hilang.length; i++){
                     hilang[i].classList.remove('hilangbeneran')
                 }
+            }
+        },
+        findKategori(category){
+            this.isSearching = true
+            this.isKategori = true
+            
+            axios.get(`kategori-berita/${category}`)
+                .then(res => {
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+            
+            for(var i = 0; i < hilang.length; i++){
+                hilang[i].classList.add('hilangbeneran')
             }
         }
     }

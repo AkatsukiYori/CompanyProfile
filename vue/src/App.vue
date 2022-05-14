@@ -24,11 +24,4 @@ export default{
 ::-webkit-scrollbar-thumb:hover {
   background: #581c87; 
 }
-
-html, body {
-  overflow-x: hidden;
-}
-body {
-  position: relative
-}
 </style>

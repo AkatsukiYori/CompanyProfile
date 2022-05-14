@@ -1,6 +1,6 @@
 <template>
-  <Navbar :whitetheme="whitetheme" navbaron="ourteam" style="position: sticky; top: 0; width: 100%; z-index: 3"/>
-  <MemberTeam :listCategory="listCategory" style="" />
+  <Navbar :whitetheme="whitetheme" navbaron="ourteam"/>
+  <MemberTeam :listCategory="listCategory"/>
 </template>
 
 <script>

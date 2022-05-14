@@ -14,7 +14,7 @@ class RemoveKaryawanFoto extends Migration
     public function up()
     {
         Schema::table('Karyawan',function(Blueprint $table) {
-            $table->dropColumn('foto');
+            // $table->dropColumn('foto');
         });
     }
 

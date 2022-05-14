@@ -1,5 +1,5 @@
 <template>
-  <Navbar :whitetheme="whitetheme" navbaron="berita" style="position: sticky; top: 0; z-index: 3"/>
+  <Navbar :whitetheme="whitetheme" navbaron="berita"/>
   <Headline :categories="categoryleft" :headline="headline" style=""/>
   <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
   <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>

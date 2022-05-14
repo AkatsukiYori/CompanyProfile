@@ -4,6 +4,6 @@ import router from './router'
 import './assets/tailwind.css'
 import axios from 'axios'
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://kitaserbadigital.com/api' : 'http://localhost:8000/api'
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'http://staging-api.kitaserbadigital.com/api/' : 'http://localhost:8000/api'
 
 const app = createApp(App).use(router).mount('#app')

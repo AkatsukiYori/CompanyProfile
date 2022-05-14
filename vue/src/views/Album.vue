@@ -1,6 +1,6 @@
 <template>
-  <Navbar :whitetheme="whitetheme" navbaron="album" style="position: sticky; top: 0; z-index: 3"/>
-  <ListAlbum ref="list" :data="data" :listAlbum="listAlbum" style=""/>
+  <Navbar :whitetheme="whitetheme" navbaron="album"/>
+  <ListAlbum ref="list" :data="data" :listAlbum="listAlbum"/>
 </template>
 
 <script>

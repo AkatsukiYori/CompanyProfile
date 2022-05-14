@@ -9,7 +9,7 @@
             </div>
             <div class="lg:w-7/12 xs:mt-4 md:mt-0 md:w-6/12 sm:w-full xs:w-full">
                 <div class="flex">
-                    <div class="kategori" v-for="category in berita.categories" :key="category.id">{{category}}</div>
+                    <div class="kategori m-1" v-for="category in berita.categories" :key="category.id">{{category}}</div>
                 </div>
                 <div>
                     <p class="text-black lg:text-xl md:text-xl pb-2 sm:text-sm">{{berita.datetime}}</p>
@@ -56,11 +56,9 @@ export default {
 }
 .kategori{
     background: linear-gradient(240deg, #C56FE1 0%, #CB81F2 15%, #8F41F1 100%);
-    border-radius: 12px;
+    border-radius: 6px;
     color: white;
-    padding: 4px 12px;
-    height: 40px;
-    margin: 0 12px 24px 0;
+    padding: 6px 12px;
     text-align: center;
 }
 </style>

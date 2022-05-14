@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddKategoriToBerita extends Migration
+class AddHeadlineToBerita extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddKategoriToBerita extends Migration
     public function up()
     {
         Schema::table('berita', function (Blueprint $table) {
-            // $table->string('kategori')->after('headline');
+            // $table->enum('headline', ['y', 'n'])->after('slug');
         });
     }
 

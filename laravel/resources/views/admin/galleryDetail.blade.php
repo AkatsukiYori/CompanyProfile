@@ -52,13 +52,15 @@
                                                     <tr>
                                                         <td>{{$loop->iteration }}</td>
                                                             @if ($al->kategori == "image")
-                                                            <td><img src="{{ asset('/storage/album'.'/'.$alb->name.'/'.$al->name) }}" width="250" alt=""></td>
+                                                                <td><img src="{{ asset('/storage/album'.'/'.$alb->name.'/'.$al->name) }}" width="250" alt=""></td>
                                                             @else 
-                                                            <td><?= $al->link?></td>
+                                                                <td><?= $al->link?></td>
                                                             @endif
-                                                        <td><button class="btn btn-warning btnEdit" id="{{$al->id}}"><i class="fa fa-pencil"></i></button>
-                                                            <button class="btn btn-danger btnDelete" id="{{$al->id}}" value="{{$alb->name}}"><i class="fa fa-trash"></i></button></td>
-                                                        </tr>
+                                                        <td>
+                                                            <button class="btn btn-warning btnEdit" id="{{$al->id}}"><i class="fa fa-pencil"></i></button>
+                                                            <button class="btn btn-danger btnDelete" id="{{$al->id}}" value="{{$alb->name}}"><i class="fa fa-trash"></i></button>
+                                                        </td>
+                                                    </tr>
                                                     @endforeach
                                            @endforeach
                                         </tbody>

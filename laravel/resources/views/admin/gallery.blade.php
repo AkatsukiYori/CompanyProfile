@@ -54,7 +54,9 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{$alb->name}}</td>
-                                                    <td>{{$alb->deskripsi}}</td>
+                                                    <td>
+                                                        {{  \Illuminate\Support\Str::limit($alb->deskripsi, 100, $end='...') }}
+                                                    </td>
                                                     <td>{{$alb->tgl_album}}</td>
                                                     <td>{{$alb->jumlah}}</td>
                                                     <td><button class="btn btn-dark btnDetail" onclick="detail({{$alb->id}})"><i class="fa-solid fa-circle-info" style="font-size:20px;"></i></button>

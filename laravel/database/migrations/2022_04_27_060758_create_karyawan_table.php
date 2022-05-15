@@ -17,7 +17,6 @@ class CreateKaryawanTable extends Migration
             $table->id();
             $table->bigInteger('akun_id', false, true);
             $table->bigInteger('media_id');
-            $table->string('foto');
             $table->string('nama')->nullable();
             $table->string('kategori');
             $table->string('jabatan')->nullable();

@@ -14,7 +14,7 @@ class AddKategoriToBerita extends Migration
     public function up()
     {
         Schema::table('berita', function (Blueprint $table) {
-            $table->string('kategori')->after('headline');
+            // $table->string('kategori')->after('headline');
         });
     }
 

@@ -22,7 +22,7 @@ class CreateBeritaTable extends Migration
             $table->string('kategori');
             $table->bigInteger('views');
             $table->bigInteger('media_id')->nullable();             
-            $table->text('isi_berita');
+            $table->text('isi');
             $table->datetime('tgl_posting');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();

@@ -14,7 +14,7 @@ class AddKategoriToKaryawan extends Migration
     public function up()
     {
         Schema::table('karyawan', function (Blueprint $table) {
-            $table->string('kategori')->after('nama');
+            // $table->string('kategori')->after('nama');
         });
     }
 

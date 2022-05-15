@@ -14,7 +14,7 @@ class ChangeNamaLinkTextToKontakKami extends Migration
     public function up()
     {
         Schema::table('kontak_kami', function (Blueprint $table) {
-            $table->text('namaLink')->change();
+            // $table->text('namaLink')->change();
         });
     }
 

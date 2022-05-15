@@ -14,7 +14,7 @@ class AddViewsToBerita extends Migration
     public function up()
     {
         Schema::table('berita', function (Blueprint $table) {
-            $table->bigInteger('views')->after('kategori');
+            // $table->bigInteger('views')->after('kategori');
         });
     }
 

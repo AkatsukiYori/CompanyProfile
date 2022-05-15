@@ -54,8 +54,12 @@
                                                 @foreach ($faqs as $faq)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $faq->pertanyaan }}</td>
-                                                        <td>{{ $faq->jawaban }}</td>
+                                                        <td>
+                                                            {{ \Illuminate\Support\Str::limit($faq->pertanyaan, 70, $end='...') }}
+                                                        </td>
+                                                        <td>
+                                                            {{ \Illuminate\Support\Str::limit($faq->jawaban, 100, $end='...') }}
+                                                        </td>
                                                         <td>
                                                             <button class="btn btn-warning btn-edit" id="{{ $faq->id }}">Edit</button>
                                                             <button class="btn btn-danger btn-delete" id="{{ $faq->id }}">Delete</button>

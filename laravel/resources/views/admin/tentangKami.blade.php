@@ -55,7 +55,12 @@
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$ttg->judul}}</td>
-                                                    <td><?= $ttg->deskripsi ?></td>
+                                                    <td>
+                                                        <?php
+                                                            $ttg->deskripsi = \Illuminate\Support\Str::limit($ttg->deskripsi, 100, $end='...')
+                                                        ?>
+                                                        <?= $ttg->deskripsi ?>
+                                                    </td>
                                                     <td>
                                                         @if($ttg->media == null)
                                                         <h3>Tidak ada gambar</h3>

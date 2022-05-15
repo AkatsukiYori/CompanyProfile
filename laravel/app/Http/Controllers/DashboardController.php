@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 // models
-use App\models\Produk;
-use App\models\Mitra;
-use App\models\Faqs;
-use App\models\Album;
-use App\models\Berita;
-use App\models\Karyawan;
+use App\Models\Produk;
+use App\Models\Mitra;
+use App\Models\Faqs;
+use App\Models\Album;
+use App\Models\Berita;
+use App\Models\Karyawan;
 
 class DashboardController extends Controller
 {

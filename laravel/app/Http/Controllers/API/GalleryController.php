@@ -38,6 +38,7 @@ class GalleryController extends Controller
     public function GetAlbum($name){
         $img = new ImageStructure();
         $album = Album::orderBy('created_at','DESC')->where('name', 'like', '%' . $name . '%')->get();
+        $albums = [];
         foreach($album as $key => $value){
             $albums[$key]['id'] = $key;
             $albums[$key]['title'] = $value->name;

@@ -145,17 +145,13 @@
                         <input type="text" class="form-control" parsley-trigger="change" name="alamat" id="alamat" placeholder="Masukan Alamat">
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
-                        <label for="Link">Link google maps</label>
-=======
                         <label for="Link">Link Google Maps</label>
->>>>>>> 9d10a1a1 (berita done, fix bug di setiap menu except gallery)
                         <input type="text" class="form-control" parsley-trigger="change" id="namaLink" name="namaLink" placeholder="Masukan Link">
-                        <span>Linknya harus dalam bentuk embed</span>
+                        <span>Note: Linknya harus dalam bentuk embed</span>
                     </div>
                     <div class="form-group">
                         <label for="no_hp">Telepon</label>
-                        <input type="text" class="form-control" parsley-trigger="change" id="no_hp" name="no_hp" placeholder="Masukan No telp">
+                        <input type="tel" class="form-control" parsley-trigger="change" id="no_hp" name="no_hp" placeholder="Masukan No telp">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>

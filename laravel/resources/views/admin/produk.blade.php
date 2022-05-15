@@ -58,7 +58,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $produk->name }}</td>
-                                            <td>{{ $produk->deskripsi }}</td>
+                                            <td>
+                                                {{  \Illuminate\Support\Str::limit($produk->deskripsi, 100, $end='...') }}
+                                            </td>
                                             <td>
                                                 <img src="{{ asset('/storage/produk/'.$produk->media->name) }}" width="150" alt="">
                                             </td>

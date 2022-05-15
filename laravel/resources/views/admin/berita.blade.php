@@ -78,7 +78,7 @@
                                                 </td>
                                                 <td>
                                                     <?php
-                                                        $data->isi = \Illuminate\Support\Str::limit($data->isi, 150, $end='...')
+                                                        $data->isi = \Illuminate\Support\Str::limit($data->isi, 100, $end='...')
                                                     ?>
                                                     <?= $data->isi ?>
                                                 </td>

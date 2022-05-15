@@ -22,7 +22,7 @@
 	    	@endif
 
 		    @if($errors->any())
-				<div class="alert alert-error alert-dismissable alert-danger">
+				<div class="alert alert-error alert-dismissable bg-danger text-white">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					<strong>Gagal!</strong> {!! implode('', $errors->all('<div>:message</div>')) !!}
 				</div>
@@ -37,7 +37,7 @@
                                 Tambah data karyawan
                             </button>
                             <div class="card-body">
-                                <table id="karyawanTable" width="100%" class="table table-bordered dt-responsive nowrap table-stripped">
+                                <table id="karyawanTable" width="100%" class="table table-bordered dt-responsive nowrap">
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
@@ -97,15 +97,15 @@
                     <div class="form-group">
                         <label for="foto">Foto</label>
                         <input type="file" class="form-control dropify" id="foto" name="foto" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
-                        <span>Resolution</span>
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama karyawan" required>
                     </div>
                     <div class="form-group">
-                        <label for="kategory">Kategori</label>
-                        <input type="text" class="form-control" id="kategory" name="kategori" placeholder="Masukan kategori">
+                        <label for="kategory">Divisi</label>
+                        <input type="text" class="form-control" required id="kategory" name="kategori" placeholder="Masukan kategori">
+                        <p>example: Programer,Design,Relation,Executive,Network,AR </p>
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
@@ -140,7 +140,7 @@
                         <input type="hidden" name="Filename" id="Filename">
                         <input type="hidden" name="mediaID" id="mediaID">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
+                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -168,6 +168,7 @@
     $(document).ready(function() {
         $('#foto').dropify();
         $('#fotoEdit').dropify();
+        $('#karyawanTable').DataTable();
 
         $(document).on('click','.btnEdit',function(e) {
             e.preventDefault();

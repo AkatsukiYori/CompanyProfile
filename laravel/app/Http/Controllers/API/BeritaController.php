@@ -30,7 +30,7 @@ class BeritaController extends Controller
         $randomNews = [];
         
         //randomNews
-        foreach($random as $key => $value){
+        foreach($random as $value){
             if($value->id == $head[0]->id){
                 continue;
             }
@@ -50,26 +50,27 @@ class BeritaController extends Controller
         
         
         //kategori
-        $arrayKategori = [];
+        $arrayKategori = []; $kategoriCounter = 0;
         
-        foreach($berita as $key => $value){
+        foreach($berita as $value){
             $kategori = explode(',', $value->kategori);
-            foreach($kategori as $kat => $cat){
+            foreach($kategori as $cat){
                 array_push($arrayKategori, $cat);
             }
             $arrayKategori = array_unique($arrayKategori);
         }
         
-        foreach($arrayKategori as $key => $value){
+        foreach($arrayKategori as $value){
             $categoryArray = [
-                "id" => $key,
+                "id" => $kategoriCounter,
                 "text" => $value
             ];
-            array_push($category, $categoryArray);   
+            array_push($category, $categoryArray);
+            $kategoriCounter++;  
         }
         
         //berita
-        foreach($berita as $key => $value){
+        foreach($berita as $value){
             if($head[0]->id == $value->id){
                 $this->headId = $head[0]->id;
                 continue;
@@ -101,7 +102,7 @@ class BeritaController extends Controller
         
         $news = [];
         
-        foreach($berita as $key => $value){
+        foreach($berita as $value){
             $newsArray = [
                 "id" => $value->id,
                 "title" => $value->judul,
@@ -121,10 +122,30 @@ class BeritaController extends Controller
     
     public function getKategori($kategori){
         $berita = Berita::all();
-        return $berita;
+        $category = [];
+        foreach($berita as $key => $value){
+            $categories = explode(',',$value->kategori);
+            foreach($categories as $kategoriValue){
+                if($kategoriValue == $kategori){
+                    $categoryArray = [
+                        "id" => $value->id,
+                        "title" => $value->judul,
+                        "slug" => $value->slug,
+                        "image" => $value->image,
+                        "description" => $value->isi,
+                        "categories" => explode(',',$value->kategori),
+                        "date" => date_format(date_create($value->tgl_posting), 'j F Y')
+                    ];
+                    
+                    array_push($category, $categoryArray);
+                }
+            }
+        }
+        
+        return $category;
     }
     
-    public function updateViews(Request $request,$id){
+    public function updateViews($id){
         $berita = Berita::find($id);
         $berita->views += 1;
         $berita->update();
@@ -132,21 +153,19 @@ class BeritaController extends Controller
         return response()->json(['message' => "views anda berjumlah ". $berita->views], 200);
     }
     
-    // public function randomize($array, $berita, $headline, $randoms = []){
-    //     foreach($array as $key => $value){
-    //         if($value->id == $headline) continue;
-    //         foreach($berita as $newsKey => $news){
-    //             if($value->id == $news->id){
-    //                 break;
-    //             }else{
-    //                 if(in_array($value->id,$randoms)){
-    //                     continue;
-    //                 }
-    //                 $randoms[] = $value->id;
-    //             }
-    //         }
-    //         if(count($randoms) > 1) break;
-    //     }
-    //     return $randoms;
-    // }
+    public function getDetail($id){
+        $berita = Berita::find($id);
+        $news = [
+            "id" => $berita->id,
+            "title" => $berita->judul,
+            "description" => $berita->isi,
+            "slug" => $berita->slug,
+            "image" => $berita->image,
+            "datetime" => date_format(date_create($berita->created_at), 'j F Y, H:i T'),
+            "categories" => explode(',',$berita->kategori),
+            "date" => date_format(date_create($berita->tgl_posting), 'j F Y')
+        ];
+        
+        return response()->json($news, 200);
+    }
 }

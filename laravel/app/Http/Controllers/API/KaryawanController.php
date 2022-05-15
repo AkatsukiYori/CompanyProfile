@@ -15,7 +15,7 @@ class KaryawanController extends Controller
         $imagePC = ""; $imageCEO = ""; $imageHR = ""; $imageHN = "";
         $jabatanPC = ""; $jabatanCEO = ""; $jabatanHR = ""; $jabatanHN = "";
         foreach($karyawan as $key => $kary){
-            if(strtolower($kary->jabatan) == "president commisioner"){
+            if(strtolower($kary->jabatan) == "president commissioner"){
                 $namaPC = $kary->nama;
                 $imagePC = $kary->image;
                 $jabatanPC = $kary->jabatan;

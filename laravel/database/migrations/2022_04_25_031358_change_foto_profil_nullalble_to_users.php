@@ -14,7 +14,7 @@ class ChangeFotoProfilNullalbleToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('foto_profil')->nullable()->change();
+            // $table->string('foto_profil')->nullable()->change();
         });
     }
 

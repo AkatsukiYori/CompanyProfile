@@ -1,7 +1,7 @@
 <template>
   <div v-if="isMounted">
-    <Navbar :whitetheme="whitetheme" navbaron="home" style="position: fixed; width: 100%; z-index: 3"/>
-    <Beranda id="home" :contents="slogan" class="md:pt-20 xs:pt-16"/>
+    <Navbar :whitetheme="whitetheme" navbaron="home"/>
+    <Beranda id="home" :contents="slogan"/>
     <TentangKSD :tentangKami="tentangKami" id="about" />
     <Carousel :color1="'#e1a1ed'" :color2="'#ac7df1'" :color3="'#7658f4'" :headertitle="'Produk Kami'" :contents="products"/>
     <Gallery id="gallery" ref="gallerycomponent" :galleryItems="gallery"/>

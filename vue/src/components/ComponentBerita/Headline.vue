@@ -2,7 +2,7 @@
   <div class="p-8 mb-12">
     <div class="flex flex-wrap justify-end">
         <div class="flex items-center self-start pb-8 md:w-1/3 xs:w-full">
-            <input class="rounded-3xl border-2 xs:w-full md:w-full mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" v-model="data" @keyup.enter="findBerita" @keyup="checkInput" type="text" placeholder="Klik enter untuk cari berita">
+            <input class="rounded-3xl border-2 xs:w-full md:w-full mr-2 bg-transparent focus:border-purple-600 focus:border-2 border-purple-600 px-4" v-model="data" @keyup.enter="findBerita" @keyup="checkInput" type="text" placeholder="Tekan enter untuk cari berita">
         </div>
     </div>
     <div v-if="!isSearching">
@@ -18,7 +18,7 @@
             <div class="sm:w-full md:w-2/6 lg:w-2/6 border-purple-600 rounded-xl border-4 p-4">
                 <h1 class="text-center text-2xl mb-8">Kategori</h1>
                 <div class="flex flex-wrap justify-center">
-                    <div class="lg:w-5/12 md:w-full sm:w-5/12 xs:w-full kategori mx-2 flex items-center justify-center" v-for="category in categories" :key="category.id" @click="findKategori(category.text)">
+                    <div class="lg:w-5/12 md:w-full sm:w-5/12 xs:w-full kategori mx-2 flex items-center justify-center hover:cursor-pointer" v-for="category in categories" :key="category.id" @click="findKategori(category.text)">
                         {{ category.text }}
                     </div>
                 </div>

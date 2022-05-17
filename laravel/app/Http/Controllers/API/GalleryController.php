@@ -23,13 +23,10 @@ class GalleryController extends Controller
     public function ShowAlbums(){
         $img = new ImageStructure();
         foreach(Album::orderBy('created_at', 'DESC')->get() as $key => $value){
-            $albums[$key]['id'] = $key;
+            $albums[$key]['id'] = $value->id;
             $albums[$key]['title'] = $value->name;
             $albums[$key]['image'] = $value->image[0]->image;
             $albums[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
-            // $albums[$key]['tanggal'] = Carbon::parse($value->created_at)->format('j F Y');
-            $albums[$key]['description'] = $value->deskripsi;
-            $albums[$key]['album_media'] = $img->AlbumReform($value->new_album);
         }
         
         return response()->json($albums, 200);
@@ -38,17 +35,31 @@ class GalleryController extends Controller
     public function GetAlbum($name){
         $img = new ImageStructure();
         $album = Album::orderBy('created_at','DESC')->where('name', 'like', '%' . $name . '%')->get();
-        $albums = [];
-        foreach($album as $key => $value){
-            $albums[$key]['id'] = $key;
-            $albums[$key]['title'] = $value->name;
-            $albums[$key]['image'] = $value->image[0]->image;
-            $albums[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
-            $albums[$key]['description'] = $value->deskripsi;
-            $albums[$key]['album_media'] = $img->AlbumReform($value->new_album);
+        if($album->isEmpty()){
+            return response()->json(['message' => 'data not found'],500);
+        }else{
+            $albums = [];
+            foreach($album as $key => $value){
+                $albums[$key]['id'] = $value->id;
+                $albums[$key]['title'] = $value->name;
+                $albums[$key]['image'] = $value->image[0]->image;
+                $albums[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
+            }
+            
+            return response()->json($albums, 200);
         }
-        
-        
+    }
+    
+    public function getDetailAlbum($id){
+        $img = new ImageStructure();
+        $album = Album::find($id);
+        $albums['id'] = $album->id;
+        $albums['title'] = $album->name;
+        $albums['image'] = $album->image[0]->image;
+        $albums['date'] = date_format(date_create(explode(" ", $album->tgl_album)[0]),'j F Y');
+        $albums['description'] = $album->deskripsi;
+        $albums['album_media'] = $img->AlbumReform($album->new_album);
+            
         return response()->json($albums, 200);
     }
 }

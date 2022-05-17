@@ -57,3 +57,4 @@ Route::put('berita/{id}', [BeritaController::class, 'updateViews']);
 Route::get('gallery', [GalleryController::class, 'index']);
 Route::get('albums', [GalleryController::class, 'ShowAlbums']);
 Route::get('albums/{name}', [GalleryController::class, 'GetAlbum']);
+Route::get('album/{id}', [GalleryController::class, 'getDetailAlbum']);

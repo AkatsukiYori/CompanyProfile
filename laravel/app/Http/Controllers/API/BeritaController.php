@@ -11,9 +11,9 @@ class BeritaController extends Controller
     public $headlineId;
     
     public function index(){
-        $berita = Berita::orderBy('created_at', 'DESC')->get();
+        $berita = Berita::orderBy('created_at', 'DESC')->paginate(5);
         $head = Berita::orderBy('created_at', 'DESC')->where('headline', 'y')->take(1)->get();
-        $random = Berita::inRandomOrder()->get();
+        $random = Berita::orderBy('views', 'DESC')->get();
         
         $headline = [
             "id" => $head[0]->id,
@@ -42,7 +42,8 @@ class BeritaController extends Controller
                 "image" => $value->image,
                 "datetime" => date_format(date_create($value->created_at), 'j F Y, H:i T'),
                 "categories" => explode(',',$value->kategori),
-                "date" => date_format(date_create($value->tgl_posting), 'j F Y')
+                "date" => date_format(date_create($value->tgl_posting), 'j F Y'),
+                "views" => $value->views
             ];
             
             array_push($randomNews, $randomArray);

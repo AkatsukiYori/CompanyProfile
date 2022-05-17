@@ -48,6 +48,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>Link</th>
                                             <th>Deskripsi</th>
                                             <th>Foto</th>
                                             <th>Action</th>
@@ -58,6 +59,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $produk->name }}</td>
+                                            <td>{{ $produk->link }}</td>
                                             <td>
                                                 {{  \Illuminate\Support\Str::limit($produk->deskripsi, 100, $end='...') }}
                                             </td>
@@ -100,6 +102,10 @@
                             <input type="text" class="form-control" id="name" name="name" parsley-trigger="change" placeholder="Masukan nama produk">
                         </div>
                         <div class="form-group">
+                            <label for="link">link</label>
+                            <input type="text" class="form-control" id="link" name="link" parsley-trigger="change" placeholder="Masukan link produk">
+                        </div>
+                        <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
                             <textarea name="deskripsi" id="deskripsi" cols="30" rows="5" class="form-control"></textarea>
                         </div>
@@ -138,6 +144,10 @@
                             <input type="hidden" name="fotoName" id="fotoName">
                             <input type="hidden" name="mediaID" id="mediaID">
                             <input type="text" class="form-control" id="nameEdit" name="nameEdit" parsley-trigger="change" placeholder="Masukan nama produk">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkEdit">link</label>
+                            <input name="linkEdit" id="linkEdit" cols="30" rows="5" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="deskripsiEdit">Deskripsi</label>

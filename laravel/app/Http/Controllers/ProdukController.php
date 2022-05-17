@@ -25,6 +25,7 @@ class ProdukController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'link' => 'required',
             'deskripsi' => 'required',
             'foto' => 'required|image'
         ]);
@@ -52,6 +53,7 @@ class ProdukController extends Controller
         $produkDB = new Produk();
         $produkDB->akun_id = Auth::user()->id;
         $produkDB->name = $request->name;
+        $produkDB->link = $request->link;
         $produkDB->media_id = $idMedia;
         $produkDB->deskripsi = $request->deskripsi;
         $produkDB->save();
@@ -67,6 +69,7 @@ class ProdukController extends Controller
     public function update(Request $request) {
         $validator = Validator::make($request->all(), [
             'nameEdit' => 'required',
+            'linkEdit' => 'required',
             'deskripsiEdit' => 'required',
             'fotoEdit' => 'image'
         ]);
@@ -92,6 +95,7 @@ class ProdukController extends Controller
         $produkDB = Produk::find($request->produkID);
         $produkDB->akun_id = Auth::user()->id;
         $produkDB->name = $request->nameEdit;
+        $produkDB->link = $request->linkEdit;
         $produkDB->deskripsi = $request->deskripsiEdit;
         $produkDB->media_id = $request->mediaID;
         $produkDB->update();

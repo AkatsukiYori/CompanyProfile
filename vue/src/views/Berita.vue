@@ -1,9 +1,9 @@
 <template>
   <Navbar :whitetheme="whitetheme" navbaron="berita"/>
   <Headline :categories="categoryleft" :headline="headline" style=""/>
-  <CarouselBerita class="lg:block md:block sm:hidden xs:hidden" :numOfElements=3 :carouselBerita="carouselBerita"/>
-  <CarouselBerita class="lg:hidden md:hidden sm:block xs:block" :numOfElements=1 :carouselBerita="carouselBerita"/>
-  <ListBerita :listBerita="listBerita"/>
+  <CarouselBerita class="lg:block md:block sm:hidden xs:hidden hilang" :numOfElements=3 :carouselBerita="carouselBerita"/>
+  <CarouselBerita class="lg:hidden md:hidden sm:block xs:block hilang" :numOfElements=1 :carouselBerita="carouselBerita"/>
+  <ListBerita :listBerita="listBerita" class="hilang"/>
 </template>
 
 <script>

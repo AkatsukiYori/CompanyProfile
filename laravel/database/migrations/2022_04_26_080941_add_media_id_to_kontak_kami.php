@@ -14,7 +14,7 @@ class AddMediaIdToKontakKami extends Migration
     public function up()
     {
         Schema::table('kontak_kami', function (Blueprint $table) {
-            // $table->bigInteger('media_id')->after('foto');
+            $table->bigInteger('media_id')->after('foto');
         });
     }
 
@@ -26,7 +26,7 @@ class AddMediaIdToKontakKami extends Migration
     public function down()
     {
         Schema::table('kontak_kami', function (Blueprint $table) {
-            //
+            
         });
     }
 }

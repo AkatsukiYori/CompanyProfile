@@ -55,7 +55,7 @@ class KontakController extends Controller
                 $kontak->namaLink = $request->namaLink;
                 $kontak->no_hp = $request->no_hp;
                 $kontak->email = $request->email;
-                $kontak->facebook = $request->facebook;
+                $kontak->youtube = $request->youtube;
                 $kontak->twitter = $request->twitter;
                 $kontak->instagram = $request->instagram;
                 $kontak->media_id=$id;
@@ -99,7 +99,7 @@ class KontakController extends Controller
             // dd($request->all());
                 $kontak = new Kontak;
                 // return $request->all();
-                $kontak->where('id',$id)->update(['akun_id'=>Auth::user()->id,'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit, 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->id]);
+                $kontak->where('id',$id)->update(['akun_id'=>Auth::user()->id,'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit, 'email'=>$request->emailEdit, 'youtube'=>$request->youtubeEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->id]);
 
                 return redirect::back()->with('success','Data berhasil diubah!');
         }else{
@@ -120,7 +120,7 @@ class KontakController extends Controller
             }
             // return $request->all();
                 $kontak = new Kontak;
-                $kontak->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit , 'email'=>$request->emailEdit, 'facebook'=>$request->facebookEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->mediaID]);
+                $kontak->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'alamat'=>$request->alamatEdit, 'no_hp'=>$request->no_hpEdit, 'namaLink'=>$request->namaLinkEdit , 'email'=>$request->emailEdit, 'youtube'=>$request->youtubeEdit, 'instagram'=>$request->instagramEdit, 'twitter'=>$request->twitterEdit, 'media_id'=>$request->mediaID]);
 
                 return redirect::back()->with('success','Data berhasil diubah!');
         }

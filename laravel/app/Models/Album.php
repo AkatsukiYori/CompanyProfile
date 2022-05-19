@@ -21,6 +21,11 @@ class Album extends Model
     }
     
     public function getImageAttribute(){
-        return $this->album_media->where('kategori', 'image')->take(1);
+        $image = $this->album_media->where('kategori', 'image')->last();
+        if(app()->isLocal()){
+            return url('/') . '/storage/album/' . $this->name . '/' . $image->name;
+        }else{
+            return url('/') . '/api/storage/album/' . $this->name . '/' . $image->name;
+        }
     }
 }

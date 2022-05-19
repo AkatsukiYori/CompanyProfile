@@ -106,7 +106,7 @@
                     <div class="form-group link d-none">
                         <label for="Link">Link</label>
                         <input type="link" name="link" id="link" class="form-control dropify" multiple="multiple" placeholder="Masukan Link video" >
-                        <span>Jika dari youtube harap menggunakan link embed (Tekan tombol share dan pilih yang embed)</span>
+                        <span>Jika dari youtube harap gunakan link embed di bagian src. Contoh: https://www.youtube.com/embed/YzGH6odpwpc</span>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save</button>

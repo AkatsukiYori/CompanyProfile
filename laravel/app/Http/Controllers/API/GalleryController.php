@@ -21,11 +21,10 @@ class GalleryController extends Controller
     }
     
     public function ShowAlbums(){
-        $img = new ImageStructure();
         foreach(Album::orderBy('created_at', 'DESC')->get() as $key => $value){
             $albums[$key]['id'] = $value->id;
             $albums[$key]['title'] = $value->name;
-            $albums[$key]['image'] = $value->image[0]->image;
+            $albums[$key]['image'] = $value->image;
             $albums[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
         }
         
@@ -42,6 +41,7 @@ class GalleryController extends Controller
             foreach($album as $key => $value){
                 $albums[$key]['id'] = $value->id;
                 $albums[$key]['title'] = $value->name;
+                $albums[$key]['kategori'] = $value->image[0]->kategori;
                 $albums[$key]['image'] = $value->image[0]->image;
                 $albums[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
             }

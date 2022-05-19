@@ -11,9 +11,9 @@ class KaryawanController extends Controller
     public function index(){
         $karyawan = Karyawan::orderBy('created_at', 'DESC')->get();
         // return $karyawan;
-        $namaPC = ""; $namaCEO = ""; $namaHR = ""; $namaHN = "";
-        $imagePC = ""; $imageCEO = ""; $imageHR = ""; $imageHN = "";
-        $jabatanPC = ""; $jabatanCEO = ""; $jabatanHR = ""; $jabatanHN = "";
+        $namaPC = ""; $namaCEO = ""; $namaHR = ""; $namaHN = ""; $namaHI = ""; $namaHP = "";
+        $imagePC = ""; $imageCEO = ""; $imageHR = ""; $imageHN = ""; $imageHI = ""; $imageHP = "";
+        $jabatanPC = ""; $jabatanCEO = ""; $jabatanHR = ""; $jabatanHN = ""; $jabatanHI = ""; $jabatanHP = "";
         foreach($karyawan as $key => $kary){
             if(strtolower($kary->jabatan) == "president commissioner"){
                 $namaPC = $kary->nama;
@@ -31,6 +31,14 @@ class KaryawanController extends Controller
                 $namaHN = $kary->nama;
                 $imageHN = $kary->image;
                 $jabatanHN = $kary->jabatan;
+            }elseif(strtolower($kary->jabatan) == "head of it"){
+                $namaHI = $kary->nama;
+                $imageHI = $kary->image;
+                $jabatanHI = $kary->jabatan;
+            }elseif(strtolower($kary->jabatan) == "head of product"){
+                $namaHP = $kary->nama;
+                $imageHP = $kary->image;
+                $jabatanHP = $kary->jabatan;
             }
         }
         
@@ -39,14 +47,20 @@ class KaryawanController extends Controller
             "namaCEO" => $namaCEO,
             "namaHR" => $namaHR,
             "namaHN" => $namaHN,
+            "namaHI" => $namaHI,
+            "namaHP" => $namaHP,
             "imagePC" => $imagePC,
             "imageCEO" => $imageCEO,
             "imageHR" => $imageHR,
             "imageHN" => $imageHN,
+            "imageHI" => $imageHI,
+            "imageHP" => $imageHP,
             "jabatanPC" => $jabatanPC,
             "jabatanCEO" => $jabatanCEO,
             "jabatanHR" => $jabatanHR,
             "jabatanHN" => $jabatanHN,
+            "jabatanHI" => $jabatanHI,
+            "jabatanHP" => $jabatanHP,
         ]);
         
         return response()->json($Karyawan, 200);

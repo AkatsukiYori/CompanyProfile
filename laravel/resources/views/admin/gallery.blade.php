@@ -57,7 +57,7 @@
                                                     <td>
                                                         {{  \Illuminate\Support\Str::limit($alb->deskripsi, 100, $end='...') }}
                                                     </td>
-                                                    <td>{{$alb->tgl_album}}</td>
+                                                    <td>{{date("j F Y",strtotime($alb->tgl_album))}}</td>
                                                     <td>{{$alb->jumlah}}</td>
                                                     <td><button class="btn btn-dark btnDetail" onclick="detail({{$alb->id}})"><i class="fa-solid fa-circle-info" style="font-size:20px;"></i></button>
                                                     <button class="btn btn-warning btnEdit" id="{{$alb->id}}"><i class="fa fa-pencil"></i></button>
@@ -105,6 +105,7 @@
                     <div class="form-group">
                         <label for="File">File</label>
                         <input type="file" name="file[]" id="file" class="form-control dropify" multiple="multiple" >
+                        <label>Resolusi untuk image 3:2</label>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save</button>

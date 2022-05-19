@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
-                            <input type="text" class="form-control" id="kategori" name="kategori" parsley-trigger="change" placeholder="Masukan judul berita">
+                            <input type="text" class="form-control" id="kategori" name="kategori" parsley-trigger="change" placeholder="Masukan kategori berita">
                         </div>
                         <div class="form-group">
                             <label for="">Headline</label>
@@ -181,8 +181,8 @@
                             <textarea name="isiBeritaEdit" id="isiBeritaEdit" cols="30" rows="5" class="form-control ckeditor"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kategoriEdit">kategoriEdit</label>
-                            <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" parsley-trigger="change" placeholder="Masukan judul berita">
+                            <label for="kategoriEdit">kategori</label>
+                            <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" parsley-trigger="change" placeholder="Masukan kategori berita">
                         </div>
                         <div class="form-group">
                             <label for="">Headline</label>

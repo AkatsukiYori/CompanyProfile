@@ -35,7 +35,7 @@ class GalleryController extends Controller
         }
         $Album = new Album;
         $Album->akun_id = Auth::user()->id;
-        $Album->name = $request-> nama_album;
+        $Album->name = str_replace(' ','_', $request->nama_album);
         $Album->deskripsi = $request->deskripsi;
         $Album->tgl_album=date('Y-m-d');
         $Album->save();
@@ -46,7 +46,7 @@ class GalleryController extends Controller
             $file = $files;
             $extension = $file->getClientOriginalExtension();
             $filename = uniqid().'-'.'.' . $extension;
-            $file->move('storage/album/'.$request->nama_album, $filename);
+            $file->move('storage/album/'.str_replace(' ','_', $request->nama_album), $filename);
             $media = new AlbumMedia;
             $media->akun_id=Auth::user()->id;
             $media->name= $filename;
@@ -79,9 +79,10 @@ class GalleryController extends Controller
             return Redirect::back()->withErrors($messages);
         }
         $id=$request->id;
-        $Album = Album::where('id',$id)->update(['name'=>$request->nama_album,'deskripsi'=>$request->deskripsi]);
+        $Album = Album::where('id',$id)->update(['name'=>str_replace(' ','_', $request->nama_album),'deskripsi'=>$request->deskripsi]);
         return Redirect::back()->with('success', 'Data Berhasil Diupdate');
     }
+    
     public function delete($id){
         $albumDB = Album::find($id);
         $dataAlbumMedia = AlbumMedia::where('album_id', $id)->get();

@@ -14,7 +14,7 @@ class KontakController extends Controller
         $alamat = $kontak[0]->alamat;
         $linkAlamat = $kontak[0]->namaLink;
         $no_hp = $kontak[0]->no_hp;
-        $facebook = $kontak[0]->facebook;
+        $youtube = $kontak[0]->youtube;
         $twitter = $kontak[0]->twitter;
         $instagram = $kontak[0]->instagram;
         return response()->json([
@@ -23,7 +23,7 @@ class KontakController extends Controller
             "alamat" => $alamat,
             "linkAlamat" => $linkAlamat,
             "no_hp" => $no_hp,
-            "facebook" => $facebook,
+            "youtube" => $youtube,
             "twitter" => $twitter,
             "instagram" => $instagram,
         ],200);

@@ -70,8 +70,8 @@
                 <div class="row ">
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
-                            <h3 class="text-center"><i class="fa fa-phone"></i> Telp</h3>
-                            <h5>{{ $tak->no_hp }}</h5>
+                            <h3 class="text-center"><i class="fa fa-phone"></i> no Whatsapp</h3>
+                            <h5><a href="{{ $tak->no_hp }}">{{ $tak->no_hp }}</a></h5>
                             <br>
                         </div>
                     </div>
@@ -100,8 +100,8 @@
                 <div class="row ">
                     <div class="col-md-4">
                         <div class="card-box shadow rounded justify-content-center text-center">
-                            <h3 class="text-center"><i class="mdi mdi-facebook"></i> Facebook</h3>
-                            <h5> <a href="{{ $tak->facebook }}" target="_blank">{{ $tak->facebook }}</a> </h5>
+                            <h3 class="text-center"><i class="mdi mdi-youtube"></i> youtube</h3>
+                            <h5> <a href="{{ $tak->youtube }}" target="_blank">{{ $tak->youtube }}</a> </h5>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -150,17 +150,17 @@
                         <span>Note: Linknya harus dalam bentuk embed</span>
                     </div>
                     <div class="form-group">
-                        <label for="no_hp">Telepon</label>
-                        <input type="tel" class="form-control" parsley-trigger="change" id="no_hp" name="no_hp" placeholder="Masukan No telp">
+                        <label for="no_hp">no Whatsapp</label>
+                        <input type="tel" class="form-control" parsley-trigger="change" id="no_hp" name="no_hp" placeholder="Masukan No Whatsapp">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="email" name="email" placeholder="Masukan email">
                     </div>
                     <div class="form-group">
-                        <label for="facebook">Facebook</label>
-                        <input type="text" class="form-control" parsley-trigger="change" id="facebook" placeholder="Masukan link facebook" name="facebook">
-                        <span> Contoh : https://facebook.com </span>
+                        <label for="youtube">youtube</label>
+                        <input type="text" class="form-control" parsley-trigger="change" id="youtube" placeholder="Masukan link youtube" name="youtube">
+                        <span> Contoh : https://youtube.com </span>
                     </div>
                     <div class="form-group">
                         <label for="instagram">Instagram</label>
@@ -212,7 +212,7 @@
                         <input type="text" class="form-control" parsley-trigger="change" id="alamatEdit" name="alamatEdit">
                     </div>
                     <div class="form-group">
-                        <label for="no_hp">Telepon</label>
+                        <label for="no_hp">No Whatsappd</label>
                         <input type="text" class="form-control" parsley-trigger="change" id="no_hpEdit" name="no_hpEdit">
                     </div>
                     <div class="form-group">
@@ -220,9 +220,9 @@
                         <input type="text" class="form-control" parsley-trigger="change" id="emailEdit" name="emailEdit">
                     </div>
                     <div class="form-group">
-                        <label for="facebook">Facebook</label>
-                        <input type="text" class="form-control" parsley-trigger="change" id="facebookEdit" name="facebookEdit">
-                        <span> Contoh : https://facebook.com </span>
+                        <label for="youtube">youtube</label>
+                        <input type="text" class="form-control" parsley-trigger="change" id="youtubeEdit" name="youtubeEdit">
+                        <span> Contoh : https://youtube.com </span>
                     </div>
                     <div class="form-group">
                         <label for="instagram">Instagram</label>
@@ -267,7 +267,7 @@
                     $('#namaLinkEdit').val(response[0].namaLink);
                     $('#no_hpEdit').val(response[0].no_hp);
                     $('#emailEdit').val(response[0].email);
-                    $('#facebookEdit').val(response[0].facebook);
+                    $('#youtubeEdit').val(response[0].youtube);
                     $('#instagramEdit').val(response[0].instagram);
                     $('#twitterEdit').val(response[0].twitter);
                     $('#editID').val(response[0].id);

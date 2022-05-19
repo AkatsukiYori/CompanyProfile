@@ -17,7 +17,7 @@ class BeritaController extends Controller
         
         $headline = [
             "id" => $head[0]->id,
-            "title" => $head[0]->judul,
+            "title" => ucfirst($head[0]->judul),
             "description" => $head[0]->isi,
             "image" => $head[0]->image,
             "slug" => $head[0]->slug,
@@ -36,7 +36,7 @@ class BeritaController extends Controller
             }
             $randomArray = [
                 "id" => $value->id,
-                "title" => $value->judul,
+                "title" => ucfirst($value->judul),
                 "description" => $value->isi,
                 "slug" => $value->slug,
                 "image" => $value->image,
@@ -79,7 +79,7 @@ class BeritaController extends Controller
             
             $newsArray = [
                 "id" => $value->id,
-                "title" => $value->judul,
+                "title" => ucfirst($value->judul),
                 "description" => $value->isi,
                 "slug" => $value->slug,
                 "image" => $value->image,
@@ -106,7 +106,7 @@ class BeritaController extends Controller
         foreach($berita as $value){
             $newsArray = [
                 "id" => $value->id,
-                "title" => $value->judul,
+                "title" => ucfirst($value->judul),
                 "description" => $value->isi,
                 "slug" => $value->slug,
                 "image" => $value->image,
@@ -130,10 +130,11 @@ class BeritaController extends Controller
                 if($kategoriValue == $kategori){
                     $categoryArray = [
                         "id" => $value->id,
-                        "title" => $value->judul,
+                        "title" => ucfirst($value->judul),
                         "slug" => $value->slug,
                         "image" => $value->image,
                         "description" => $value->isi,
+                        "datetime" => date_format(date_create($value->created_at), 'j F Y, H:i T'),
                         "categories" => explode(',',$value->kategori),
                         "date" => date_format(date_create($value->tgl_posting), 'j F Y')
                     ];

@@ -131,6 +131,7 @@
                     <div class="form-group">
                         <label for="nama_album">Nama Album</label>
                         <input type="hidden" id="id" name="id">
+                        <input type="hidden" name="foldername" id="foldername">
                         <input type="text" class="form-control" parsley-trigger="change" name="nama_album" id="nama_album_edit" placeholder="Masukan nama album">
                     </div>
                     <div class="form-group">
@@ -165,6 +166,7 @@
                 success: function(response){
                     console.log(response);
                     $('#id').val(response.id);
+                    $('#foldername').val(response.name);
                     $('#nama_album_edit').val(response.name);
                     $('#deskripsi_edit').val(response.deskripsi);                    
                 }

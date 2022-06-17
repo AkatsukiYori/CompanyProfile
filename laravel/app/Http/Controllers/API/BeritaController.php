@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use Carbon\Carbon;
 
 class BeritaController extends Controller
 {
@@ -13,7 +14,23 @@ class BeritaController extends Controller
     public function index(){
         $berita = Berita::orderBy('created_at', 'DESC')->paginate(5);
         $head = Berita::orderBy('created_at', 'DESC')->where('headline', 'y')->take(1)->get();
-        $random = Berita::orderBy('views', 'DESC')->get();
+        $start = Carbon::now()->firstOfMonth();
+        $end = Carbon::now()->lastOfMonth();
+        $checkViews = Berita::orderBy('jumlah_views_bulan', 'DESC')->whereMonth('created_at', [$start, $end])->get()->sum('jumlah_views_bulan');
+        
+        if($checkViews > 0){
+            $random = Berita::whereMonth('created_at', [$start, $end])->orderBy('jumlah_views_bulan', 'DESC')->orderBy('views', 'DESC')->get();
+            if(count($random) < 4){
+                $random2 = Berita::orderBy('views', 'DESC')->limit(4 - count($random))->get();
+
+                foreach($random2 as $news){
+                    $random[] = $news;
+                }
+            }
+        } else {
+            // $lastMonth = Carbon::now()->subMonth()->firstOfMonth()->format('j F Y');
+            $random = Berita::orderBy('views', 'DESC')->get();
+        }
         
         $headline = [
             "id" => $head[0]->id,
@@ -48,7 +65,6 @@ class BeritaController extends Controller
             
             array_push($randomNews, $randomArray);
         }
-        
         
         //kategori
         $arrayKategori = []; $kategoriCounter = 0;
@@ -149,7 +165,8 @@ class BeritaController extends Controller
     
     public function updateViews($id){
         $berita = Berita::find($id);
-        $berita->views += 1;
+        $berita->views ++;
+        $berita->jumlah_views_bulan ++;
         $berita->update();
         
         return response()->json(['message' => "views anda berjumlah ". $berita->views], 200);

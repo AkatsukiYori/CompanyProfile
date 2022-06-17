@@ -13,6 +13,8 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\categoryBeritaController;
+use App\Http\Controllers\MeetingManagementController;
+use App\Events\getTimerEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,3 +103,19 @@ Route::post('/berita', [BeritaController::class, 'store'])->name('berita-store')
 Route::get('/berita-edit/{id}', [BeritaController::class, 'edit'])->name('berita-edit')->middleware('auth');
 Route::post('/berita-update', [BeritaController::class, 'update'])->name('berita-update')->middleware('auth');
 Route::get('/berita-delete/{id}', [BeritaController::class, 'destroy'])->name('berita-delete')->middleware('auth');
+
+//Management Meeting CRUD
+Route::get('/meeting-management', [MeetingManagementController::class, 'index'])->name('presentation_meeting_management')->middleware('auth');
+Route::get('/meeting-management/datatable', [MeetingManagementController::class, 'loadTable'])->name('presentation_meeting_management_data')->middleware('auth');
+Route::get('/meeting-management/edit/{id}', [MeetingManagementController::class, 'editData'])->name('presentation_meeting_management_edit_data')->middleware('auth');
+Route::post('/meeting-management/add', [MeetingManagementController::class, 'store'])->name('presentation_meeting_management_add')->middleware('auth');
+Route::put('/meeting-management/update', [MeetingManagementController::class, 'updateData'])->name('presentation_meeting_management_update')->middleware('auth');
+Route::post('/meeting-management/delete/{id}', [MeetingManagementController::class, 'deleteData'])->name('presentation_meeting_management_delete')->middleware('auth');
+
+//Meeting Management Timer
+Route::get('/meeting-management/count/{id}', [MeetingManagementController::class, 'startCount'])->name('presentation_meeting_management_count')->middleware('auth');
+Route::get('/meeting-management/countend/{id}', [MeetingManagementController::class, 'endCount'])->name('presentation_meeting_management_countend')->middleware('auth');
+
+Route::get('/', function() {
+	broadcast(new getTimerEvent('some data'));
+});

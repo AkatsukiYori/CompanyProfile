@@ -65,7 +65,7 @@
                                         <h3 class="text-center text-white">Misi</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="text-center">{{ $viMi->misi }}</h4>
+                                        <h4 class="text-center"><?= $viMi->misi ?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label for="misi">Misi</label>
-                        <input type="text" class="form-control" parsley-trigger="change" id="misi" name="misi" placeholder="Masukan Misi" required>
+                        <textarea name="misi" id="misi" cols="30" rows="5" class="form-control ckeditor"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save</button>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="form-group">
                         <label for="misi">Misi</label>
-                        <input type="text" class="form-control" id="misiEdit" name="misiEdit" parsley-trigger="change">
+                        <textarea name="misiEdit" id="misiEdit" cols="30" rows="5" class="form-control ckeditor"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success btnUpdate">Save change</button>
@@ -154,10 +154,9 @@
                 type: "GET",
                 url: "/visiMisiedit/"+id,
                 success: function(response){
-                    // console.log(response);
                     $('#editId').val(response.id);
                     $('#visiEdit').val(response.visi);
-                    $('#misiEdit').val(response.misi);
+                    CKEDITOR.instances['misiEdit'].setData(response.misi);
                 }
             })
         })

@@ -75,6 +75,7 @@ class BeritaController extends Controller
         $beritaDB->headline = $request->headline;
         $beritaDB->kategori = $kategori;
         $beritaDB->views = 0;
+        $beritaDB->jumlah_views_bulan = 0;
         $beritaDB->media_id = $idMedia;
         $beritaDB->isi = $request->isiBerita;
         $beritaDB->tgl_posting = date('Y-m-d');

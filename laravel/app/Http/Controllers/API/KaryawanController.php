@@ -70,7 +70,7 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::all();
         $Karyawan = [];
         foreach($karyawan as $key => $value){
-            if(strtolower($value->jabatan) == "president commisioner" || strtolower($value->jabatan) == "chief executive officer" || strtolower($value->jabatan) == "head of relationship" || strtolower($value->jabatan) == "head of network and infrastructure"){
+            if(strtolower($value->jabatan) == "president commissioner" || strtolower($value->jabatan) == "chief executive officer" || strtolower($value->jabatan) == "head of relationship" || strtolower($value->jabatan) == "head of network and infrastructure" || strtolower($value->jabatan) == "head of product" || strtolower($value->jabatan) == "head of it"){
                 $Karyawan[$key]['id'] = $key;
                 $Karyawan[$key]['name'] = $value->nama;
                 $Karyawan[$key]['division'] = $value->jabatan;

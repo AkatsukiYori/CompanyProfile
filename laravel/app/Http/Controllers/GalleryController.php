@@ -31,8 +31,9 @@ class GalleryController extends Controller
 
         if($validator ->fails()){
             $messages = $validator->messages();
-            return Redirect::back()->withErrors($messages);
+            return back()->withErrors($messages);
         }
+        
         $Album = new Album;
         $Album->akun_id = Auth::user()->id;
         $Album->name = str_replace(' ','_', $request->nama_album);
@@ -62,7 +63,7 @@ class GalleryController extends Controller
         }
         
             }
-            return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
+            return back()->with('success', 'Data Berhasil Ditambahkan');
     }
     public function edit($id){
         return Album::find($id);
@@ -76,11 +77,12 @@ class GalleryController extends Controller
 
         if($validator ->fails()){
             $messages = $validator->messages();
-            return Redirect::back()->withErrors($messages);
+            return back()->withErrors($messages);
         }
         $id=$request->id;
         $Album = Album::where('id',$id)->update(['name'=>str_replace(' ','_', $request->nama_album),'deskripsi'=>$request->deskripsi]);
-        return Redirect::back()->with('success', 'Data Berhasil Diupdate');
+        rename("storage/album/".$request->foldername, "storage/album/".str_replace(' ','_', $request->nama_album));
+        return back()->with('success', 'Data Berhasil Diupdate');
     }
     
     public function delete($id){
@@ -118,7 +120,7 @@ class GalleryController extends Controller
         
         if($validator ->fails()){
             $messages = $validator->messages();
-            return Redirect::back()->withErrors($messages);
+            return back()->withErrors($messages);
         }
         if($request->hasFile('file')){
             foreach($request->file as $files){
@@ -133,7 +135,7 @@ class GalleryController extends Controller
             $media->album_id= $request->id;
             $media->kategori = $request->jenis;
             $media->save();
-            return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
+            return back()->with('success', 'Data Berhasil Ditambahkan');
             }
         }else{
             $media = new AlbumMedia;
@@ -143,7 +145,7 @@ class GalleryController extends Controller
             $media->name=$request->judul_video;
             $media->link=$request->link;
             $media->save();
-            return Redirect::back()->with('success', 'Data Berhasil Ditambahkan');
+            return back()->with('success', 'Data Berhasil Ditambahkan');
         }
 
     }
@@ -159,11 +161,11 @@ class GalleryController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = $request->filename;
             $file->move('storage/album/'.$request->judul, $filename);
-            return Redirect::back()->with('success', 'Data Berhasil Update');
+            return back()->with('success', 'Data Berhasil Update');
         }
         if($request->judul_video != null){
             $media =AlbumMedia::where('id',$id)->update(['name'=>$request->judul_video,'link'=>$request->link]);
-            return Redirect::back()->with('success', 'Data Berhasil Update');
+            return back()->with('success', 'Data Berhasil Update');
         }
     }
     public function detailDelete($id, Request $request){

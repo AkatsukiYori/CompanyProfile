@@ -11,6 +11,7 @@ use App\Http\Controllers\API\KaryawanController;
 use App\Http\Controllers\API\KontakController;
 use App\Http\Controllers\API\MitraController;
 use App\Http\Controllers\API\ProdukController;
+use App\Http\Controllers\API\MeetingManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,7 @@ Route::get('gallery', [GalleryController::class, 'index']);
 Route::get('albums', [GalleryController::class, 'ShowAlbums']);
 Route::get('albums/{name}', [GalleryController::class, 'GetAlbum']);
 Route::get('album/{id}', [GalleryController::class, 'getDetailAlbum']);
+
+//Management Meeting
+Route::get('meeting_management', [MeetingManagementController::class, 'index']);
+Route::get('meeting_management_count/{id}', [MeetingManagementController::class, 'startTimer']);

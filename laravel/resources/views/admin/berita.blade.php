@@ -48,7 +48,7 @@
                                                 <th>Judul Berita</th>
                                                 <th>Headline</th>
                                                 <th>Kategori</th>
-                                                <th>Jumlah Views</th>
+                                                <th>Jumlah Views Bulan</th>
                                                 <th>Foto</th>
                                                 <th>Isi Berita</th>
                                                 <th>Action</th>
@@ -72,15 +72,12 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $data->kategori }}</td>
-                                                <td>{{ $data->views }} views</td>
+                                                <td>{{ $data->jumlah_views_bulan }} views</td>
                                                 <td class="text-center">
                                                     <img src="{{ asset('/storage/berita/'.$data->media->name) }}" width="150" alt="">
                                                 </td>
                                                 <td>
-                                                    <?php
-                                                        $data->isi = \Illuminate\Support\Str::limit($data->isi, 100, $end='...')
-                                                    ?>
-                                                    <?= $data->isi ?>
+                                                    <div class="text-wrap"><?= $data->isi ?></div>
                                                 </td>
 
                                                 <td>

@@ -135,7 +135,8 @@ class MeetingManagementController extends Controller
             if($meeting->status_presentasi != 'selesai'){
                 $meeting->status_presentasi = $status;
             }
-            $meeting->slug = Carbon::now()->format('Y-m-').$meeting->nama_event;
+            $nama_event = implode('-', explode(' ',$meeting->nama_event));
+            $meeting->slug = Carbon::now()->format('Y-m-').$nama_event;
             $meeting->update();
 
             $queryStatus = $status;
@@ -154,7 +155,7 @@ class MeetingManagementController extends Controller
 
         $meeting->waktu_timer = Carbon::now()->format('Y-m-d H:i:s');
         $meeting->update();
-        event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
+        event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->jam_mulai, $meeting->jam_selesai, $meeting->id));
 
         $meetingData = [
             "id" => $meeting->id,
@@ -171,7 +172,7 @@ class MeetingManagementController extends Controller
 
     public function pushSisaWaktu($id, $waktu){
         $meeting = MeetingManagement::find($id);
-        event(new getTimerEvent($waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
+        event(new getTimerEvent($waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id, $meeting->jam_mulai, $meeting->jam_selesai));
     }
 
     public function endCount($id){

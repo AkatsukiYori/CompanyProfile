@@ -11,20 +11,23 @@ class MeetingManagementController extends Controller
 {
     public function index(){
 
-        $meeting = MeetingManagement::where('status', 'aktif')->first();
-        if($meeting){
-            $slug = Carbon::now()->format('Y-m-').$meeting->event;
-            $this->id = $meeting->id;
-            $meetingData = [
-                "id" => $meeting->id,
-                "nama_event" => $meeting->event,
-                "slug" => $meeting->slug,
-            ];
+        $meeting = MeetingManagement::orderBy('created_at','DESC')->get();
+
+        if(!$meeting){
+            return response()->json(['message' => 'Maaf, sekarang belum ada meeting yang sedang aktif'],500);
         }else{
-            $meetingData = 'Maaf, sekarang belum ada meeting yang sedang aktif';
+            $meetings = [];
+            foreach($meeting as $key => $value){
+                $meetings[$key]['id'] = $value->id;
+                $meetings[$key]['nama_event'] = $value->nama_event;
+                $meetings[$key]['jam_mulai'] = $value->jam_mulai;
+                $meetings[$key]['jam_selesai'] = $value->jam_selesai;
+                $meetings[$key]['slug'] = $value->slug;
+                $meetings[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
+            }
+            return response()->json($meetings);
         }
 
-        return response()->json($meetingData);
         
     }
 

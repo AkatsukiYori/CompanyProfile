@@ -184,10 +184,10 @@
     	var sisaWaktu = localStorage.getItem('sisa_waktu');
 
     	$('#showCounter').show();
-		$('#event').text(meetingData.nama_event);
-		$('#jam').text(meetingData.jam_aktif);
+		// $('#event').text(meetingData.nama_event);
+		// $('#jam').text(meetingData.jam_aktif);
 
-		startTimer(sisaWaktu);
+		// startTimer(sisaWaktu);
 
 		if(localStorage.getItem('count') == 'mulai'){
 			notificationMessage('Presentasi akan dimulai');

@@ -154,7 +154,8 @@ class MeetingManagementController extends Controller
 
         $meeting->waktu_timer = Carbon::now()->format('Y-m-d H:i:s');
         // $meeting->update();
-        event(new getTimerEvent($meeting->waktu_timer));
+
+        event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
 
         $meetingData = [
             "id" => $meeting->id,

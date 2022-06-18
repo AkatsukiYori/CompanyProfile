@@ -332,6 +332,7 @@
 					})
 					.done(res => {
 						swal("Yay", "Data Berhasil Dihapus", "success");
+						localStorage.clear();
 						$('#tableMeeting').DataTable().ajax.reload();
 					})
 					.catch(err => {
@@ -355,6 +356,7 @@
 					$('#showCounter').hide();
 					loadTable();
 				}else{
+					console.log(res)
 					if(localStorage.getItem('count') != 'mulai'){
 						var jamAktif = `${res.meeting.jam_mulai} - ${res.meeting.jam_selesai}`;
 
@@ -439,6 +441,19 @@
 		if(waktu > 0){
 			waktu -= 1;
 			localStorage.setItem('sisa_waktu', waktu);
+			var id = localStorage.getItem('id');
+
+			$.ajax({
+				method: 'GET',
+				url: `/meeting-management/count_reducer/${id}/${waktu}`,
+			})
+			.done(res => {
+				console.log(res)
+			})
+			.fail(err => {
+				console.log(err.message)
+			})
+
 		}
 		return updateTimer(waktu);
 	}

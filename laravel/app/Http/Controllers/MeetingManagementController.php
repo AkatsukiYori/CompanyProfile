@@ -153,8 +153,7 @@ class MeetingManagementController extends Controller
         }
 
         $meeting->waktu_timer = Carbon::now()->format('Y-m-d H:i:s');
-        // $meeting->update();
-
+        $meeting->update();
         event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
 
         $meetingData = [
@@ -165,9 +164,14 @@ class MeetingManagementController extends Controller
             "jam_selesai" => date('H:i',strtotime($meeting->jam_selesai))
         ];
 
-        $data = ($meeting->sisa_waktu != 0)? ["status" => "aktif", "meeting" => $meetingData] : ["status" => "waktu habis"];
+        $data = ($meeting->sisa_waktu != 0) ? ["status" => "aktif", "meeting" => $meetingData] : ["status" => "waktu habis"];
 
         return $data;
+    }
+
+    public function pushSisaWaktu($id, $waktu){
+        $meeting = MeetingManagement::find($id);
+        event(new getTimerEvent($waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
     }
 
     public function endCount($id){

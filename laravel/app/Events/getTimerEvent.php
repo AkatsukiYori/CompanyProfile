@@ -20,16 +20,25 @@ class getTimerEvent implements ShouldBroadcast
      * @return void
      */
 
+    public $sisa_waktu;
     public $waktu_timer;
+    public $jumlah_menit;
+    public $id;
 
-    public function __construct($waktu_timer)
+    public function __construct($sisa_waktu, $waktu_timer, $jumlah_menit,$id)
     {
+        $this->sisa_waktu = $sisa_waktu;
         $this->waktu_timer = $waktu_timer;
+        $this->jumlah_menit = $jumlah_menit;
+        $this->id = $id;
     }
 
     public function broadcastWith(){
         return [
-            "hello" => "there"
+            "sisa_waktu" => $this->sisa_waktu,
+            "waktu_timer" => $this->waktu_timer,
+            "jumlah_menit" => $this->jumlah_menit,
+            "id" => $this->id,
         ];
     }
 

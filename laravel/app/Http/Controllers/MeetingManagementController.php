@@ -41,11 +41,12 @@ class MeetingManagementController extends Controller
 
     			return $button;
     		})
-    		->make(true);
+            ->make(true);
     }
 
     public function store(Request $request) {
-    	$validator = Validator::make($request->all(), [
+        
+        $validator = Validator::make($request->all(), [
     		'nama_event'=> 'required',
     		'narasumber' => 'required',
     		'jumlah_menit' => 'required',
@@ -63,12 +64,23 @@ class MeetingManagementController extends Controller
     	$meetingManagement->jumlah_menit = $request->jumlah_menit;
     	$meetingManagement->sisa_waktu = $request->jumlah_menit * 60;
     	$meetingManagement->status_presentasi = "belum aktif";
+        $meetingManagement->slug = date_format(date_create(explode(" ", $request->jam_mulai)[0]), 'Y-m-d-').implode("-",explode(" ", $request->nama_event));
+        $meetingManagement->kode = $this->randomizeCode();
         $meetingManagement->status = "belum aktif";
     	$meetingManagement->jam_mulai = $request->jam_mulai;
     	$meetingManagement->jam_selesai = $request->jam_selesai;
-    	$meetingManagement->save();
+        $meetingManagement->save();
+        
+        return Redirect::back()->with('success', 'Data Berhasil dimasukkan');
+    }
 
-    	return Redirect::back()->with('success', 'Data Berhasil dimasukkan');
+    public function randomizeCode(){
+        $randomNum = rand(10000000, 99999999);
+        if (MeetingManagement::where('kode', '=', $randomNum)->exists()){
+            $this->randomizeCode();
+        }else{
+            return $randomNum;
+        }
     }
 
     public function editData($id) {
@@ -99,7 +111,7 @@ class MeetingManagementController extends Controller
         $meeting->narasumber = $request->narasumber;
         $meeting->jumlah_menit = $request->jumlah_menit;
         $meeting->sisa_waktu = $request->jumlah_menit * 60;
-        $meeting->slug = implode("-",explode(" ", $this->nama_event));
+        $meeting->slug = date_format(date_create(explode(" ", $request->jam_mulai)[0]), 'Y-m-d-').implode("-",explode(" ", $request->nama_event));
         $meeting->jam_mulai = $request->jam_mulai;
         $meeting->jam_selesai = $request->jam_selesai;
         $meeting->update();
@@ -154,7 +166,7 @@ class MeetingManagementController extends Controller
 
         $meeting->waktu_timer = Carbon::now()->format('Y-m-d H:i:s');
         $meeting->update();
-        event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id));
+        event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->jam_mulai, $meeting->jam_selesai, $meeting->id));
 
         $meetingData = [
             "id" => $meeting->id,

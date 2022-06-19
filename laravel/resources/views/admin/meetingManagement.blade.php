@@ -58,6 +58,7 @@
 													<th>jam mulai</th>
 													<th>jam selesai</th>
 													<th >action</th>
+													<th>Kirim Chat</th>
 												</thead>
 
 												<tbody>
@@ -86,7 +87,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Modal add -->
 	<div class="modal fade" id="karyawanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -177,10 +177,10 @@
 	</div>
 
 <script>
-
-
+	
 	//variable untuk menunjukkan sisaWaktu
 	var waktu = 0;
+	var timerJalan = false;
 
 	//function yang digunakan untuk getdata dari localStorage
 	var getData = () => {
@@ -261,6 +261,18 @@
 					{data: 'jam_mulai', name:'jam_mulai'},
 					{data: 'jam_selesai', name:'jam_selesai'},
 					{data: 'action', name:'action'},
+					{data: 'kirim_chat', name:'kirim_chat',
+						render: function(){
+							return `'
+								<form action="{{ route('chatlog_add') }}" method="post">
+									@csrf
+									<input type="text" name="isi_message" placeholder="input chat disini">
+									<input type="text" name="event id" placeholder="input event id disini">
+									<button type="submit" class="btn btn-success" style="margin-top: 8px">kirim chat</button>
+								</form>
+							'`
+						}
+					},
 				],
 				columnDefs : [
 					{"width" : "10px", "targets" : 0},
@@ -343,6 +355,7 @@
 						if(localStorage.getItem('id') == id){
 							localStorage.setItem('sisa_waktu', 0);
 							waktu = 0;
+							timerJalan = false;
 							localStorage.clear();
 							$('#showCounter').hide();
 						}
@@ -427,16 +440,18 @@
 
 	//function untuk startTimer
 	var startTimer = (sisaWaktu) => {
-		waktu = sisaWaktu
+		waktu = sisaWaktu;
+		timerJalan = true;
 
-		clearInterval(timerStart)
-		var timerStart = setInterval((waktu) => {
+		const timerStart = setInterval((waktu) => {
 			if(waktu < 1){
 				return;
 			}
 			var timer = reduceTimer()
-			
 			$('#counter').text(timer)
+			if(!timerJalan){
+				clearInterval(timerStart)
+			}
 		}, 1000);
 
 		//jika sisa waktu telah mencapai waktu yang telah ditentukan maka akan berhenti
@@ -455,9 +470,10 @@
 						url: `/meeting-management/countend/${id}`,
 					})
 					.done(res => {
-						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
-						localStorage.clear();
 						clearInterval(timerStart);
+						console.log('intervalclear')
+						localStorage.clear();
+						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
 						$('#tableMeeting').DataTable().ajax.reload();
 					})
 					.catch(err => {
@@ -475,7 +491,9 @@
 			waktu -= 1;
 			localStorage.setItem('sisa_waktu', waktu);
 		}
-		return updateTimer(waktu);
+		if(timerJalan){
+			return updateTimer(waktu);
+		}
 	}
 
 	//function yang digunakan untuk convert sisa waktu dari detik menjadi jam:menit:detik
@@ -485,7 +503,7 @@
 		var sisaDetik = Math.floor(sisaWaktu % 60);
 
 		if(sisaJam < 10){
-			sisaJam = `0${sisaJam}`;
+			sisaJam = `0${sisaJam}`;	
 		}
 		if(sisaMenit < 10){
 			sisaMenit = `0${sisaMenit}`;

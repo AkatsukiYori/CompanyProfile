@@ -15,4 +15,8 @@ class MeetingManagement extends Model
     public function getEventAttribute(){
     	return implode("-",explode(" ", $this->nama_event));
     }
+
+    public function chatlog() {
+        return $this->hasMany('App\Models\Chatlog');
+    }
 }

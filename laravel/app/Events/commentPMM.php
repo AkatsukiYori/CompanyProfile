@@ -19,9 +19,29 @@ class commentPMM
      *
      * @return void
      */
-    public function __construct()
+    public $event_id;
+    public $pengirim;
+    public $isi_message;
+    public $waktu_kirim;
+    public $id;
+
+    public function __construct($event_id, $pengirim, $isi_message, $waktu_kirim, $id)
     {
-        //
+        $this->event_id = $event_id;
+        $this->pengirim = $pengirim;
+        $this->isi_message = $isi_message;
+        $this->waktu_kirim = $waktu_kirim;
+        $this->id = $id;
+    }
+
+    public function broadcastWith(){
+        return [
+            "event_id" => $this->event_id,
+            "pengirim" => $this->pengirim,
+            "isi_message" => $this->isi_message,
+            "waktu_kirim" => $this->waktu_kirim,
+            "id" => $this->id,
+        ];
     }
 
     /**
@@ -31,6 +51,6 @@ class commentPMM
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('commentChannel');
     }
 }

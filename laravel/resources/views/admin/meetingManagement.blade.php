@@ -178,22 +178,31 @@
 
 <script>
 
+
+	//variable untuk menunjukkan sisaWaktu
+	var waktu = 0;
+
+	//function yang digunakan untuk getdata dari localStorage
 	var getData = () => {
     	$('#showCounter').show();
     	var meetingData = JSON.parse(localStorage.getItem('meetingData'));
-    	var sisaWaktu = localStorage.getItem('sisa_waktu');
 
     	$('#showCounter').show();
-		// $('#event').text(meetingData.nama_event);
-		// $('#jam').text(meetingData.jam_aktif);
+		$('#event').text(meetingData.nama_event);
+		$('#jam').text(meetingData.jam_aktif);
 
-		// startTimer(sisaWaktu);
+    	if(localStorage.getItem('sisa_waktu')){
+    		var sisaWaktu = localStorage.getItem('sisa_waktu');
+			startTimer(sisaWaktu);
+			if(localStorage.getItem('count') == 'mulai'){
+				notificationMessage('Presentasi akan dimulai');
+			}else{
+				return;
+			}
+    	}else{
+    		localStorage.clear();
+    	}
 
-		if(localStorage.getItem('count') == 'mulai'){
-			notificationMessage('Presentasi akan dimulai');
-		}else{
-			return;
-		}
     }
 
 	$(document).ready(()=>{
@@ -205,17 +214,16 @@
 
         loadTable();
 
-        i = 0;
-
-        while(i < 1){
-        	if(localStorage.getItem('count')){
-	        	getData();
-	        }
-	        i += 1
+    	if(localStorage.getItem('count')){
+        	getData();
         }
 
         $('#jam_mulai_edit').on('change', function() {
         	$('#jam_selesai_edit').attr('min', $('#jam_mulai_edit').val());
+        });
+
+        $('#jam_mulai').on('change', function() {
+        	$('#jam_selesai').attr('min', $('#jam_mulai').val());
         });
 
 		//untuk load datatable
@@ -332,7 +340,12 @@
 					})
 					.done(res => {
 						swal("Yay", "Data Berhasil Dihapus", "success");
-						localStorage.clear();
+						if(localStorage.getItem('id') == id){
+							localStorage.setItem('sisa_waktu', 0);
+							waktu = 0;
+							localStorage.clear();
+							$('#showCounter').hide();
+						}
 						$('#tableMeeting').DataTable().ajax.reload();
 					})
 					.catch(err => {
@@ -342,46 +355,56 @@
 			})
 		});
 
+		//start countdown timer
 		$(document).on('click', '.start', function(e) {
 			e.preventDefault();
 			var id = $(this).attr("id");
-			$.ajax({
-				method: 'GET',
-				url: `/meeting-management/count/${id}`,
-			})
-			.done(res => {
-				if(res.status == "habis"){
-					swal("Sad", "Waktu Presentasi telah berakhir", "error");
-					localStorage.removeItem('count');
-					$('#showCounter').hide();
-					loadTable();
-				}else{
-					console.log(res)
-					if(localStorage.getItem('count') != 'mulai'){
-						var jamAktif = `${res.meeting.jam_mulai} - ${res.meeting.jam_selesai}`;
 
-						var meetingData = {
-							"nama_event" : res.meeting.nama_event,
-							"jam_aktif" : jamAktif
-						};
+			//jika di localstorage tidak ada item count maka akan dijalankan ajax
+			if(!localStorage.getItem('count')){
+				$.ajax({
+					method: 'GET',
+					url: `/meeting-management/count/${id}`,
+				})
+				.done(res => {
+					if(res.status == "habis"){
+						swal("Sad", "Waktu Presentasi telah berakhir", "error");
+						localStorage.removeItem('count');
+						$('#showCounter').hide();
+						loadTable();
+					}else{
+						if(localStorage.getItem('count') != 'mulai'){
 
-						if(!localStorage.getItem('id') && localStorage.getItem('sisaWaktu') != 0){
-							localStorage.setItem('sisa_waktu', res.meeting.sisa_waktu);
-							localStorage.setItem('id', res.meeting.id);
-							localStorage.setItem('count', 'mulai');
-							localStorage.setItem('meetingData', JSON.stringify(meetingData));
+							var jamAktif = `${res.meeting.jam_mulai} - ${res.meeting.jam_selesai}`;
+
+							var meetingData = {
+								"nama_event" : res.meeting.nama_event,
+								"jam_aktif" : jamAktif
+							};
+
+							if(!localStorage.getItem('id') && localStorage.getItem('sisaWaktu') != 0){
+								localStorage.setItem('sisa_waktu', res.meeting.sisa_waktu);
+								localStorage.setItem('id', res.meeting.id);
+								localStorage.setItem('count', 'mulai');
+								localStorage.setItem('meetingData', JSON.stringify(meetingData));
+							}
+
+
+							$('#counter').removeClass('text-danger');
+							$('#counter').addClass('text-dark');
+							
+							getData();
 						}
-						
-						getData();
 					}
-				}
-			})
-			.catch(err => {
-				console.log(err.message)
-			})
+				})
+				.catch(err => {
+					console.log(err.message)
+				})
+			}
 		})
 	});
-
+	
+	//function to show JS notification API 
 	var  notificationMessage = (message) => {
 		if(Notification.permission == 'granted'){
 			showNotification(message);
@@ -394,6 +417,7 @@
 		}
 	}
 
+	//function to call Notification API
 	var showNotification = (message) => {
 		const notification = new Notification("Sisa Waktu Presentasi", {
 			body: message,
@@ -401,11 +425,12 @@
 		});
 	}
 
-	var waktu = 0;
-
+	//function untuk startTimer
 	var startTimer = (sisaWaktu) => {
 		waktu = sisaWaktu
-		setInterval((waktu) => {
+
+		clearInterval(timerStart)
+		var timerStart = setInterval((waktu) => {
 			if(waktu < 1){
 				return;
 			}
@@ -414,50 +439,46 @@
 			$('#counter').text(timer)
 		}, 1000);
 
-		setTimeout(() => {
-			localStorage.setItem('count', 'selesai')
-			clearInterval(startTimer)
-			$('#counter').removeClass('text-dark');
-			$('#counter').addClass('text-danger');
-			notificationMessage('waktu presentasi telah berakhir');
+		//jika sisa waktu telah mencapai waktu yang telah ditentukan maka akan berhenti
+		if(localStorage.getItem('sisa_waktu')){
+			setTimeout(() => {
+				if(localStorage.getItem('sisa_waktu')){
+					localStorage.setItem('count', 'selesai')
+					$('#counter').removeClass('text-dark');
+					$('#counter').addClass('text-danger');
+					notificationMessage('waktu presentasi telah berakhir');
 
-			var id = localStorage.getItem('id');
+					var id = localStorage.getItem('id');
 
-			$.ajax({
-				method: 'GET',
-				url: `/meeting-management/countend/${id}`,
-			})
-			.done(res => {
-				swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
-				localStorage.clear();
-			})
-			.catch(err => {
-				console.log(err.message)
-			})
-		}, sisaWaktu * 1000)
+					$.ajax({
+						method: 'GET',
+						url: `/meeting-management/countend/${id}`,
+					})
+					.done(res => {
+						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
+						localStorage.clear();
+						clearInterval(timerStart);
+						$('#tableMeeting').DataTable().ajax.reload();
+					})
+					.catch(err => {
+						console.log(err.message)
+					})
+				}
+
+			}, sisaWaktu * 1000)
+		}
 	}
 
+	//function yang digunakan untuk mengurani sisa waktu per detik hingga 0
 	var reduceTimer = () => {
 		if(waktu > 0){
 			waktu -= 1;
 			localStorage.setItem('sisa_waktu', waktu);
-			var id = localStorage.getItem('id');
-
-			$.ajax({
-				method: 'GET',
-				url: `/meeting-management/count_reducer/${id}/${waktu}`,
-			})
-			.done(res => {
-				console.log(res)
-			})
-			.fail(err => {
-				console.log(err.message)
-			})
-
 		}
 		return updateTimer(waktu);
 	}
 
+	//function yang digunakan untuk convert sisa waktu dari detik menjadi jam:menit:detik
 	var updateTimer = (sisaWaktu) => {
 		var sisaJam = Math.floor(sisaWaktu / 3600);
 		var sisaMenit = Math.floor((sisaWaktu % 3600) / 60);

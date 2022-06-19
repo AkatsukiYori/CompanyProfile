@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MeetingManagement;
+use App\Events\getTimerEvent;
 use Carbon\Carbon;
 
 class MeetingManagementController extends Controller
@@ -27,13 +28,13 @@ class MeetingManagementController extends Controller
             }
             return response()->json($meetings);
         }
-
         
     }
 
-    public function startTimer($id){
+    public function startTimer($id, $waktu){
         $meeting = MeetingManagement::find($id);
-        $waktu_timer = (!$meeting->waktu_timer) ? 'Waktu Presentasi belum dimulai' : $meeting->waktu_timer ;
+
+        $waktu_timer = (!$meeting->waktu_timer) ? 'Waktu Presentasi belum dimulai' : event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id)); ;
 
         return response()->json($waktu_timer);
     }

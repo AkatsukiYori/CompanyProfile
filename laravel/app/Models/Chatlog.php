@@ -12,6 +12,10 @@ class Chatlog extends Model
     protected $table = 'chatlog';
 
     public function event() {
-        return $this->belongsTo('App\Models\MeetingManagement');
+        return $this->belongsTo('App\Models\MeetingManagement', 'event_id');
+    }
+
+    public function user(){
+    	return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

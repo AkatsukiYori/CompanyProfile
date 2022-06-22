@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\MeetingManagement;
+use App\Models\Chatlog;
+use App\Models\User;
 use App\Events\getTimerEvent;
+use App\Events\commentPMM;
 use DataTables;
 use Carbon\Carbon;
 
 class MeetingManagementController extends Controller
 {
+
     public function index(){
         $meeting = MeetingManagement::orderBy('created_at', 'DESC')->get();
 
@@ -41,12 +45,11 @@ class MeetingManagementController extends Controller
 
     			return $button;
     		})
-            ->make(true);
+    		->make(true);
     }
 
     public function store(Request $request) {
-        
-        $validator = Validator::make($request->all(), [
+    	$validator = Validator::make($request->all(), [
     		'nama_event'=> 'required',
     		'narasumber' => 'required',
     		'jumlah_menit' => 'required',
@@ -69,9 +72,9 @@ class MeetingManagementController extends Controller
         $meetingManagement->status = "belum aktif";
     	$meetingManagement->jam_mulai = $request->jam_mulai;
     	$meetingManagement->jam_selesai = $request->jam_selesai;
-        $meetingManagement->save();
-        
-        return Redirect::back()->with('success', 'Data Berhasil dimasukkan');
+    	$meetingManagement->save();
+
+    	return Redirect::back()->with('success', 'Data Berhasil dimasukkan');
     }
 
     public function randomizeCode(){
@@ -188,5 +191,53 @@ class MeetingManagementController extends Controller
         $meeting->update();
 
         $this->loadTable();
+    }
+
+    public function showChat($event_id){
+        $data = [];
+        $chatLog = Chatlog::where('event_id', $event_id)->with('user')->get();
+
+        foreach($chatLog as $value){
+            $chat = [
+                'nama' => $value->user->name,
+                'isi_message' => $value->isi_message,
+                'tanggal' => date_format(date_create($value->created_at), 'j F Y H:i'),
+            ];
+
+            array_push($data, $chat);
+        }
+
+        return $data;
+    }
+
+    public function addChat(Request $request){
+        $validator = Validator::make($request->all(), [
+            'event_id' => 'required',
+            'isi_message' => 'required'
+        ]);
+
+        if($validator->fails()){
+            $message =  [
+                "status" => 'error',
+                "message" => $validator->messages()
+            ];
+
+            return $message;
+        }
+
+        $pengirim = User::find(auth()->user()->id)->pluck('name');
+        $waktu_kirim = now()->format('H:i:s');
+
+        event(new commentPMM($request->event_id, $pengirim, $request->isi_message, $waktu_kirim));
+
+        $chatlog = new Chatlog();
+        $chatlog->user_id = auth()->user()->id;
+        $chatlog->event_id = $request->event_id;
+        $chatlog->isi_message = $request->isi_message;
+        if($chatlog->save()){
+            return 'success';
+        }else{
+            return 'failed';
+        }
     }
 }

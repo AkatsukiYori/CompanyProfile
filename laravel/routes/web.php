@@ -14,7 +14,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\categoryBeritaController;
 use App\Http\Controllers\MeetingManagementController;
-use App\Http\Controllers\ChatlogController;
+use App\Events\getTimerEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +116,6 @@ Route::post('/meeting-management/delete/{id}', [MeetingManagementController::cla
 Route::get('/meeting-management/count/{id}', [MeetingManagementController::class, 'startCount'])->name('presentation_meeting_management_count')->middleware('auth');
 Route::get('/meeting-management/countend/{id}', [MeetingManagementController::class, 'endCount'])->name('presentation_meeting_management_countend')->middleware('auth');
 
-//Chatlog CRUD
-Route::get('/chatlog', [ChatlogController::class, 'index'])->name('chatlog')->middleware('auth');
-Route::post('/chatlog/add', [ChatlogController::class, 'store'])->name('chatlog_add')->middleware('auth');
+//Chatlog
+Route::get('/chatlog/get/{event_id}', [MeetingManagementController::class, 'showChat'])->name('chatlog_get')->middleware('auth');
+Route::post('/chatlog/add', [MeetingManagementController::class, 'addChat'])->name('chatlog_add')->middleware('auth');

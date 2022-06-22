@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMediaIdToKontakKami extends Migration
+class AddKodeToMeetingManagement extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddMediaIdToKontakKami extends Migration
      */
     public function up()
     {
-        Schema::table('kontak_kami', function (Blueprint $table) {
-            // $table->bigInteger('media_id')->after('foto');
+        Schema::table('meeting_management', function (Blueprint $table) {
+            // $table->integer('kode')->after('slug');
         });
     }
 
@@ -25,8 +25,7 @@ class AddMediaIdToKontakKami extends Migration
      */
     public function down()
     {
-        Schema::table('kontak_kami', function (Blueprint $table) {
-            //
+        Schema::table('meeting_management', function (Blueprint $table) {
         });
     }
 }

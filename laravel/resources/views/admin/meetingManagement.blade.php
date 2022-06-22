@@ -5,10 +5,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>Document</title>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+	<script href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 </head>
 <style>
 	#showCounter{
 		display: none;
+	}
+
+	.chatLog{
+		overflow: auto;
+		max-height: 200px;
 	}
 </style>
 <body>
@@ -58,7 +69,6 @@
 													<th>jam mulai</th>
 													<th>jam selesai</th>
 													<th >action</th>
-													<th>Kirim Chat</th>
 												</thead>
 
 												<tbody>
@@ -66,14 +76,55 @@
 										</div>
 									</div>
 
-									<div id="showCounter" class="col-md-6 my-4 card-body bg-light">
-										<div id="event" class="text-break h4"></div>
-										<div class="text-break my-3">
-											<p class="font-weight-bolder h5">JAM AKTIF: <span id="jam" class="text-primary text-light bg-secondary p-1"></span></p>
-										</div>
-										<div class="d-flex flex-wrap justify-content-center ">
-											<div id="counter" class="col-12 text-center h1 text-dark p-2">
-												
+									<div id="showCounter" class="col-md-6 my-4 p-1 card-body bg-light">
+										<div>
+											<div id="event" class="text-break h4"></div>
+											<div class="text-break my-3">
+												<p class="font-weight-bolder h5">JAM AKTIF: <span id="jam" class="text-primary text-light bg-secondary p-1"></span></p>
+											</div>
+											<div id="counter" class="col-12 text-center h1 text-dark p-2"></div>
+
+											<!-- Bagian Chat -->
+											<div class="d-flex flex-wrap justify-content-center ">
+												<div class="page-content page-container" id="page-content">
+												    <div class="padding">
+												        <div class="row col-12 container d-flex justify-content-center">
+												            <div class="col-md-12">
+												          
+													            <div class="box box-warning bg-warning p-2 direct-chat direct-chat-warning">
+													                <div class="box-header with-border">
+													                	<h3 class="box-title">Chat Messages</h3>
+													            	</div>
+													            </div>
+												        
+												            	<div class="box-body col-md-12 chatLog">
+												              
+													                <div id="chatLog" class="direct-chat-messages">
+													              		
+												                    </div>
+													                  
+												                </div>
+													            
+													            <div class="box-footer">
+													                <form action="#" method="post" id="chat">
+													                	@csrf
+													                	@method('post')
+													                    <div class="input-group">
+													                    	<input type="hidden" id="event_id" name="event_id">
+													                        <input type="text" name="isi_message" id="isi_message" placeholder="Type Message ..." class="form-control">
+													                        <span class="input-group-btn">
+													                            <button type="submit" class="btn btn-warning btn-flat">Send</button>
+													                        </span>
+													                    </div>
+													                </form>
+													            </div>
+													        
+													        </div>
+												      
+												      	</div>
+												    </div>
+												  	</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -87,6 +138,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<!-- Modal add -->
 	<div class="modal fade" id="karyawanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -177,10 +229,44 @@
 	</div>
 
 <script>
-	
+
+
 	//variable untuk menunjukkan sisaWaktu
 	var waktu = 0;
 	var timerJalan = false;
+
+	//function untuk load chat
+	var loadChat = (event_id) => {
+		$.ajax({
+			method: 'GET',
+			url: `/chatlog/get/${event_id}`,
+		})
+		.done(res => {
+			$('#chatLog').empty();
+			if(res != ''){
+				res.forEach((value) => {
+					$('#chatLog').append(`
+						<div class="direct-chat-msg py-2 right">
+		                    <div class="direct-chat-info clearfix">
+		                        <span class="direct-chat-name pull-right">${value.nama}</span>
+		                        <span class="direct-chat-timestamp pull-left">${value.tanggal}</span>
+		                    </div>
+		                    
+		                    <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png" alt="message user image">
+		                    
+		                    <div class="direct-chat-text">
+		                        ${value.isi_message}
+		                    </div>
+		                
+		                </div>
+					`);
+				})
+			}$('#chatLog').html();
+		})
+		.catch(err => {
+			console.log(err.message);
+		})
+	}
 
 	//function yang digunakan untuk getdata dari localStorage
 	var getData = () => {
@@ -194,6 +280,8 @@
     	if(localStorage.getItem('sisa_waktu')){
     		var sisaWaktu = localStorage.getItem('sisa_waktu');
 			startTimer(sisaWaktu);
+			$('#event_id').val(localStorage.getItem('id'));
+			loadChat(localStorage.getItem('id'));
 			if(localStorage.getItem('count') == 'mulai'){
 				notificationMessage('Presentasi akan dimulai');
 			}else{
@@ -230,7 +318,7 @@
 		function loadTable() {
 			$('#tableMeeting').DataTable({
 				deferRender: true,
-	        	scrollY: 300,
+	        	scrollY: 400,
 	        	scrollCollapse: true,
 	        	paging: true,
 				ajax: "{{ route('presentation_meeting_management_data') }}",
@@ -261,18 +349,6 @@
 					{data: 'jam_mulai', name:'jam_mulai'},
 					{data: 'jam_selesai', name:'jam_selesai'},
 					{data: 'action', name:'action'},
-					{data: 'kirim_chat', name:'kirim_chat',
-						render: function(){
-							return `'
-								<form action="{{ route('chatlog_add') }}" method="post">
-									@csrf
-									<input type="text" name="isi_message" placeholder="input chat disini">
-									<input type="text" name="event id" placeholder="input event id disini">
-									<button type="submit" class="btn btn-success" style="margin-top: 8px">kirim chat</button>
-								</form>
-							'`
-						}
-					},
 				],
 				columnDefs : [
 					{"width" : "10px", "targets" : 0},
@@ -362,11 +438,12 @@
 						$('#tableMeeting').DataTable().ajax.reload();
 					})
 					.catch(err => {
-						alert(err)
+						console.log(err.message)
 					})
 				}
 			})
 		});
+
 
 		//start countdown timer
 		$(document).on('click', '.start', function(e) {
@@ -400,6 +477,7 @@
 								localStorage.setItem('id', res.meeting.id);
 								localStorage.setItem('count', 'mulai');
 								localStorage.setItem('meetingData', JSON.stringify(meetingData));
+								$('#event_id').val(res.meeting.id);		
 							}
 
 
@@ -415,6 +493,29 @@
 				})
 			}
 		})
+
+		//chat 		
+		$('#chat').submit((e) => {
+			e.preventDefault();
+			var formData = {
+				'event_id': $('#event_id').val(),
+				'isi_message': $('#isi_message').val()
+			};
+			$.ajax({
+				method: 'POST',
+				url: `{{ route('chatlog_add') }}`,
+				data: formData
+			})
+			.done(res=>{
+				loadChat($('#event_id').val());
+				$('#isi_message').val('');
+			})
+			.err(err => {
+				console.log(err.message)
+			})
+		});
+
+
 	});
 	
 	//function to show JS notification API 
@@ -440,15 +541,17 @@
 
 	//function untuk startTimer
 	var startTimer = (sisaWaktu) => {
-		waktu = sisaWaktu;
+		// waktu = sisaWaktu
 		timerJalan = true;
 
-		const timerStart = setInterval((waktu) => {
+		var timerStart = setInterval((waktu) => {
+			var timer = reduceTimer()
+			
+			$('#counter').text(timer)
 			if(waktu < 1){
+				clearInterval(timerStart)
 				return;
 			}
-			var timer = reduceTimer()
-			$('#counter').text(timer)
 			if(!timerJalan){
 				clearInterval(timerStart)
 			}
@@ -461,6 +564,7 @@
 					localStorage.setItem('count', 'selesai')
 					$('#counter').removeClass('text-dark');
 					$('#counter').addClass('text-danger');
+					$('#counter').html('00:00:00');
 					notificationMessage('waktu presentasi telah berakhir');
 
 					var id = localStorage.getItem('id');
@@ -471,7 +575,6 @@
 					})
 					.done(res => {
 						clearInterval(timerStart);
-						console.log('intervalclear')
 						localStorage.clear();
 						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
 						$('#tableMeeting').DataTable().ajax.reload();
@@ -487,10 +590,12 @@
 
 	//function yang digunakan untuk mengurani sisa waktu per detik hingga 0
 	var reduceTimer = () => {
+		waktu = localStorage.getItem('sisa_waktu');
 		if(waktu > 0){
 			waktu -= 1;
 			localStorage.setItem('sisa_waktu', waktu);
 		}
+
 		if(timerJalan){
 			return updateTimer(waktu);
 		}
@@ -503,7 +608,7 @@
 		var sisaDetik = Math.floor(sisaWaktu % 60);
 
 		if(sisaJam < 10){
-			sisaJam = `0${sisaJam}`;	
+			sisaJam = `0${sisaJam}`;
 		}
 		if(sisaMenit < 10){
 			sisaMenit = `0${sisaMenit}`;

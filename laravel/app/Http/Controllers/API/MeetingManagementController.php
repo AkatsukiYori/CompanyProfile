@@ -27,7 +27,6 @@ class MeetingManagementController extends Controller
                 $meetings[$key]['waktu_timer'] = $value->waktu_timer;
                 $meetings[$key]['slug'] = $value->slug;
                 $meetings[$key]['kode'] = $value->kode;
-                $meetings[$key]['date'] = date_format(date_create(explode(" ", $value->tgl_album)[0]),'j F Y');
             }
             return response()->json($meetings);
         }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFaqsTable extends Migration
+class CreateChatlogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFaqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('faqs', function (Blueprint $table) {
+        Schema::create('chatlog', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('akun_id', false, true);     
-            $table->text('pertanyaan');
-            $table->text('jawaban');
-            $table->foreign('akun_id')->references('id')->on('users');
+            $table->bigInteger('user_id');     
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('meeting_management');
+            $table->string('isi_message');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateFaqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faqs');
+        Schema::dropIfExists('chatlog');
     }
 }

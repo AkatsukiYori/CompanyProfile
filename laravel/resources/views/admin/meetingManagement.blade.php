@@ -302,6 +302,28 @@
 
         loadTable();
 
+		
+		//chat 		
+		$('#chat').submit((e) => {
+			e.preventDefault();
+			var formData = {
+				'event_id': $('#event_id').val(),
+				'isi_message': $('#isi_message').val()
+			};
+			$.ajax({
+				method: 'POST',
+				url: `{{ route('chatlog_add') }}`,
+				data: formData
+			})
+			.done(res=>{
+				loadChat($('#event_id').val());
+				$('#isi_message').val('');
+			})
+			.err(err => {
+				console.log(err.message)
+			})
+		});
+		
     	if(localStorage.getItem('count')){
         	getData();
         }
@@ -494,26 +516,6 @@
 			}
 		})
 
-		//chat 		
-		$('#chat').submit((e) => {
-			e.preventDefault();
-			var formData = {
-				'event_id': $('#event_id').val(),
-				'isi_message': $('#isi_message').val()
-			};
-			$.ajax({
-				method: 'POST',
-				url: `{{ route('chatlog_add') }}`,
-				data: formData
-			})
-			.done(res=>{
-				loadChat($('#event_id').val());
-				$('#isi_message').val('');
-			})
-			.err(err => {
-				console.log(err.message)
-			})
-		});
 
 
 	});

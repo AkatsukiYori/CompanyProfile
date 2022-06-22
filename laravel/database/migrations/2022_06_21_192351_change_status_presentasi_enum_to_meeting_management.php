@@ -14,7 +14,7 @@ class ChangeStatusPresentasiEnumToMeetingManagement extends Migration
     public function up()
     {
         Schema::table('meeting_management', function (Blueprint $table) {
-            $table->enum('status_presentasi', ['belum aktif', 'aktif', 'progress', 'selesai'])->change();
+            // $table->enum('status_presentasi', ['belum aktif', 'aktif', 'progress', 'selesai'])->change();
         });
     }
 

@@ -39,6 +39,8 @@ class MeetingManagementController extends Controller
                     $button .= '<button type="button" name="start" id="'.$meeting->id.'" value="'.$meeting->id.'" class="start btn btn-secondary btn-sm" disabled><i class="bi bi-hourglass-split"></i> Waiting</button>';
                 }else if($meeting->status_presentasi == "selesai"){
                     $button .= '<button type="button" name="start" id="'.$meeting->id.'" value="'.$meeting->id.'" class="start btn btn-secondary btn-sm" disabled><i class="bi bi-bell-slash"></i> Ended</button>';
+                }else if($meeting->status_presentasi == "progress"){
+                    $button .= '<button type="button" name="start" id="'.$meeting->id.'" value="'.$meeting->id.'" class="start btn btn-warning btn-sm"><i class="bi bi-clock-history"></i> In Meeting</button>';
                 }else{
                     $button .= '<button type="button" name="start" id="'.$meeting->id.'" value="'.$meeting->id.'" class="start btn btn-primary btn-sm" ><i class="fa fa-stopwatch"></i> Mulai</button>';
                 }
@@ -125,8 +127,8 @@ class MeetingManagementController extends Controller
     }
 
     public function deleteData($id){
-        $meeting = MeetingManagement::find($id);
-        $meeting->delete();
+        $chatlog = Chatlog::where('event_id', $id)->delete();
+        $meeting = MeetingManagement::find($id)->delete();
 
         $this->loadTable();
         return ["message" => "Data berhasil dihapus"];
@@ -138,7 +140,9 @@ class MeetingManagementController extends Controller
         }else if(Carbon::now()->format('Y-m-d H:i:s') > $meeting["jam_selesai"]){
             $meeting = $this->updateStatus($meeting["id"], 'selesai');
         }else if(Carbon::now()->format('Y-m-d H:i:s') > $meeting["jam_mulai"] && Carbon::now()->format('Y-m-d H:i:s') < $meeting["jam_selesai"]){
-            $meeting = $this->updateStatus($meeting["id"], 'aktif');
+            if($meeting['status_presentasi'] != 'progress'){
+                $meeting = $this->updateStatus($meeting["id"], 'aktif');
+            }
         }
 
         return $meeting;
@@ -167,21 +171,41 @@ class MeetingManagementController extends Controller
             return ["status" => "habis"];
         }
 
+        if($meeting->status_presentasi == 'progress'){
+            return ["status" => "progress"];
+        }
+
+        $meeting->status_presentasi = 'progress';
         $meeting->waktu_timer = Carbon::now()->format('Y-m-d H:i:s');
-        $meeting->update();
         event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->jam_mulai, $meeting->jam_selesai, $meeting->id));
+        if($meeting->update()){
+            $meetingData = [
+                "id" => $meeting->id,
+                "nama_event" => ucfirst($meeting->nama_event),
+                "sisa_waktu" => $meeting->sisa_waktu,
+                "jam_mulai" => date('H:i',strtotime($meeting->jam_mulai)),
+                "jam_selesai" => date('H:i',strtotime($meeting->jam_selesai))
+            ];
 
-        $meetingData = [
-            "id" => $meeting->id,
-            "nama_event" => ucfirst($meeting->nama_event),
-            "sisa_waktu" => $meeting->sisa_waktu,
-            "jam_mulai" => date('H:i',strtotime($meeting->jam_mulai)),
-            "jam_selesai" => date('H:i',strtotime($meeting->jam_selesai))
-        ];
+            $data = ($meeting->sisa_waktu != 0) ? ["status" => "aktif", "meeting" => $meetingData] : ["status" => "waktu habis"];
 
-        $data = ($meeting->sisa_waktu != 0) ? ["status" => "aktif", "meeting" => $meetingData] : ["status" => "waktu habis"];
+            return $data;
+        }
+
+    }
+
+    public function countReload($id){
+        $meeting = MeetingManagement::find($id);
+
+        $waktu_timer = strtotime($meeting->waktu_timer);
+        $timeNow = strtotime(Carbon::now()->format('Y-m-d H:i:s'));
+
+        $sisa_waktu = intval(($timeNow - $waktu_timer));
+
+        $data = ($sisa_waktu != ($meeting->jumlah_menit * 60)) ? ["status" => "aktif", "sisa_waktu" => ($meeting->sisa_waktu - $sisa_waktu)] : ["status" => "waktu habis"];
 
         return $data;
+
     }
 
     public function endCount($id){
@@ -228,7 +252,7 @@ class MeetingManagementController extends Controller
         $pengirim = User::find(auth()->user()->id)->pluck('name');
         $waktu_kirim = now()->format('H:i:s');
 
-        event(new commentPMM($request->event_id, $pengirim, $request->isi_message, $waktu_kirim));
+        event(new commentPMM($request->event_id, $pengirim[0], $request->isi_message, $waktu_kirim));
 
         $chatlog = new Chatlog();
         $chatlog->user_id = auth()->user()->id;

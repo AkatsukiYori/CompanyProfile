@@ -69,6 +69,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header" style="background-color: #9333EA;">
+                                        <h3 class="text-center text-white">Misi 2</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="text-center"><?= $viMi->misi2 ?></h4>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endforeach
                     </div>
@@ -99,6 +110,10 @@
                         <label for="misi">Misi</label>
                         <textarea name="misi" id="misi" cols="30" rows="5" class="form-control ckeditor"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="misi2">Misi 2</label>
+                        <textarea name="misi2" id="misi2" cols="30" rows="5" class="form-control ckeditor"></textarea>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -128,8 +143,12 @@
                         <input type="text" class="form-control" id="visiEdit" name="visiEdit" parsley-trigger="change">
                     </div>
                     <div class="form-group">
-                        <label for="misi">Misi</label>
+                        <label for="misiEdit">Misi</label>
                         <textarea name="misiEdit" id="misiEdit" cols="30" rows="5" class="form-control ckeditor"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="misi2">Misi 2</label>
+                        <textarea name="misi2Edit" id="misi2Edit" cols="30" rows="5" class="form-control ckeditor"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success btnUpdate">Save change</button>
@@ -157,6 +176,7 @@
                     $('#editId').val(response.id);
                     $('#visiEdit').val(response.visi);
                     CKEDITOR.instances['misiEdit'].setData(response.misi);
+                    CKEDITOR.instances['misi2Edit'].setData(response.misi2);
                 }
             })
         })

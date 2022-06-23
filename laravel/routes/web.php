@@ -114,6 +114,7 @@ Route::post('/meeting-management/delete/{id}', [MeetingManagementController::cla
 
 //Meeting Management Timer
 Route::get('/meeting-management/count/{id}', [MeetingManagementController::class, 'startCount'])->name('presentation_meeting_management_count')->middleware('auth');
+Route::get('/meeting-management/count_reload/{id}', [MeetingManagementController::class, 'countReload'])->name('presentation_meeting_management_count_reload')->middleware('auth');
 Route::get('/meeting-management/countend/{id}', [MeetingManagementController::class, 'endCount'])->name('presentation_meeting_management_countend')->middleware('auth');
 
 //Chatlog

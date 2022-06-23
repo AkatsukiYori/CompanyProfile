@@ -43,6 +43,9 @@
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>Nama</th>
+                                            <th>no.HP</th>
+                                            <th>Email</th>
+                                            <th>Kode</th>
                                             <th>Kategori</th>
                                             <th>Jabatan</th>
                                             <th>Action</th>
@@ -60,6 +63,9 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $karya->nama }}</td>
+                                                <td>{{ $karya->no_hp }}</td>
+                                                <td>{{ $karya->email }}</td>
+                                                <td>{{ $karya->kode }}</td>
                                                 <td>{{ strtolower($karya->kategori) }}</td>
                                                 <td>{{ $karya->jabatan }}</td>
                                                 <td>
@@ -101,6 +107,14 @@
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp">No HP</label>
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukan NO HP karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukan email karyawan" required>
                     </div>
                     <div class="form-group">
                         <label for="kategory">Divisi</label>
@@ -147,6 +161,14 @@
                         <input type="text" class="form-control" id="namaEdit" name="namaEdit" required>
                     </div>
                     <div class="form-group">
+                        <label for="no_hpEdit">No HP</label>
+                        <input type="text" class="form-control" id="no_hpEdit" name="no_hpEdit" placeholder="Masukan NO HP karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailEdit">email</label>
+                        <input type="emailEdit" class="form-control" id="emailEdit" name="emailEdit" placeholder="Masukan email karyawan" required>
+                    </div>
+                    <div class="form-group">
                         <label for="kategori">Kategori</label>
                         <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" required>
                     </div>
@@ -179,6 +201,8 @@
                 success:function(response) {
                     // console.log(response);
                     $('#namaEdit').val(response[0].nama);
+                    $('#no_hpEdit').val(response[0].no_hp);
+                    $('#emailEdit').val(response[0].email);
                     $('#kategoriEdit').val(response[0].kategori);
                     $('#jabatanEdit').val(response[0].jabatan);
                     $('#editID').val(response[0].id);

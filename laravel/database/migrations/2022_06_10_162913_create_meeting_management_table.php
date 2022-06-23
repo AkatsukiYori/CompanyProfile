@@ -21,6 +21,7 @@ class CreateMeetingManagementTable extends Migration
             $table->datetime('waktu_timer')->nullable();
             $table->integer('jumlah_menit');
             $table->string('slug')->nullable();
+            $table->integer('kode');
             $table->enum('status_presentasi', ['belum aktif', 'aktif', 'progress', 'selesai']);
             $table->enum('status', ['belum aktif', 'aktif', 'selesai']);
             $table->datetime('jam_mulai');

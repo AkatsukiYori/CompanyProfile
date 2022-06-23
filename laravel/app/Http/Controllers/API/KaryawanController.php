@@ -111,4 +111,21 @@ class KaryawanController extends Controller
         }
         return response()->json($members, 200);
     }
+
+        public function getDetailTeam(){
+            $karyawan = Karyawan::all();
+            $members = [];
+            foreach($karyawan as $key => $value){
+                $members[$key]['id'] = $key;
+                $members[$key]['nama'] = $value->nama;
+                $members[$key]['jabatan'] = $value->jabatan;
+                $members[$key]['image'] = $value->image;
+                $members[$key]['no_hp'] = $value->no_hp;
+                $members[$key]['email'] = $value->email;
+                $members[$key]['kode'] = $value->kode;
+            }
+            
+            return response()->json($members, 200);
+        }
+    
 }

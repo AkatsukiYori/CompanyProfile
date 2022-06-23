@@ -250,9 +250,9 @@ class MeetingManagementController extends Controller
         }
 
         $pengirim = User::find(auth()->user()->id)->pluck('name');
-        $waktu_kirim = now()->format('H:i:s');
+        $waktu_kirim = now()->format('H:i');
 
-        event(new commentPMM($request->event_id, $pengirim[0], $request->isi_message, $waktu_kirim));
+        event(new commentPMM($request-> event_id, $pengirim[0], $request->isi_message, $waktu_kirim));
 
         $chatlog = new Chatlog();
         $chatlog->user_id = auth()->user()->id;

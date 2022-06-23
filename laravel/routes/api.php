@@ -37,6 +37,7 @@ Route::get('faq', [FaqsController::class, 'index']);
 Route::get('karyawan', [KaryawanController::class, 'index']);
 Route::get('getCarouselKaryawan', [KaryawanController::class, 'getCarouselKaryawan']);
 Route::get('team', [KaryawanController::class, 'getTeam']);
+Route::get('detailTeam', [KaryawanController::class, 'getDetailTeam']);
 
 //kontak
 Route::get('kontak', [KontakController::class, 'index']);

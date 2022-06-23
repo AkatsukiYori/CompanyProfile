@@ -57,25 +57,6 @@
 								</div>
 
 								<div class="d-flex flex-wrap">
-									<div class="col-md-6">
-										<div class="card-body p-0">
-											<table id="tableMeeting" class="table table-bordered dt-responsive nowrap">
-												<thead class="text-center">
-													<th>No.</th>
-													<th>Nama Event</th>
-													<th>Status</th>
-													<th>Jumlah Menit</th>
-													<th>Narasumber</th>
-													<th>jam mulai</th>
-													<th>jam selesai</th>
-													<th >action</th>
-												</thead>
-
-												<tbody>
-											</table>
-										</div>
-									</div>
-
 									<div id="showCounter" class="col-md-6 my-4 p-1 card-body bg-light">
 										<div>
 											<div id="event" class="text-break h4"></div>
@@ -125,6 +106,26 @@
 												    </div>
 												  	</div>
 												</div>
+
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="card-body p-0">
+												<table id="tableMeeting" class="table table-bordered dt-responsive nowrap">
+													<thead class="text-center">
+														<th>No.</th>
+														<th>Nama Event</th>
+														<th>Status</th>
+														<th>Jumlah Menit</th>
+														<th>Narasumber</th>
+														<th>Kode</th>
+														<th>jam mulai</th>
+														<th>jam selesai</th>
+														<th >action</th>
+													</thead>
+
+													<tbody>
+												</table>
 											</div>
 										</div>
 									</div>
@@ -138,7 +139,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Modal add -->
 	<div class="modal fade" id="karyawanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -229,11 +229,19 @@
 	</div>
 
 <script>
-
-
 	//variable untuk menunjukkan sisaWaktu
 	var waktu = 0;
 	var timerJalan = false;
+
+	var getWaktuPerMenit = () => {
+		var timerWaktu = setInterval(() => {
+			if(!timerJalan){
+				return;
+			}
+			timerJalan = false;
+			getTimerPrecise();
+		}, 60 * 1000)
+	}
 
 	//function untuk load chat
 	var loadChat = (event_id) => {
@@ -269,7 +277,7 @@
 	}
 
 	//function yang digunakan untuk getdata dari localStorage
-	var getData = () => {
+	var getData = (sisa_waktu) => {
     	$('#showCounter').show();
     	var meetingData = JSON.parse(localStorage.getItem('meetingData'));
 
@@ -278,8 +286,8 @@
 		$('#jam').text(meetingData.jam_aktif);
 
     	if(localStorage.getItem('sisa_waktu')){
-    		var sisaWaktu = localStorage.getItem('sisa_waktu');
-			startTimer(sisaWaktu);
+    		localStorage.setItem('sisa_waktu', sisa_waktu);
+			startTimer(sisa_waktu);
 			$('#event_id').val(localStorage.getItem('id'));
 			loadChat(localStorage.getItem('id'));
 			if(localStorage.getItem('count') == 'mulai'){
@@ -293,6 +301,23 @@
 
     }
 
+    var getTimerPrecise = () => {
+    	$.ajax({
+			method: 'GET',
+			url: `/meeting-management/count_reload/${localStorage.getItem('id')}`,
+		})
+		.done(res => {
+    		if(res.status == 'aktif'){
+    			getData(res.sisa_waktu);
+    		}else{
+    			swal('Oops', 'Waktu Presentasi Telah Habis', 'error')
+    		}
+		})
+		.catch(err => {
+			console.log(err.message)
+		})
+    }
+
 	$(document).ready(()=>{
 		$.ajaxSetup({
             headers: {
@@ -302,31 +327,11 @@
 
         loadTable();
 
-		
-		//chat 		
-		$('#chat').submit((e) => {
-			e.preventDefault();
-			var formData = {
-				'event_id': $('#event_id').val(),
-				'isi_message': $('#isi_message').val()
-			};
-			$.ajax({
-				method: 'POST',
-				url: `{{ route('chatlog_add') }}`,
-				data: formData
-			})
-			.done(res=>{
-				loadChat($('#event_id').val());
-				$('#isi_message').val('');
-			})
-			.err(err => {
-				console.log(err.message)
-			})
-		});
-		
     	if(localStorage.getItem('count')){
-        	getData();
+    		getTimerPrecise();
         }
+
+        getWaktuPerMenit();
 
         $('#jam_mulai_edit').on('change', function() {
         	$('#jam_selesai_edit').attr('min', $('#jam_mulai_edit').val());
@@ -368,6 +373,7 @@
 						}
 					},
 					{data: 'narasumber', name:'narasumber'},
+					{data: 'kode', name:'kode'},
 					{data: 'jam_mulai', name:'jam_mulai'},
 					{data: 'jam_selesai', name:'jam_selesai'},
 					{data: 'action', name:'action'},
@@ -378,7 +384,7 @@
 						render: function (data, type, full, meta) {
 	                        return "<div class='text-wrap'>" + data + "</div>";
 	                    },
-	                    targets: [1,2]
+	                    targets: [1,2,3,4]
 	                },
 				],
 			});
@@ -484,6 +490,8 @@
 						localStorage.removeItem('count');
 						$('#showCounter').hide();
 						loadTable();
+					}else if(res.status == "progress"){
+						swal("Warning", "Meeting sedang dijalankan oleh di device lain", "warning");
 					}else{
 						if(localStorage.getItem('count') != 'mulai'){
 
@@ -506,7 +514,7 @@
 							$('#counter').removeClass('text-danger');
 							$('#counter').addClass('text-dark');
 							
-							getData();
+							getData(res.meeting.sisa_waktu);
 						}
 					}
 				})
@@ -516,6 +524,26 @@
 			}
 		})
 
+		//chat 		
+		$('#chat').submit((e) => {
+			e.preventDefault();
+			var formData = {
+				'event_id': $('#event_id').val(),
+				'isi_message': $('#isi_message').val()
+			};
+			$.ajax({
+				method: 'POST',
+				url: `{{ route('chatlog_add') }}`,
+				data: formData
+			})
+			.done(res=>{
+				loadChat($('#event_id').val());
+				$('#isi_message').val('');
+			})
+			.err(err => {
+				console.log(err.message)
+			})
+		});
 
 
 	});
@@ -541,19 +569,25 @@
 		});
 	}
 
+	let waktuTimer = 0;
+
 	//function untuk startTimer
 	var startTimer = (sisaWaktu) => {
-		// waktu = sisaWaktu
+
 		timerJalan = true;
 
 		var timerStart = setInterval((waktu) => {
 			var timer = reduceTimer()
-			
+
 			$('#counter').text(timer)
-			if(waktu < 1){
-				clearInterval(timerStart)
-				return;
+
+			if(waktuTimer < 60){
+				waktuTimer += 1;
+			}else{
+				clearInterval(timerStart);
+				waktuTimer = 0;
 			}
+
 			if(!timerJalan){
 				clearInterval(timerStart)
 			}

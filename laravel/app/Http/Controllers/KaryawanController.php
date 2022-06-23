@@ -27,6 +27,8 @@ class KaryawanController extends Controller
         $validator = Validator::make($request->all(), [
             "foto" => "required|image",
             "nama" => "required",
+            "no_hp" => "required",
+            "email" => "required",
             "kategori" => "required",
             "jabatan" => "required",
         ]);
@@ -53,6 +55,9 @@ class KaryawanController extends Controller
             $karyawan = new Karyawan;
             $karyawan->akun_id = Auth::user()->id;
             $karyawan->nama = $request->nama;
+            $karyawan->no_hp = $request->no_hp;
+            $karyawan->email = $request->email;
+            $karyawan->kode = $this->randomizeCode();
             $karyawan->kategori = strtolower($request->kategori);
             $karyawan->jabatan = $request->jabatan;
             $karyawan->media_id = $id;
@@ -78,6 +83,15 @@ class KaryawanController extends Controller
         return Karyawan::with('media')->where('id',$id)->get();
     }
 
+    public function randomizeCode(){
+        $randomNum = rand(10000000, 99999999);
+        if (Karyawan::where('kode', '=', $randomNum)->exists()){
+            $this->randomizeCode();
+        }else{
+            return $randomNum;
+        }
+    }
+
     public function update(Request $request) {
         // dd($request->all());
         $namafile = explode(".",$request->Filename);
@@ -85,6 +99,8 @@ class KaryawanController extends Controller
         $validator = Validator::make($request->all(), [
             "fotoEdit" => "image",
             "namaEdit" => "required",
+            "no_hpEdit" => "required",
+            "emailEdit" => "required",
             "kategoriEdit" => "required",
             "jabatanEdit" => "required",
         ]);
@@ -109,8 +125,9 @@ class KaryawanController extends Controller
                 $media->save();
                 $id=$media->id;
                 }
-                $karyawan = new Karyawan;
-                $karyawan->where('id',$id)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
+                $karyawan = Karyawan::find($id);
+                $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
+                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }else{
             if($request->hasFile('fotoEdit')){
@@ -131,8 +148,9 @@ class KaryawanController extends Controller
                 $tgl_media=date('Y-m-d');
                 $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id,'name'=>$namaf,'kategori'=>$kategori,'jenis'=>$jenis,'tgl_media'=>$tgl_media]);
                 }
-                $karyawan = new Karyawan;
-                $karyawan->where('id',$request->editID)->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
+                $karyawan = Karyawan::find($request->editID);
+                $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
+                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }
     }

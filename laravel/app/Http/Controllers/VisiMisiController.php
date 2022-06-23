@@ -29,6 +29,7 @@ class VisiMisiController extends Controller
         $validatedData = Validator::make($request->all(),[
             'visi' => 'required',
             'misi' => 'required',
+            'misi2' => 'required',
         ]);
 
         if($validatedData->fails()) {
@@ -40,6 +41,7 @@ class VisiMisiController extends Controller
         $visiMisi->akun_id = Auth::user()->id;
         $visiMisi->visi = $request->visi;
         $visiMisi->misi = $request->misi;
+        $visiMisi->misi2 = $request->misi2;
         $visiMisi->save();
 
         return redirect()->route('visiMisi')->with('success','Visi misi anda berhasil ditambahkan!');
@@ -55,6 +57,7 @@ class VisiMisiController extends Controller
         $validatedData = Validator::make($request->all(),[
             'visiEdit' => 'required',
             'misiEdit' => 'required',
+            'misi2Edit' => 'required',
         ]);
 
         if($validatedData->fails()) {
@@ -65,7 +68,8 @@ class VisiMisiController extends Controller
         $visiMisi = new VisiMisi;
         $visi = $request->visiEdit;
         $misi = $request->misiEdit;
-        $visiMisi = VisiMisi::where('akun_id',Auth::user()->id)->update(['visi'=>$visi,'misi'=>$misi]);
+        $misi2 = $request->misi2Edit;
+        $visiMisi = VisiMisi::where('akun_id',Auth::user()->id)->update(['visi'=>$visi,'misi'=>$misi,'misi2'=>$misi2]);
 
         return redirect::back()->with('success','Data anda berhasil diubah!');  
     }

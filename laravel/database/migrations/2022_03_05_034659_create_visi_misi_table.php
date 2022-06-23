@@ -18,6 +18,7 @@ class CreateVisiMisiTable extends Migration
             $table->bigInteger('akun_id', false, true);                        
             $table->text('visi');
             $table->text('misi');
+            $table->text('misi2');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();
 

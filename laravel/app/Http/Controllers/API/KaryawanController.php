@@ -99,6 +99,9 @@ class KaryawanController extends Controller
                     $memberArray = array(
                         'id' => $memberKey,
                         'member' => $member->nama,
+                        'no_hp' => $member->no_hp,
+                        'email' => $member->email,
+                        'kode' => $member->kode,
                         'division' => $member->jabatan,
                         'image' => $member->image,
                     );

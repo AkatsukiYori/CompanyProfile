@@ -309,6 +309,8 @@
 		.done(res => {
     		if(res.status == 'aktif'){
     			getData(res.sisa_waktu);
+				localStorage.setItem('count', 'progress');
+				timerJalan = true;
     		}else{
     			swal('Oops', 'Waktu Presentasi Telah Habis', 'error')
     		}

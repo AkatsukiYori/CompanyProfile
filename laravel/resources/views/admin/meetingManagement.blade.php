@@ -238,9 +238,8 @@
 			if(!timerJalan){
 				return;
 			}
-			timerJalan = false;
 			getTimerPrecise();
-		}, 60 * 1000)
+		}, 30 * 1000)
 	}
 
 	//function untuk load chat
@@ -583,7 +582,7 @@
 
 			$('#counter').text(timer)
 
-			if(waktuTimer < 60){
+			if(waktuTimer < 30){
 				waktuTimer += 1;
 			}else{
 				clearInterval(timerStart);
@@ -592,6 +591,7 @@
 
 			if(!timerJalan){
 				clearInterval(timerStart)
+				clearInterval(timerWaktu);
 			}
 		}, 1000);
 
@@ -612,7 +612,7 @@
 						url: `/meeting-management/countend/${id}`,
 					})
 					.done(res => {
-						clearInterval(timerStart);
+						timerJalan = false;
 						localStorage.clear();
 						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
 						$('#tableMeeting').DataTable().ajax.reload();

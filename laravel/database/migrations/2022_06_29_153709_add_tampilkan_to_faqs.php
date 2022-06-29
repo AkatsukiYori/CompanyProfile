@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddKodeToMeetingManagement extends Migration
+class AddTampilkanToFaqs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddKodeToMeetingManagement extends Migration
      */
     public function up()
     {
-        Schema::table('meeting_management', function (Blueprint $table) {
-            $table->integer('kode')->after('slug');
+        Schema::table('faqs', function (Blueprint $table) {
+            $table->text('tampil')->after('jawaban');
         });
     }
 
@@ -25,7 +25,8 @@ class AddKodeToMeetingManagement extends Migration
      */
     public function down()
     {
-        Schema::table('meeting_management', function (Blueprint $table) {
+        Schema::table('faqs', function (Blueprint $table) {
+            //
         });
     }
 }

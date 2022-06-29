@@ -32,6 +32,7 @@ Route::get('tentang_kami', [TentangController::class, 'index']);
 
 //Faqs
 Route::get('faq', [FaqsController::class, 'index']);
+Route::post('faq/add', [FaqsController::class, 'store']);
 
 //karyawan
 Route::get('karyawan', [KaryawanController::class, 'index']);

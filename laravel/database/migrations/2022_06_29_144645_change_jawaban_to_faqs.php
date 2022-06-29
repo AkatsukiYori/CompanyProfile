@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHeadlineToBerita extends Migration
+class ChangeJawabanToFaqs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddHeadlineToBerita extends Migration
      */
     public function up()
     {
-        Schema::table('berita', function (Blueprint $table) {
-            // $table->enum('headline', ['y', 'n'])->after('slug');
+        Schema::table('faqs', function (Blueprint $table) {
+            $table->text('jawaban')->nullable()->change();
         });
     }
 
@@ -25,7 +25,7 @@ class AddHeadlineToBerita extends Migration
      */
     public function down()
     {
-        Schema::table('berita', function (Blueprint $table) {
+        Schema::table('faqs', function (Blueprint $table) {
             //
         });
     }

@@ -31,7 +31,6 @@ class FaqsController extends Controller
         $database_FAQ->akun_id = Auth::user()->id;
         $database_FAQ->pertanyaan = $request->pertanyaan_faq;
         $database_FAQ->jawaban = $request->jawaban_faq;
-        $database_FAQ->tampil = 'tampil';
 
         $database_FAQ->save();
         return redirect('/faqs')->with(['success' => 'Data created Successfully!'], 200);

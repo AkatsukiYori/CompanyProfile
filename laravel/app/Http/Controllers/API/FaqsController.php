@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class FaqsController extends Controller
 {
     public function index(){
-        $faqs = Faqs::where('tampil', '=', 'tampil')->get();
+        $faqs = Faqs::whereNotNull('jawaban')->get();
         $faq = [];
         foreach($faqs as $key => $value){
             $faq[$key]['id'] = $key;
@@ -31,7 +31,6 @@ class FaqsController extends Controller
         }
         $database_FAQ = new Faqs();
         $database_FAQ->akun_id = 1;
-        $database_FAQ->tampil = 'tidak';
         $database_FAQ->pertanyaan = $request->pertanyaan;
         if($database_FAQ->save()){
             return redirect('/faqs')->with(['success' => 'Berhasil'], 200);

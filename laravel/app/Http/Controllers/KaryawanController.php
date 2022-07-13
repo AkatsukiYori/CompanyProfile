@@ -57,6 +57,7 @@ class KaryawanController extends Controller
             $karyawan->nama = $request->nama;
             $karyawan->no_hp = $request->no_hp;
             $karyawan->email = $request->email;
+            $karyawan->instagram = $request->instagram;
             $karyawan->kode = $this->randomizeCode();
             $karyawan->kategori = strtolower($request->kategori);
             $karyawan->jabatan = $request->jabatan;
@@ -101,6 +102,7 @@ class KaryawanController extends Controller
             "namaEdit" => "required",
             "no_hpEdit" => "required",
             "emailEdit" => "required",
+            "instagramEdit" => "required",
             "kategoriEdit" => "required",
             "jabatanEdit" => "required",
         ]);
@@ -127,7 +129,7 @@ class KaryawanController extends Controller
                 }
                 $karyawan = Karyawan::find($id);
                 $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
-                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
+                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'instagram'=>$request->instagramEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }else{
             if($request->hasFile('fotoEdit')){
@@ -150,7 +152,7 @@ class KaryawanController extends Controller
                 }
                 $karyawan = Karyawan::find($request->editID);
                 $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
-                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
+                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'instagram'=>$request->instagramEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
                 return Redirect::back()->with('success', 'Data Berhasil Diupdate');
         }
     }

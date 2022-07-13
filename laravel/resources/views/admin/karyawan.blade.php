@@ -45,6 +45,7 @@
                                             <th>Nama</th>
                                             <th>no.HP</th>
                                             <th>Email</th>
+                                            <th>Instagram</th>
                                             <th>Kode</th>
                                             <th>Kategori</th>
                                             <th>Jabatan</th>
@@ -65,6 +66,7 @@
                                                 <td>{{ $karya->nama }}</td>
                                                 <td>{{ $karya->no_hp }}</td>
                                                 <td>{{ $karya->email }}</td>
+                                                <td>{{ $karya->instagram }}</td>
                                                 <td>{{ $karya->kode }}</td>
                                                 <td>{{ strtolower($karya->kategori) }}</td>
                                                 <td>{{ $karya->jabatan }}</td>
@@ -113,8 +115,12 @@
                         <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukan NO HP karyawan" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">email</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukan email karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Instagram</label>
+                        <input type="instagram" class="form-control" id="instagram" name="instagram" placeholder="Masukan instagram karyawan" required>
                     </div>
                     <div class="form-group">
                         <label for="kategory">Divisi</label>
@@ -165,8 +171,12 @@
                         <input type="text" class="form-control" id="no_hpEdit" name="no_hpEdit" placeholder="Masukan NO HP karyawan" required>
                     </div>
                     <div class="form-group">
-                        <label for="emailEdit">email</label>
+                        <label for="emailEdit">Email</label>
                         <input type="emailEdit" class="form-control" id="emailEdit" name="emailEdit" placeholder="Masukan email karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="instagramEdit">Instagram</label>
+                        <input type="instagramEdit" class="form-control" id="instagramEdit" name="instagramEdit" placeholder="Masukan instagram karyawan" required>
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
@@ -203,6 +213,7 @@
                     $('#namaEdit').val(response[0].nama);
                     $('#no_hpEdit').val(response[0].no_hp);
                     $('#emailEdit').val(response[0].email);
+                    $('#instagramEdit').val(response[0].instagram);
                     $('#kategoriEdit').val(response[0].kategori);
                     $('#jabatanEdit').val(response[0].jabatan);
                     $('#editID').val(response[0].id);

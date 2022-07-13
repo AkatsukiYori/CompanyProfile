@@ -101,6 +101,7 @@ class KaryawanController extends Controller
                         'member' => $member->nama,
                         'no_hp' => $member->no_hp,
                         'email' => $member->email,
+                        'instagram' => $member->instagram,
                         'kode' => $member->kode,
                         'division' => $member->jabatan,
                         'image' => $member->image,
@@ -122,6 +123,7 @@ class KaryawanController extends Controller
                 $members[$key]['image'] = $value->image;
                 $members[$key]['no_hp'] = $value->no_hp;
                 $members[$key]['email'] = $value->email;
+                $members[$key]['instagram'] = $value->instagram;
                 $members[$key]['kode'] = $value->kode;
             }
             

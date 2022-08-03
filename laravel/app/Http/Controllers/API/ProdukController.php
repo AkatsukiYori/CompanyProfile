@@ -14,6 +14,8 @@ class ProdukController extends Controller
             $product[$key]['id'] = $key;
             $product[$key]['link'] = $value->link;
             $product[$key]['image'] = $value->image;
+            $product[$key]['name'] = $value->name;
+            $product[$key]['deskripsi'] = $value->deskripsi;
         }
         
         return $product;

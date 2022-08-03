@@ -15,12 +15,41 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
+use DataTables;
+
 class KaryawanController extends Controller
 {
+
     public function view() {
-        $karyawan = Karyawan::with('media')->get();
+        return view('admin/karyawan');
+    }
+
+    public function dataTable() {
+        $karyawan = Karyawan::with('media')->get()
+            ->map(function($data){
+                return [
+                    'id' => $data->id,
+                    'nama' => $data->nama,
+                    'no_hp' => $data->no_hp,
+                    'email' => $data->email,
+                    'instagram' => $data->instagram,
+                    'kode' => $data->kode,
+                    'kategori' => $data->kategori,
+                    'jabatan' => $data->jabatan,
+                    'image' => $data->media->name
+                ];
+            });
         // return $karyawan;
-        return view('admin/karyawan', ['karyawan'=>$karyawan]);
+
+        return DataTables::of($karyawan)
+            ->addIndexColumn()
+            ->addColumn('aksi', function($data){
+                $button = '<button class="btnEdit btn btn-warning" id="'.$data['id'].'"><i class="fas fa-edit"></i></button>';
+                $button .= '<button class="btnDelete btn btn-danger" id="'.$data['id'].'"><i class="fas fa-trash"></i></button>';
+                return $button;
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     public function store(Request $request) {
@@ -29,19 +58,19 @@ class KaryawanController extends Controller
             "nama" => "required",
             "no_hp" => "required",
             "email" => "required",
+            "instagram" => "required",
             "kategori" => "required",
             "jabatan" => "required",
         ]);
         if($validator->fails()) {
-            $messages = $validator->messages();
-            return redirect::back()->witherrors($messages);
+            return $validator->errors();
         }
 
         if($request->hasFile('foto')){
             global $filename;
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
-            $filename = $request->nama.'-'.'.' . $extension;
+            $filename = uniqid().'.' . $extension;
             $file->move('storage/karyawan/', $filename);
             $media = new Media;
             $media->akun_id=Auth::user()->id;
@@ -52,36 +81,36 @@ class KaryawanController extends Controller
             $media->save();
             $id=$media->id;
         }
-            $karyawan = new Karyawan;
-            $karyawan->akun_id = Auth::user()->id;
-            $karyawan->nama = $request->nama;
-            $karyawan->no_hp = $request->no_hp;
-            $karyawan->email = $request->email;
-            $karyawan->instagram = $request->instagram;
-            $karyawan->kode = $this->randomizeCode();
-            $karyawan->kategori = strtolower($request->kategori);
-            $karyawan->jabatan = $request->jabatan;
-            $karyawan->media_id = $id;
-            $karyawan->save();
+        $karyawan = new Karyawan;
+        $karyawan->akun_id = Auth::user()->id;
+        $karyawan->nama = $request->nama;
+        $karyawan->no_hp = $request->no_hp;
+        $karyawan->email = $request->email;
+        $karyawan->instagram = $request->instagram;
+        $karyawan->kode = $this->randomizeCode();
+        $karyawan->kategori = strtolower($request->kategori);
+        $karyawan->jabatan = $request->jabatan;
+        $karyawan->media_id = $id;
+        $karyawan->save();
 
-            return redirect::back()->with('success','Data karyawan berhasil ditambahkan!');
+        return response()->json('success');
     }
 
-    public function destroy($id, Request $request) {
-        $karyawanDB = Karyawan::find($id);
-        $mediaDB = Media::find($request->media_id);
-        $imageDestination = 'storage/karyawan/'.$mediaDB->name;
+    public function destroy($id) {
+        $karyawanDB = Karyawan::where('id',$id)->with('media')->get();
+        $imageDestination = 'storage/karyawan/'.$karyawanDB[0]->media->name;
         
         if(File::exists($imageDestination)) {
             File::delete($imageDestination);
         }
-        $karyawanDB->delete();
-        $mediaDB->delete();
+
+        $karyawanDB[0]->media->delete();
+        $karyawanDB[0]->delete();
         return redirect::back()->with('success','Data berhasil dihapus!');
     }
 
     public function edit($id) {
-        return Karyawan::with('media')->where('id',$id)->get();
+        return Karyawan::with('media')->where('id',$id)->with('media')->get();
     }
 
     public function randomizeCode(){
@@ -94,66 +123,53 @@ class KaryawanController extends Controller
     }
 
     public function update(Request $request) {
-        // dd($request->all());
-        $namafile = explode(".",$request->Filename);
         
         $validator = Validator::make($request->all(), [
-            "fotoEdit" => "image",
-            "namaEdit" => "required",
-            "no_hpEdit" => "required",
-            "emailEdit" => "required",
-            "instagramEdit" => "required",
-            "kategoriEdit" => "required",
-            "jabatanEdit" => "required",
+            "foto" => "image",
+            "nama" => "required",
+            "no_hp" => "required",
+            "email" => "required",
+            "instagram" => "required",
+            "kategori" => "required",
+            "jabatan" => "required",
         ]);
+
         if($validator->fails()) {
             $messages = $validator->messages();
             return redirect::back()->witherrors($messages);
         }
-      
-        if($request->Filename == null){ 
-            if($request->hasFile('fotoEdit')){
-                global $filename;
-                $file = $request->file('fotoEdit');
-                $extension = $file->getClientOriginalExtension();
-                $filename = $request->nama.'-'.'.' . $extension;
-                $file->move('storage/karyawan/', $filename);
-                $media = new Media;
-                $media->akun_id=Auth::user()->id;
-                $media->name= $filename;
-                $media->kategori = "image";
-                $media->jenis= "lainnya";
-                $media->tgl_media=date('Y-m-d');
-                $media->save();
-                $id=$media->id;
-                }
-                $karyawan = Karyawan::find($id);
-                $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
-                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'instagram'=>$request->instagramEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit ,'media_id'=>$id]);
-                return Redirect::back()->with('success', 'Data Berhasil Diupdate');
-        }else{
-            if($request->hasFile('fotoEdit')){
-                global $filename;
-                $file = $request->file('fotoEdit');
-                $extension = $file->getClientOriginalExtension();
-                if($namafile[0] == $request->namaEdit){
-                    $namaf = $request->Filename;
-                }else{
-                    $namaf =$request->namaEdit.".".$extension;
-                }; 
-                $filename =$namaf;
-                $file->move('storage/karyawan/', $filename);
-                $media = new Media;
-                $media->akun_id=Auth::user()->id;
-                $kategori = "image";
-                $jenis= "lainnya";
-                $tgl_media=date('Y-m-d');
-                $media->where('id',$request->mediaID)->update(['akun_id'=>Auth::user()->id,'name'=>$namaf,'kategori'=>$kategori,'jenis'=>$jenis,'tgl_media'=>$tgl_media]);
-                }
-                $karyawan = Karyawan::find($request->editID);
-                $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
-                $karyawan->update(['akun_id'=>Auth::user()->id, 'nama'=>$request->namaEdit, 'no_hp'=>$request->no_hpEdit, 'email'=>$request->emailEdit, 'instagram'=>$request->instagramEdit, 'kode'=>$kode, 'kategori'=>strtolower($request->kategoriEdit), 'jabatan'=>$request->jabatanEdit, 'media_id'=>$request->mediaID]);
-                return Redirect::back()->with('success', 'Data Berhasil Diupdate');
+        
+        $mediaId = '';
+        if($request->foto){
+            global $filename;
+            $file = $request->file('foto');
+            $extension = $file->getClientOriginalExtension();
+            $filename = uniqid().'-'.'.' . $extension;
+            $file->move('storage/karyawan/', $filename);
+            $media = new Media;
+            $media->akun_id=Auth::user()->id;
+            $media->name= $filename;
+            $media->kategori = "image";
+            $media->jenis= "lainnya";
+            $media->tgl_media=date('Y-m-d');
+            $media->save();
+            $mediaId = $media->id;
         }
+
+        $karyawan = Karyawan::find($request->id);
+
+        $kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
+
+        $karyawan->akun_id = auth()->user()->id;
+        $karyawan->nama = $request->nama;
+        $karyawan->no_hp = $request->no_hp;
+        $karyawan->instagram = $request->instagram;
+        $karyawan->kode = ($karyawan->kode) ? $karyawan->kode : $this->randomizeCode();
+        $karyawan->kategori = strtolower($request->kategori);
+        $karyawan->jabatan = $request->jabatan;
+        $karyawan->media_id = ($mediaId) ? $mediaId : $karyawan->media_id;
+        $karyawan->update();
+
+        return response()->json('success');
     }
 }

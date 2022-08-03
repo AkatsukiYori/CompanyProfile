@@ -22,6 +22,7 @@ class FaqsController extends Controller
     }
 
     public function store(Request $request){
+        // return $request->all();
         $validator = Validator::make($request->all(), [
             'pertanyaan' => 'required',
         ]);
@@ -29,13 +30,15 @@ class FaqsController extends Controller
             $messages = $validator->messages();
             return Redirect::back()->withErrors($messages);
         }
-        $database_FAQ = new Faqs();
-        $database_FAQ->akun_id = 1;
-        $database_FAQ->pertanyaan = $request->pertanyaan;
-        if($database_FAQ->save()){
-            return redirect('/faqs')->with(['success' => 'Berhasil'], 200);
-        }else{
-            return redirect('/faqs')->with(['failed' => 'Gagal'], 200);
+        try{
+            $database_FAQ = new Faqs();
+            $database_FAQ->akun_id = 1;
+            $database_FAQ->pertanyaan = $request->pertanyaan;
+            $database_FAQ->save();
+            return response()->json(['status' => 'berhasil']);
+            
+        }catch(Exception $e){
+            return response()->json(['status' => 'gagal']);
         }
     }
 }

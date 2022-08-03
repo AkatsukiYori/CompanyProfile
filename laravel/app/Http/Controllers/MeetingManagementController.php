@@ -202,10 +202,9 @@ class MeetingManagementController extends Controller
 
         $sisa_waktu = intval(($timeNow - $waktu_timer));
 
-        $data = ($sisa_waktu != ($meeting->jumlah_menit * 60)) ? ["status" => "aktif", "sisa_waktu" => ($meeting->sisa_waktu - $sisa_waktu)] : ["status" => "waktu habis"];
+        $data = ($sisa_waktu < ($meeting->jumlah_menit * 60)) ? ["status" => "aktif", "sisa_waktu" => ($meeting->sisa_waktu - $sisa_waktu)] : ["status" => "waktu habis", "sisa_waktu" => 0];
 
         return $data;
-
     }
 
     public function endCount($id){
@@ -215,6 +214,7 @@ class MeetingManagementController extends Controller
         $meeting->update();
 
         $this->loadTable();
+        return $id;
     }
 
     public function showChat($event_id){
@@ -250,9 +250,9 @@ class MeetingManagementController extends Controller
         }
 
         $pengirim = User::find(auth()->user()->id)->pluck('name');
-        $waktu_kirim = now()->format('H:i');
+        $waktu_kirim = now()->format('H:i:s');
 
-        event(new commentPMM($request-> event_id, $pengirim[0], $request->isi_message, $waktu_kirim));
+        event(new commentPMM($request->event_id, $pengirim[0], $request->isi_message, $waktu_kirim));
 
         $chatlog = new Chatlog();
         $chatlog->user_id = auth()->user()->id;

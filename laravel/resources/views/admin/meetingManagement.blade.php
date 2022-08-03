@@ -233,15 +233,6 @@
 	var waktu = 0;
 	var timerJalan = false;
 
-	var getWaktuPerMenit = () => {
-		var timerWaktu = setInterval(() => {
-			if(!timerJalan){
-				return;
-			}
-			getTimerPrecise();
-		}, 30 * 1000)
-	}
-
 	//function untuk load chat
 	var loadChat = (event_id) => {
 		$.ajax({
@@ -297,26 +288,28 @@
     	}else{
     		localStorage.clear();
     	}
-
     }
 
     var getTimerPrecise = () => {
-    	$.ajax({
-			method: 'GET',
-			url: `/meeting-management/count_reload/${localStorage.getItem('id')}`,
-		})
-		.done(res => {
-    		if(res.status == 'aktif'){
-    			getData(res.sisa_waktu);
-				localStorage.setItem('count', 'progress');
-				timerJalan = true;
-    		}else{
-    			swal('Oops', 'Waktu Presentasi Telah Habis', 'error')
-    		}
-		})
-		.catch(err => {
-			console.log(err.message)
-		})
+	    if(localStorage.getItem('count')){
+	    	$.ajax({
+				method: 'GET',
+				url: `/meeting-management/count_reload/${localStorage.getItem('id')}`,
+			})
+			.done(res => {
+	    		if(res.status == 'aktif'){
+	    			localStorage.setItem('count', 'progress')
+	    			getData(res.sisa_waktu);
+	    		}else{
+	    			clearLocal(res.sisa_waktu);
+	    		}
+			})
+			.catch(err => {
+				console.log(err.message)
+			})
+	    }else{
+	    	clearInterval(timerSync)
+	    }
     }
 
 	$(document).ready(()=>{
@@ -332,7 +325,9 @@
     		getTimerPrecise();
         }
 
-        getWaktuPerMenit();
+        if(!localStorage.getItem('count') && localStorage.getItem('id')){
+        	localStorage.clear();
+        }
 
         $('#jam_mulai_edit').on('change', function() {
         	$('#jam_selesai_edit').attr('min', $('#jam_mulai_edit').val());
@@ -494,7 +489,8 @@
 					}else if(res.status == "progress"){
 						swal("Warning", "Meeting sedang dijalankan oleh di device lain", "warning");
 					}else{
-						if(localStorage.getItem('count') != 'mulai'){
+						if(localStorage.getItem('count') != 'mulai' || localStorage.getItem('count') != 'progress'){
+							localStorage.clear();
 
 							var jamAktif = `${res.meeting.jam_mulai} - ${res.meeting.jam_selesai}`;
 
@@ -570,33 +566,40 @@
 		});
 	}
 
-	let waktuTimer = 0;
+	//function interval
+	var timerStart = setInterval(() => {
+		reduceTimer()
+	}, 1000);
+
+	var timerSync = setInterval(() => {
+		if(waktu > 0){
+			getTimerPrecise();
+		}else{
+			clearInterval(timerSync)
+		}
+	}, 10 * 1000);
 
 	//function untuk startTimer
 	var startTimer = (sisaWaktu) => {
-
+		waktu = sisaWaktu;
 		timerJalan = true;
 
-		var timerStart = setInterval((waktu) => {
-			var timer = reduceTimer()
-
-			$('#counter').text(timer)
-
-			if(waktuTimer < 30){
-				waktuTimer += 1;
-			}else{
+		if(timerJalan){
+			if(waktu < 0){
 				clearInterval(timerStart);
-				waktuTimer = 0;
+				clearInterval(timerSync);
+				return;
 			}
+			timerStart()
+			timerSync()
+		}
 
-			if(!timerJalan){
-				clearInterval(timerStart)
-				clearInterval(timerWaktu);
-			}
-		}, 1000);
+		clearLocal(sisaWaktu);
+	}
 
-		//jika sisa waktu telah mencapai waktu yang telah ditentukan maka akan berhenti
-		if(localStorage.getItem('sisa_waktu')){
+	//jika sisa waktu telah mencapai waktu yang telah ditentukan maka akan berhenti
+	var clearLocal = (sisaWaktu) => {
+		if(localStorage.getItem('count') != 'selesai'){
 			setTimeout(() => {
 				if(localStorage.getItem('sisa_waktu')){
 					localStorage.setItem('count', 'selesai')
@@ -612,8 +615,10 @@
 						url: `/meeting-management/countend/${id}`,
 					})
 					.done(res => {
+						clearInterval(timerStart);
 						timerJalan = false;
 						localStorage.clear();
+						localStorage.setItem('id', res)
 						swal('Hai kamu :))', 'waktu presentasi telah berakhir', 'success');
 						$('#tableMeeting').DataTable().ajax.reload();
 					})
@@ -628,14 +633,15 @@
 
 	//function yang digunakan untuk mengurani sisa waktu per detik hingga 0
 	var reduceTimer = () => {
-		waktu = localStorage.getItem('sisa_waktu');
 		if(waktu > 0){
 			waktu -= 1;
 			localStorage.setItem('sisa_waktu', waktu);
+		}else{
+			clearLocal(waktu)
 		}
 
 		if(timerJalan){
-			return updateTimer(waktu);
+			updateTimer(waktu);
 		}
 	}
 
@@ -657,7 +663,7 @@
 
 		let strWaktu = sisaJam+":"+sisaMenit+":"+sisaDetik;
 
-		return strWaktu;
+		$('#counter').text(strWaktu)
 	}
 </script>
 

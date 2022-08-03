@@ -33,12 +33,14 @@ class MeetingManagementController extends Controller
         
     }
 
-    public function startTimer($id, $waktu){
+    public function startTimer($id){
         $meeting = MeetingManagement::find($id);
 
-        $waktu_timer = (!$meeting->waktu_timer) ? 'Waktu Presentasi belum dimulai' : event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->id)); ;
+        $waktu_timer = (!$meeting->waktu_timer) ? 'Waktu Presentasi belum dimulai' : event(new getTimerEvent($meeting->sisa_waktu, $meeting->waktu_timer, $meeting->jumlah_menit, $meeting->jam_mulai, $meeting->jam_selesai, $meeting->id)); ;
 
-        return response()->json($waktu_timer);
+        $waktuNow = strtotime(now()->format('H:i:s'));
+        $carbon = strtotime(explode(' ',$meeting->waktu_timer)[1]);
+        return response()->json($carbon);
     }
 
 }

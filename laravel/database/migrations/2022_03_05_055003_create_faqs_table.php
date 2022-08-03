@@ -17,7 +17,7 @@ class CreateFaqsTable extends Migration
             $table->id();
             $table->bigInteger('akun_id', false, true);     
             $table->text('pertanyaan');
-            $table->text('jawaban')->nullable();
+            $table->text('jawaban');
             $table->foreign('akun_id')->references('id')->on('users');
             $table->timestamps();
         });

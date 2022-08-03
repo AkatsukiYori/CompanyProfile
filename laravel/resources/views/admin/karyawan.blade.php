@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Karyawan | Kita Serba Digital</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
                             <div class="card-header">
                                 <h2>Karyawan</h2>
                             </div>
-                            <button type="button" class="btn btn-primary float-right mr-2" data-toggle="modal" data-target="#karyawanModal" style="margin-top: -5.5%;">
+                            <button type="button" onclick="openModal()" class="btn btn-primary float-right mr-2" data-toggle="modal" data-target="#karyawanModal" style="margin-top: -5.5%;">
                                 Tambah data karyawan
                             </button>
                             <div class="card-body">
@@ -52,31 +53,6 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($karyawan as $karya)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>
-                                                    @if($karya->media == null)
-                                                    <h3>Tidak ada gambar</h3>
-                                                    @else
-                                                    <img src="{{ asset('/storage/karyawan/'.$karya->media->name) }}" width="250px" alt="">
-                                                    @endif
-                                                </td>
-                                                <td>{{ $karya->nama }}</td>
-                                                <td>{{ $karya->no_hp }}</td>
-                                                <td>{{ $karya->email }}</td>
-                                                <td>{{ $karya->instagram }}</td>
-                                                <td>{{ $karya->kode }}</td>
-                                                <td>{{ strtolower($karya->kategori) }}</td>
-                                                <td>{{ $karya->jabatan }}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btnEdit rounded" id="{{ $karya->id }}" data-toggle="modal" data-target="#karyawanModaledit"><i class="fa-solid fa-pencil mr-1"></i> Edit</button>
-                                                    <button type="button" class="btn btn-danger btnDelete rounded" id="{{ $karya->id }}" value="{{ $karya->media->id }}"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -99,12 +75,14 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('karyawanTambah') }}" method="post" enctype="multipart/form-data">
+            <form id="karyawanForm" enctype="multipart/form-data">
                 @csrf
+
+                <input type="hidden" name="id" id="id">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" id="foto" name="foto" required data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
+                        <input type="file" class="form-control dropify" id="foto" name="foto" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -115,7 +93,7 @@
                         <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukan NO HP karyawan" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukan email karyawan" required>
                     </div>
                     <div class="form-group">
@@ -124,71 +102,24 @@
                     </div>
                     <div class="form-group">
                         <label for="kategory">Divisi</label>
-                        <input type="text" class="form-control" required id="kategory" name="kategori" placeholder="Masukan kategori">
-                        <p>example: Programer,Design,Relation,Executive,Network,AR </p>
+                        <select class="form-control" name="kategori" id="kategori">
+                            <option selected hidden>-- Divisi Karyawan --</option>
+                            <option value="programer">Programer</option>
+                            <option value="design">Design</option>
+                            <option value="relation">Relation</option>
+                            <option value="executive">Executive</option>
+                            <option value="network">Network</option>
+                            <option value="augmented reality">Augmented Reality</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
                         <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukan jabatan karyawan" required>
                     </div>
                 </div>
+                <div id="form_result"></div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal edit -->
-<div class="modal fade" id="karyawanModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit data karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('karyawanUpdate') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="hidden" name="editID" id="editID">
-                        <input type="hidden" name="Filename" id="Filename">
-                        <input type="hidden" name="mediaID" id="mediaID">
-                        <label for="foto">Foto</label>
-                        <input type="file" class="form-control dropify" id="fotoEdit" name="fotoEdit" data-allowed-file-extensions="png jpg jpeg" accept=".jpg, .png, .jpeg">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="namaEdit" name="namaEdit" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="no_hpEdit">No HP</label>
-                        <input type="text" class="form-control" id="no_hpEdit" name="no_hpEdit" placeholder="Masukan NO HP karyawan" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="emailEdit">Email</label>
-                        <input type="emailEdit" class="form-control" id="emailEdit" name="emailEdit" placeholder="Masukan email karyawan" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="instagramEdit">Instagram</label>
-                        <input type="instagramEdit" class="form-control" id="instagramEdit" name="instagramEdit" placeholder="Masukan instagram karyawan" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="kategori">Kategori</label>
-                        <input type="text" class="form-control" id="kategoriEdit" name="kategoriEdit" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
-                        <input type="text" name="jabatanEdit" id="jabatanEdit" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Save Change</button>
+                    <button type="submit" id="actionBtn" value="save" class="btn btn-success">Save</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -197,34 +128,127 @@
 </div>
 
 <script>
+    var openModal = () => {
+        $('#form_result').html('');
+        clearModal();
+    }
+
+    var clearModal = () => {
+        $('#karyawanForm')[0].reset();
+        $('.dropify-clear').click();
+        $('#actionBtn').val('save');
+        $('#actionBtn').text('Save');
+        $('#actionBtn').prop('disabled', false);
+    }
+
+    $('#karyawanForm').submit((e) => {
+        e.preventDefault();
+
+        $('#form_result').html('');
+
+        var formData = new FormData($('#karyawanForm')[0]);
+        
+        if($('#actionBtn').val() == 'save'){
+            $.ajax({
+                method: 'POST',
+                url: `{{ route('karyawanTambah') }}`,
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: () => {
+                    $('#actionBtn').text('Saving...');
+                    $('#actionBtn').prop('disabled', true);
+                }
+            }).done(res => {
+                $('#actionBtn').text('Save');
+                $('#actionBtn').prop('disabled', false);
+
+                if(res == "success"){
+                    $('#form_result').html(`<div class="alert alert-success">Data Berhasil Dimasukkan</div>`);
+                    clearModal();
+                    $('#karyawanTable').DataTable().ajax.reload();
+                }else{
+                    Object.entries(res).forEach(message => {
+                        $('#form_result').append(`<div class="alert alert-danger">${message}</div>`);
+                    })
+                }
+            }).catch(err => {
+                $('#actionBtn').text('Save');
+                $('#actionBtn').prop('disabled', false);
+                $('#form_result').html(`<div class="alert alert-danger">Data Gagal Dimasukkan</div>`);
+                console.log(err.responseJSON.message)
+            })
+        }else{
+            $.ajax({
+                method: 'POST',
+                url: `{{ route('karyawanUpdate') }}`,
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: () => {
+                    $('#actionBtn').text('Saving...');
+                    $('#actionBtn').prop('disabled', true);
+                }
+            }).done(res => {
+                $('#actionBtn').text('Edit');
+                $('#actionBtn').prop('disabled', false);
+
+                if(res == "success"){
+                    $('#form_result').html(`<div class="alert alert-success">Data Berhasil Diubah</div>`);
+                    clearModal();
+                    $('#karyawanTable').DataTable().ajax.reload();
+                    $('#karyawanModal').modal('hide');
+                }else{
+                    Object.entries(res).forEach(message => {
+                        $('#form_result').append(`<div class="alert alert-danger">${message}</div>`);
+                    })
+                }
+            }).catch(err => {
+                $('#actionBtn').text('Edit');
+                $('#actionBtn').prop('disabled', false);
+                $('#form_result').html(`<div class="alert alert-danger">Data Gagal Diubah</div>`);
+                console.log(err.responseJSON.message)
+            })
+        }
+    })
+
     $(document).ready(function() {
         $('#foto').dropify();
-        $('#fotoEdit').dropify();
-        $('#karyawanTable').DataTable();
+
+        $.ajaxSetup({
+            headers: ({
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            })
+        })
 
         $(document).on('click','.btnEdit',function(e) {
             e.preventDefault();
             var id = $(this).attr('id');
+
             $.ajax({
                 method: 'get',
                 url: '/karyawanEdit/'+id,
                 success:function(response) {
-                    // console.log(response);
-                    $('#namaEdit').val(response[0].nama);
-                    $('#no_hpEdit').val(response[0].no_hp);
-                    $('#emailEdit').val(response[0].email);
-                    $('#instagramEdit').val(response[0].instagram);
-                    $('#kategoriEdit').val(response[0].kategori);
-                    $('#jabatanEdit').val(response[0].jabatan);
-                    $('#editID').val(response[0].id);
+                    $('#form_result').html('')
+                    $('#id').val(response[0].id);
+                    $('#nama').val(response[0].nama);
+                    $('#no_hp').val(response[0].no_hp);
+                    $('#email').val(response[0].email);
+                    $('#instagram').val(response[0].instagram);
+                    $('#kategori').val(response[0].kategori);
+                    $('#jabatan').val(response[0].jabatan);
                     $('#Filename').val(response[0].media.name);
                     $('#mediaID').val(response[0].media_id);
+                    $('#actionBtn').val('edit');
+                    $('#actionBtn').text('Edit');
 
                     if(response[0].media == null){
-                        $('#fotoEdit').attr("required")
+                        $('#foto').attr("required")
                     }else{
                         var lokasi_gambar = "{{ asset('storage/karyawan') }}"+'/'+response[0].media.name;
-                        var fileDropper = $("#fotoEdit").dropify({
+                        var fileDropper = $("#foto").dropify({
                             messages: { default: "Seret dan lepas logo di sini atau klik", replace: "Seret dan lepas logo di sini atau klik", remove: "Remove", error: "Terjadi kesalahan" },
                             error: { fileSize: "Ukuran file gambar terlalu besar (Maksimal 5 MB)" },
                         });
@@ -236,6 +260,8 @@
                         fileDropper.destroy();
                         fileDropper.init();    
                     }
+
+                    $('#karyawanModal').modal('show');
                 }
             })
         })
@@ -243,11 +269,6 @@
         $(document).on('click','.btnDelete',function(e){
             e.preventDefault();
             var id=$(this).attr('id');
-            var media_id=$(this).attr('value');
-            var data = {
-                'id' : id,
-                'media_id' : media_id,
-            }
 
             Swal.fire({
             title: 'Are you sure?',
@@ -262,20 +283,57 @@
                     $.ajax({
                         method:'get',
                         url : '/karyawanDelete/'+id,
-                        data : data,
                         success: function(data) {
                             swal.fire({
                                 type: 'success',
                                 title:"Berhasil Dihapus",
                                 confirmButtonText: 'Yakin',
                             }).then((result) => {
-                                location.reload();
+                                $('#karyawanTable').DataTable().ajax.reload();
                             })
                         }
                     })
                 }
             })
         })
+
+        $('#karyawanTable').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: {
+                    details: {
+                        type: 'column'
+                    }
+                },
+                ajax: {
+                    url: `{{ route('karyawan.datatable') }}`,
+                },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false},
+                    {data: 'image', name: 'image', 
+                        render: (data, type) => {
+                            return `<img src="{{ asset('/storage/karyawan/${data}') }}" width="250px" alt="">`;
+                        }
+                    },
+                    {data: 'nama', name: 'nama'},
+                    {data: 'no_hp', name: 'no_hp'},
+                    {data: 'email', name: 'email'},
+                    {data: 'instagram', name: 'instagram'},
+                    {data: 'kode', name: 'kode'},
+                    {data: 'kategori', name: 'kategori'},
+                    {data: 'jabatan', name: 'jabatan'},
+                    {data: 'aksi', name: 'aksi'},
+                ],
+                columnDefs: [
+                    {width: "10px", target:0},
+                    {
+                        render: (data, type, row) => {
+                            return `<div class="text-wrap">${data}</div>`;
+                        },
+                        targets: [1,4]
+                    }
+                ]
+            })
     })
 </script>
     

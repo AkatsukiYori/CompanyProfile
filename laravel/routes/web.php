@@ -37,12 +37,14 @@ Route::get('/register', function() {
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
 Route::get('/dashboard-scorebox',[DashboardController::class, 'scorebox'])->name('dashboard-scorebox')->middleware('auth');
+
 // Tentang Kami
 Route::GET('/tentang',[TentangController::class, 'view'])->name('tentang')->middleware('auth');
 Route::POST('/tentang-store',[TentangController::class, 'store'])->name('tentang-store')->middleware('auth');
 Route::get('/tentang-edit/{id}',[TentangController::class, 'edit'])->name('tentang-edit')->middleware('auth');
 Route::post('/tentang-update',[TentangController::class, 'update'])->name('tentang-update')->middleware('auth');
 Route::get('/tentang-delete/{id}',[TentangController::class, 'delete'])->name('tentang-delete')->middleware('auth');
+
 // Faqs
 Route::get('/faqs',[FaqsController::class, 'view'])->name('faqs')->middleware('auth');
 Route::post('/faqs',[FaqsController::class, 'store'])->name('faqs-store')->middleware('auth');
@@ -85,6 +87,7 @@ Route::get('/visiMisihapus/{id}',[VisiMisiController::class,'destroy'])->name('v
 
 // Karyawan
 Route::get('/karyawan',[KaryawanController::class, 'view'])->name('karyawan')->middleware('auth');
+Route::get('/karyawan/datatable',[KaryawanController::class, 'dataTable'])->name('karyawan.datatable')->middleware('auth');
 Route::post('/karyawanTambah',[KaryawanController::class, 'store'])->name('karyawanTambah')->middleware('auth');
 Route::get('/karyawanEdit/{id}',[KaryawanController::class, 'edit'])->name('karyawanEdit')->middleware('auth');
 Route::post('/karyawanUpdate',[KaryawanController::class, 'update'])->name('karyawanUpdate')->middleware('auth');
